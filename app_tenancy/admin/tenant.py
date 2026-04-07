@@ -1,50 +1,42 @@
 from django.contrib import admin
 
-from app_tenancy.models import Tenant, TenantStatus, TenantAccessPolicy
-
-
-class TenantStatusInline(admin.StackedInline):
-    model = TenantStatus
-    extra = 0
-    max_num = 1
-    can_delete = False
-
-
-class TenantAccessPolicyInline(admin.StackedInline):
-    model = TenantAccessPolicy
-    extra = 0
-    max_num = 1
-    can_delete = False
+from app_tenancy.models.tenant import Tenant
 
 
 @admin.register(Tenant)
 class TenantAdmin(admin.ModelAdmin):
+    save_on_top = True
+    empty_value_display = "—"
+
     list_display = (
         "code",
-        "name",
         "is_active",
+        "license_type",
+        "license_until",
+        "allowed_ip_ranges",
+        "created_at",
+        "updated_at",
+    )
+    list_display_links = ("code",)
+    list_filter = (
+        "is_active",
+        "license_type",
+        "license_until",
         "created_at",
         "updated_at",
     )
     search_fields = (
         "code",
-        "name",
+        "description",
     )
-    list_filter = (
-        "is_active",
-        "created_at",
-        "updated_at",
-    )
-    ordering = ("name",)
     readonly_fields = (
         "id",
         "created_at",
         "updated_at",
     )
-    inlines = (
-        TenantStatusInline,
-        TenantAccessPolicyInline,
-    )
+    ordering = ("code",)
+    list_per_page = 50
+
     fieldsets = (
         (
             "Основное",
@@ -52,63 +44,42 @@ class TenantAdmin(admin.ModelAdmin):
                 "fields": (
                     "id",
                     "code",
-                    "name",
                     "is_active",
-                    "notes",
-                )
+                ),
             },
         ),
         (
-            "Служебное",
+            "Лицензия",
             {
                 "fields": (
-                    "created_at",
-                    "updated_at",
-                )
+                    "license_type",
+                    "license_until",
+                ),
+                "description": (
+                    "Тип лицензии tenant-а и срок её действия. "
+                    "Для демо-доступа и аренды срок обычно указывается, "
+                    "для купленной лицензии может быть пустым."
+                ),
             },
         ),
-    )
-
-
-@admin.register(TenantStatus)
-class TenantStatusAdmin(admin.ModelAdmin):
-    list_display = (
-        "tenant",
-        "status",
-        "updated_at",
-    )
-    search_fields = (
-        "tenant__code",
-        "tenant__name",
-        "reason",
-    )
-    list_filter = (
-        "status",
-        "updated_at",
-    )
-    readonly_fields = (
-        "created_at",
-        "updated_at",
-    )
-
-
-@admin.register(TenantAccessPolicy)
-class TenantAccessPolicyAdmin(admin.ModelAdmin):
-    list_display = (
-        "tenant",
-        "is_ip_whitelist_enabled",
-        "updated_at",
-    )
-    search_fields = (
-        "tenant__code",
-        "tenant__name",
-        "policy_notes",
-    )
-    list_filter = (
-        "is_ip_whitelist_enabled",
-        "updated_at",
-    )
-    readonly_fields = (
-        "created_at",
-        "updated_at",
+        (
+            "Доступ по IP",
+            {
+                "fields": ("allowed_ip_ranges",),
+                "description": (
+                    "Список разрешённых IP или CIDR. "
+                    "Если список пуст, доступ tenant-у запрещён."
+                ),
+            },
+        ),
+        (
+            "Дополнительно",
+            {
+                "fields": (
+                    "description",
+                    "created_at",
+                    "updated_at",
+                ),
+            },
+        ),
     )

@@ -1,11 +1,5 @@
-from .tenant import (
-    TenantAdmin,
-    TenantStatusAdmin,
-    TenantAccessPolicyAdmin,
-)
+from .tenant import TenantAdmin
 
 __all__ = [
     "TenantAdmin",
-    "TenantStatusAdmin",
-    "TenantAccessPolicyAdmin",
 ]
