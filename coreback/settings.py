@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'app_core.apps.AppCoreConfig',
     'app_tenancy.apps.AppTenancyConfig',
     'app_providers.apps.AppProvidersConfig',
+    'app_assets.apps.AppAssetsConfig'
 ]
 
 MIDDLEWARE = [
