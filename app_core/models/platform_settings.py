@@ -2,247 +2,14 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 from app_core.models import TimestampedModel
+from app_core.config.default_data import DEFAULT_STABLECOIN_CODES, DEFAULT_FIAT_CURRENCY_CODES, DEFAULT_MEMO_TAG_NETWORK_CODES
 
-DEFAULT_STABLECOIN_CODES = """AEUR
-AUDD
-BOLD
-BRZ
-CADC
-DAI
-DECL
-DJED
-DOLA
-EURA
-EURC
-EURI
-EUROe
-EURR
-EURS
-EURT
-EURe
-FDUSD
-FRAX
-GBPT
-GBPe
-GHO
-GRAI
-GUSD
-GYEN
-HAY
-HCHF
-JPYC
-LUSD
-MIM
-MXNT
-PAR
-PYUSD
-QCAD
-RLUSD
-TAUD
-TRYB
-TUSD
-USD0
-USD1
-USDA
-USDC
-USDD
-USDH
-USDK
-USDM
-USDP
-USDR
-USDS
-USDT
-USDV
-USDe
-USK
-USX
-VAI
-VCHF
-XCHF
-XIDR
-XSGD
-ZARP
-agEUR
-alUSD
-cEUR
-crvUSD
-eUSD
-frxUSD
-jEUR
-sUSD"""
 
-DEFAULT_FIAT_CURRENCY_CODES = """AED
-AFN
-ALL
-AMD
-ANG
-AOA
-ARS
-AUD
-AWG
-AZN
-BAM
-BBD
-BDT
-BGN
-BHD
-BIF
-BMD
-BND
-BOB
-BRL
-BSD
-BTN
-BWP
-BYN
-BZD
-CAD
-CDF
-CHF
-CLP
-CNY
-COP
-CRC
-CUP
-CVE
-CZK
-DJF
-DKK
-DOP
-DZD
-EGP
-ERN
-ETB
-EUR
-FJD
-FKP
-GBP
-GEL
-GHS
-GIP
-GMD
-GNF
-GTQ
-GYD
-HKD
-HNL
-HTG
-HUF
-IDR
-ILS
-INR
-IQD
-IRR
-ISK
-JMD
-JOD
-JPY
-KES
-KGS
-KHR
-KMF
-KPW
-KRW
-KWD
-KYD
-KZT
-LAK
-LBP
-LKR
-LRD
-LSL
-LYD
-MAD
-MDL
-MGA
-MKD
-MMK
-MNT
-MOP
-MRU
-MUR
-MVR
-MWK
-MXN
-MYR
-MZN
-NAD
-NGN
-NIO
-NOK
-NPR
-NZD
-OMR
-PAB
-PEN
-PGK
-PHP
-PKR
-PLN
-PYG
-QAR
-RON
-RSD
-RUB
-RWF
-SAR
-SBD
-SCR
-SDG
-SEK
-SGD
-SHP
-SLE
-SOS
-SRD
-SSP
-STN
-SYP
-SZL
-THB
-TJS
-TMT
-TND
-TOP
-TRY
-TTD
-TWD
-TZS
-UAH
-UAHG
-UGX
-USD
-UYU
-UZS
-VED
-VES
-VND
-VUV
-WST
-XAF
-XAUT
-XCD
-XOF
-XPF
-YER
-ZAR
-ZMW
-ZWG"""
-
-DEFAULT_MEMO_TAG_NETWORK_CODES = """ATOM
-BNB
-EOS
-HBAR
-KAVA
-LUNA
-LUNC
-NOT
-OSMO
-TON
-XEM
-XLM
-XRP"""
+class MaintenanceReason(models.TextChoices):
+    TECHNICAL_WORKS = "technical_works", "Технические работы"
+    PROVIDER_ISSUES = "provider_issues", "Проблемы с провайдерами"
+    DATA_SYNC_ISSUES = "data_sync_issues", "Проблемы с синхронизацией данных"
+    MANUAL_MODE = "manual_mode", "Переход в ручной режим"
 
 
 class PlatformSettings(TimestampedModel):
@@ -275,6 +42,41 @@ class PlatformSettings(TimestampedModel):
             "Можно вводить через запятую или с новой строки. При сохранении список будет очищен от дублей, "
             "отсортирован по алфавиту и сохранён в одну строку через запятую и пробел. Регистр не изменяется."
         ),
+    )
+    maintenance_mode_enabled = models.BooleanField(
+        default=False,
+        verbose_name="Режим технических работ",
+        help_text=(
+            "Если включено, ядро сообщает downstream-сервисам, что работает в режиме паузы "
+            "или ограниченной доступности."
+        ),
+    )
+
+    maintenance_reason = models.CharField(
+        max_length=64,
+        choices=MaintenanceReason.choices,
+        blank=True,
+        verbose_name="Причина технических работ",
+        help_text="Короткая стандартная причина включения режима технических работ.",
+    )
+
+    telegram_notifications_enabled = models.BooleanField(
+        default=False,
+        verbose_name="Уведомления в Telegram включены",
+        help_text="Включена ли отправка уведомлений о событиях ядра в Telegram.",
+    )
+
+    telegram_bot_token = models.TextField(
+        blank=True,
+        verbose_name="Telegram Bot Token",
+        help_text="Токен Telegram-бота, через которого отправляются уведомления.",
+    )
+
+    telegram_channel_id = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name="Telegram Channel ID",
+        help_text="ID канала или чата Telegram, куда отправляются уведомления.",
     )
 
     class Meta:

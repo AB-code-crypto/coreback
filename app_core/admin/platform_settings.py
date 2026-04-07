@@ -81,6 +81,32 @@ class PlatformSettingsAdmin(admin.ModelAdmin):
             },
         ),
         (
+            "Технические работы",
+            {
+                "fields": (
+                    "maintenance_mode_enabled",
+                    "maintenance_reason",
+                ),
+                "description": (
+                    "Если режим включён, downstream-сервисы смогут понять, что ядро "
+                    "временно недоступно или работает в ограниченном режиме."
+                ),
+            },
+        ),
+        (
+            "Telegram",
+            {
+                "fields": (
+                    "telegram_notifications_enabled",
+                    "telegram_bot_token",
+                    "telegram_channel_id",
+                ),
+                "description": (
+                    "Настройки отправки уведомлений о событиях ядра в Telegram."
+                ),
+            },
+        ),
+        (
             "Служебная информация",
             {
                 "fields": (
