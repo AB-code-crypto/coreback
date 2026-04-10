@@ -1,7 +1,3 @@
-# app_providers/services/whitebit/fetch_assets.py
-
-from __future__ import annotations
-
 from django.utils import timezone
 
 from app_providers.models import RawRequestStatus, RawRequestType

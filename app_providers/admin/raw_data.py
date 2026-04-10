@@ -18,7 +18,6 @@ class RawDataAdmin(admin.ModelAdmin):
         "is_processed",
         "requested_at",
         "responded_at",
-        "created_at",
     )
     list_display_links = ("id",)
     list_filter = (
@@ -26,7 +25,6 @@ class RawDataAdmin(admin.ModelAdmin):
         "request_type",
         "request_status",
         "is_processed",
-        "created_at",
         "requested_at",
         "responded_at",
     )
