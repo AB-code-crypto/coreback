@@ -119,7 +119,7 @@ class ProviderCredential(UUIDTimestampedModel):
 
     class Meta:
         verbose_name = "Доступ"
-        verbose_name_plural = "Доступы"
+        verbose_name_plural = "02 Доступы"
         ordering = ("provider", "priority", "name")
         indexes = [
             models.Index(fields=["provider", "is_active"], name="provcred_prov_active_idx"),

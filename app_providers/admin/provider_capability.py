@@ -14,7 +14,6 @@ class ProviderCapabilityAdmin(admin.ModelAdmin):
         "supports_trade_execution",
         "supports_spot_trading",
         "supports_futures_trading",
-        "created_at",
         "updated_at",
     )
     list_display_links = ("provider",)

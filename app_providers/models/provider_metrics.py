@@ -62,7 +62,7 @@ class ProviderMetrics(TimestampedModel):
 
     class Meta:
         verbose_name = "Статистика"
-        verbose_name_plural = "Статистика"
+        verbose_name_plural = "05 Статистика"
 
     def __str__(self) -> str:
         return self.provider.code

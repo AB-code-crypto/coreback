@@ -86,7 +86,7 @@ class ProviderStatus(TimestampedModel):
 
     class Meta:
         verbose_name = "Состояние"
-        verbose_name_plural = "Состояние"
+        verbose_name_plural = "04 Состояние"
 
     def __str__(self) -> str:
         return self.provider.code

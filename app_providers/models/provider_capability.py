@@ -86,8 +86,8 @@ class ProviderCapability(TimestampedModel):
     )
 
     class Meta:
-        verbose_name = "Возможности"
-        verbose_name_plural = "Возможности"
+        verbose_name = "Настройки"
+        verbose_name_plural = "03 Настройки"
 
     def __str__(self) -> str:
         return self.provider.code

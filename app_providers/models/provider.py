@@ -63,7 +63,7 @@ class Provider(UUIDTimestampedModel):
 
     class Meta:
         verbose_name = "Провайдер"
-        verbose_name_plural = "Провайдеры"
+        verbose_name_plural = "01 Провайдеры"
         ordering = ["priority", "name"]
         indexes = [
             models.Index(fields=["provider_type"], name="prov_type_idx"),
