@@ -67,10 +67,10 @@ class RawData(UUIDTimestampedModel):
     )
     file_path = models.CharField(
         max_length=500,
-        unique=True,
         verbose_name="Путь к файлу",
         help_text="Путь к сохранённому JSON-файлу с raw-ответом.",
     )
+
     is_processed = models.BooleanField(
         default=False,
         db_index=True,
@@ -91,6 +91,12 @@ class RawData(UUIDTimestampedModel):
             models.Index(fields=["provider", "request_type"]),
             models.Index(fields=["provider", "request_status"]),
             models.Index(fields=["provider", "is_processed"]),
+        ]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["provider", "request_type"],
+                name="unique_raw_data_per_provider_and_request_type",
+            ),
         ]
 
     def __str__(self) -> str:

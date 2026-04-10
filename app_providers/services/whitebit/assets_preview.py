@@ -225,20 +225,9 @@ def build_asset_candidates(payload: dict) -> dict:
 
 
 def save_preview_file(provider_code: str, preview_data: dict) -> str:
-    now = timezone.now()
-
-    relative_path = (
-            Path("raw")
-            / "providers"
-            / provider_code
-            / "assets_preview"
-            / now.strftime("%Y")
-            / now.strftime("%m")
-            / now.strftime("%d")
-            / f"{now.strftime('%Y%m%d_%H%M%S_%f')}.json"
-    )
-
+    relative_path = Path("raw") / provider_code / "assets_preview.json"
     full_path = Path(settings.BASE_DIR) / "storage" / relative_path
+
     full_path.parent.mkdir(parents=True, exist_ok=True)
 
     with full_path.open("w", encoding="utf-8") as f:

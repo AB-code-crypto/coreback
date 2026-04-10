@@ -2,21 +2,15 @@ import json
 from pathlib import Path
 
 from django.conf import settings
-from django.utils import timezone
 
 from app_providers.models import RawData, RawRequestStatus, RawRequestType
 from app_providers.models.provider import Provider
 
 
 def save_raw_json_to_file(*, provider_code: str, request_type: str, payload: object) -> str:
-    now = timezone.now()
-    relative_path = Path(
-        "raw"
-    ) / "providers" / provider_code / request_type / now.strftime("%Y") / now.strftime("%m") / now.strftime("%d") / (
-                            now.strftime("%Y%m%d_%H%M%S_%f") + ".json"
-                    )
-
+    relative_path = Path("raw") / provider_code / f"{request_type}.json"
     full_path = Path(settings.BASE_DIR) / "storage" / relative_path
+
     full_path.parent.mkdir(parents=True, exist_ok=True)
 
     with full_path.open("w", encoding="utf-8") as f:
