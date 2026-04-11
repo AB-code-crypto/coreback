@@ -12,11 +12,21 @@ class ProviderAdmin(admin.ModelAdmin):
         "code",
         "provider_type",
         "priority",
+        "price_feed_enabled",
+        "deposit_enabled",
+        "withdraw_enabled",
         "updated_at",
     )
+    list_display_links = ("code",)
     list_editable = ("priority",)
     list_filter = (
         "provider_type",
+        "price_feed_enabled",
+        "deposit_enabled",
+        "address_generation_enabled",
+        "withdraw_enabled",
+        "spot_trading_enabled",
+        "futures_trading_enabled",
         "updated_at",
     )
     search_fields = (
@@ -26,9 +36,12 @@ class ProviderAdmin(admin.ModelAdmin):
     )
     readonly_fields = (
         "provider_type",
+        "provider_fees_note",
         "created_at",
         "updated_at",
     )
+    ordering = ("provider_type", "code")
+    list_per_page = 50
 
     fieldsets = (
         (
@@ -38,6 +51,27 @@ class ProviderAdmin(admin.ModelAdmin):
                     "code",
                     "provider_type",
                     "priority",
+                )
+            },
+        ),
+        (
+            "Функции провайдера",
+            {
+                "fields": (
+                    "price_feed_enabled",
+                    "deposit_enabled",
+                    "address_generation_enabled",
+                    "withdraw_enabled",
+                    "spot_trading_enabled",
+                    "futures_trading_enabled",
+                )
+            },
+        ),
+        (
+            "Комиссии",
+            {
+                "fields": (
+                    "provider_fees_note",
                 )
             },
         ),
@@ -60,3 +94,17 @@ class ProviderAdmin(admin.ModelAdmin):
             },
         ),
     )
+
+    def get_readonly_fields(self, request, obj=None):
+        readonly_fields = list(super().get_readonly_fields(request, obj))
+        if obj:
+            readonly_fields.append("code")
+        return readonly_fields
+
+    @admin.display(description="Примечание")
+    def provider_fees_note(self, obj):
+        return (
+            "Комиссии не хранятся в карточке провайдера. "
+            "Они находятся в доступах провайдера, потому что могут зависеть "
+            "от конкретного набора API-ключей."
+        )

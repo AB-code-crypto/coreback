@@ -73,10 +73,62 @@ class Provider(UUIDTimestampedModel):
         verbose_name="Описание",
     )
 
+    price_feed_enabled = models.BooleanField(
+        default=False,
+        verbose_name="Трансляция цен доступна",
+        help_text=(
+            "Провайдер может использоваться как источник цен. "
+            "Это относится к биржам, обменникам, агрегаторам, ЦБ РФ и другим источникам котировок. "
+            "Если провайдер нужен только для движения средств без получения цен, это поле можно выключить."
+        ),
+    )
+    deposit_enabled = models.BooleanField(
+        default=False,
+        verbose_name="Ввод средств доступен",
+        help_text=(
+            "Через этого провайдера можно принимать средства. "
+            "Например: биржа, обменник, кошелёк, нода или другой платёжный/расчётный контур, "
+            "на который можно завести актив."
+        ),
+    )
+    address_generation_enabled = models.BooleanField(
+        default=False,
+        verbose_name="Генерация адресов доступна",
+        help_text=(
+            "Можно ли автоматически получать адрес для пополнения через этого провайдера. "
+            "Это поле относится именно к генерации или выдаче депозитного адреса, а не просто "
+            "к факту, что провайдер умеет принимать средства."
+        ),
+    )
+    withdraw_enabled = models.BooleanField(
+        default=False,
+        verbose_name="Вывод средств доступен",
+        help_text=(
+            "Через этого провайдера можно отправлять средства наружу. "
+            "Например: вывод с биржи, отправка с кошелька или перевод через собственную ноду."
+        ),
+    )
+    spot_trading_enabled = models.BooleanField(
+        default=False,
+        verbose_name="Спот торговля доступна",
+        help_text=(
+            "Провайдер поддерживает спотовую торговлю или спотовый обмен. "
+            "Эта функция разрешает обмен активов на стороне провайдера"
+        ),
+    )
+    futures_trading_enabled = models.BooleanField(
+        default=False,
+        verbose_name="Фьючерсы доступны",
+        help_text=(
+            "Провайдер поддерживает торговлю фьючерсами. "
+            "Используется для хеджирования средств"
+        ),
+    )
+
     class Meta:
         verbose_name = "Провайдер"
         verbose_name_plural = "01 Провайдеры"
-        ordering = ("provider_type", "code",)
+        ordering = ("provider_type", "code")
         indexes = [
             models.Index(fields=["provider_type"]),
         ]
@@ -93,6 +145,9 @@ class Provider(UUIDTimestampedModel):
 
         if not self.affiliate_url:
             self.affiliate_url = defaults["affiliate_url"]
+
+        if self.address_generation_enabled:
+            self.deposit_enabled = True
 
         if self.description:
             self.description = self.description.strip()
