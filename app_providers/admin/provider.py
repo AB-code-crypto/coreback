@@ -1,37 +1,40 @@
 from django.contrib import admin
 
-from app_providers.forms import ProviderAdminForm
-from app_providers.models.provider import Provider
+from app_providers.models import Provider
 
 
 @admin.register(Provider)
 class ProviderAdmin(admin.ModelAdmin):
-    form = ProviderAdminForm
     save_on_top = True
     empty_value_display = "—"
 
     list_display = (
-        "name",
+        "provider_name",
         "code",
+        "provider_type",
         "is_active",
         "priority",
-        "provider_type",
         "updated_at",
     )
-    list_display_links = ("name",)
+    list_display_links = ("provider_name",)
     list_editable = ("is_active", "priority")
-    list_filter = ("provider_type", "is_active", "updated_at")
-    search_fields = ("name", "code", "description")
-    search_help_text = "Поиск по названию, коду и описанию провайдера."
-    readonly_fields = (
-        "name",
+    list_filter = (
         "provider_type",
-        "affiliate_url",
+        "is_active",
         "created_at",
         "updated_at",
     )
-    ordering = ("-is_active", "priority", "name")
-    list_per_page = 50
+    search_fields = (
+        "code",
+        "affiliate_url",
+        "description",
+    )
+    search_help_text = "Поиск по коду, партнёрской ссылке и описанию."
+    readonly_fields = (
+        "provider_type",
+        "created_at",
+        "updated_at",
+    )
 
     fieldsets = (
         (
@@ -39,7 +42,6 @@ class ProviderAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "code",
-                    "name",
                     "provider_type",
                     "is_active",
                     "priority",
@@ -65,3 +67,13 @@ class ProviderAdmin(admin.ModelAdmin):
             },
         ),
     )
+
+    def get_readonly_fields(self, request, obj=None):
+        readonly_fields = list(super().get_readonly_fields(request, obj))
+        if obj:
+            readonly_fields.append("code")
+        return readonly_fields
+
+    @admin.display(description="Провайдер")
+    def provider_name(self, obj):
+        return obj.get_code_display()

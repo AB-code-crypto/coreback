@@ -3,106 +3,129 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 from app_core.models import UUIDTimestampedModel
-from app_providers.config import (
-    get_supported_provider_spec,
-    normalize_provider_code,
-)
 
 
 class ProviderType(models.TextChoices):
-    EXCHANGE = "exchange", "Exchange"
+    EXCHANGE = "exchange", "Биржа"
     OTC = "otc", "OTC"
-    WALLET = "wallet", "Wallet"
-    BLOCKCHAIN = "blockchain", "Blockchain"
-    INTERNAL = "internal", "Internal"
-    OTHER = "other", "Other"
+    WALLET = "wallet", "Кошелёк"
+    BLOCKCHAIN = "blockchain", "Блокчейн"
+    OTHER = "other", "Другое"
+
+
+class ProviderCode(models.TextChoices):
+    WHITEBIT = "whitebit", "WhiteBIT"
+    MEXC = "mexc", "MEXC"
+    BYBIT = "bybit", "Bybit"
+    BINANCE = "binance", "Binance"
+
+
+PROVIDER_DEFAULTS = {
+    ProviderCode.WHITEBIT: {
+        "provider_type": ProviderType.EXCHANGE,
+        "affiliate_url": "https://whitebit.com/ref/your-ref-code",
+    },
+    ProviderCode.MEXC: {
+        "provider_type": ProviderType.EXCHANGE,
+        "affiliate_url": "",
+    },
+    ProviderCode.BYBIT: {
+        "provider_type": ProviderType.EXCHANGE,
+        "affiliate_url": "",
+    },
+    ProviderCode.BINANCE: {
+        "provider_type": ProviderType.EXCHANGE,
+        "affiliate_url": "",
+    },
+}
 
 
 class Provider(UUIDTimestampedModel):
-    code = models.SlugField(
+    code = models.CharField(
         max_length=64,
+        choices=ProviderCode.choices,
         unique=True,
-        verbose_name="Код",
-        help_text="Системный код поддерживаемого провайдера.",
-    )
-    name = models.CharField(
-        max_length=255,
-        editable=False,
-        verbose_name="Название",
-        help_text="Автоматически заполняется по выбранному поддерживаемому провайдеру.",
+        db_index=True,
+        verbose_name="Провайдер",
+        help_text="Выберите одного из поддерживаемых провайдеров.",
     )
     provider_type = models.CharField(
         max_length=32,
         choices=ProviderType.choices,
-        db_index=True,
         editable=False,
+        db_index=True,
         verbose_name="Тип провайдера",
-        help_text="Автоматически заполняется по выбранному поддерживаемому провайдеру.",
+        help_text="Заполняется автоматически и не редактируется вручную.",
     )
     is_active = models.BooleanField(
         default=True,
         db_index=True,
         verbose_name="Активен",
-        help_text="Глобальный административный флаг. Разрешён ли провайдер к использованию в системе вообще.",
     )
     priority = models.PositiveIntegerField(
         default=100,
         validators=[MinValueValidator(1)],
         db_index=True,
         verbose_name="Приоритет",
-        help_text="Чем меньше число, тем выше приоритет провайдера.",
+        help_text="Чем меньше число, тем выше приоритет.",
     )
     affiliate_url = models.URLField(
         blank=True,
-        editable=False,
         verbose_name="Партнёрская ссылка",
-        help_text="Автоматически заполняется по выбранному поддерживаемому провайдеру.",
+        help_text="Подставляется автоматически, но при необходимости можно изменить вручную.",
     )
     description = models.TextField(
         blank=True,
         verbose_name="Описание",
-        help_text="Свободный комментарий или заметка для администратора.",
     )
 
     class Meta:
         verbose_name = "Провайдер"
         verbose_name_plural = "01 Провайдеры"
-        ordering = ["priority", "name"]
+        ordering = ("priority", "code")
         indexes = [
             models.Index(fields=["provider_type"]),
             models.Index(fields=["is_active", "priority"]),
         ]
 
     def __str__(self) -> str:
-        return self.code
+        return self.get_code_display()
 
     def clean(self):
         super().clean()
 
-        self.code = normalize_provider_code(self.code)
+        if self.code:
+            self.code = self.code.strip().lower()
 
-        spec = get_supported_provider_spec(self.code)
-        if spec is None:
-            raise ValidationError(
-                {"code": "Этот провайдер не поддерживается системой."}
+        if self.code not in PROVIDER_DEFAULTS:
+            raise ValidationError({"code": "Этот провайдер не поддерживается системой."})
+
+        if self.pk:
+            old_code = (
+                self.__class__.objects.filter(pk=self.pk)
+                .values_list("code", flat=True)
+                .first()
             )
+            if old_code and old_code != self.code:
+                raise ValidationError({"code": "Код провайдера нельзя менять после создания."})
 
     def save(self, *args, **kwargs):
-        self.code = normalize_provider_code(self.code)
+        if self.code:
+            self.code = self.code.strip().lower()
 
-        spec = get_supported_provider_spec(self.code)
-        if spec is None:
-            raise ValidationError(
-                {"code": "Этот провайдер не поддерживается системой."}
-            )
+        defaults = PROVIDER_DEFAULTS.get(self.code)
+        if not defaults:
+            raise ValidationError({"code": "Этот провайдер не поддерживается системой."})
 
-        self.name = spec.name
-        self.provider_type = spec.provider_type
-        self.affiliate_url = spec.affiliate_url
+        self.provider_type = defaults["provider_type"]
+
+        if not self.affiliate_url:
+            self.affiliate_url = defaults["affiliate_url"]
 
         if self.description:
             self.description = self.description.strip()
 
+        self.full_clean()
         super().save(*args, **kwargs)
 
     def get_active_credentials(self):
