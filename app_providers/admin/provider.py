@@ -9,19 +9,14 @@ class ProviderAdmin(admin.ModelAdmin):
     empty_value_display = "—"
 
     list_display = (
-        "provider_name",
         "code",
         "provider_type",
-        "is_active",
         "priority",
         "updated_at",
     )
-    list_display_links = ("provider_name",)
-    list_editable = ("is_active", "priority")
+    list_editable = ("priority",)
     list_filter = (
         "provider_type",
-        "is_active",
-        "created_at",
         "updated_at",
     )
     search_fields = (
@@ -29,7 +24,6 @@ class ProviderAdmin(admin.ModelAdmin):
         "affiliate_url",
         "description",
     )
-    search_help_text = "Поиск по коду, партнёрской ссылке и описанию."
     readonly_fields = (
         "provider_type",
         "created_at",
@@ -43,7 +37,6 @@ class ProviderAdmin(admin.ModelAdmin):
                 "fields": (
                     "code",
                     "provider_type",
-                    "is_active",
                     "priority",
                 )
             },
@@ -67,13 +60,3 @@ class ProviderAdmin(admin.ModelAdmin):
             },
         ),
     )
-
-    def get_readonly_fields(self, request, obj=None):
-        readonly_fields = list(super().get_readonly_fields(request, obj))
-        if obj:
-            readonly_fields.append("code")
-        return readonly_fields
-
-    @admin.display(description="Провайдер")
-    def provider_name(self, obj):
-        return obj.get_code_display()
