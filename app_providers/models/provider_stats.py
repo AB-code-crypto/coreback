@@ -1,14 +1,14 @@
 from django.db import models
 
 from app_core.models import TimestampedModel
-from .provider import Provider
+from app_providers.models.provider import Provider
 
 
-class ProviderMetrics(TimestampedModel):
+class ProviderStats(TimestampedModel):
     provider = models.OneToOneField(
         Provider,
         on_delete=models.CASCADE,
-        related_name="metrics",
+        related_name="stat",
         verbose_name="Провайдер",
     )
     last_calculated_at = models.DateTimeField(
@@ -62,7 +62,7 @@ class ProviderMetrics(TimestampedModel):
 
     class Meta:
         verbose_name = "Статистика"
-        verbose_name_plural = "05 Статистика"
+        verbose_name_plural = "03 Статистика"
 
     def __str__(self) -> str:
         return self.provider.code

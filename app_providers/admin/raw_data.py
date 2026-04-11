@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app_providers.models import RawData
+from app_providers.models.raw_data import RawData
 
 
 @admin.register(RawData)

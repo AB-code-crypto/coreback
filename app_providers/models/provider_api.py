@@ -6,14 +6,14 @@ from django.db import models
 
 from app_core.models import UUIDTimestampedModel
 from app_core.security.crypto import decrypt_secret, encrypt_secret, mask_secret
-from app_providers.models import Provider
+from app_providers.models.provider import Provider
 
 
 class ProviderApi(UUIDTimestampedModel):
     provider = models.ForeignKey(
         Provider,
         on_delete=models.CASCADE,
-        related_name="credentials",
+        related_name="apis",
         verbose_name="Провайдер",
     )
     name = models.CharField(
@@ -119,7 +119,7 @@ class ProviderApi(UUIDTimestampedModel):
         constraints = [
             models.UniqueConstraint(
                 fields=["provider", "name"],
-                name="uniq_provider_credential_name",
+                name="uniq_provider_api_name",
             ),
         ]
 

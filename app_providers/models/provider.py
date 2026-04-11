@@ -6,11 +6,18 @@ from app_core.models import UUIDTimestampedModel
 
 
 class ProviderType(models.TextChoices):
-    EXCHANGE = "exchange", "Биржа"
-    OTC = "otc", "OTC"
-    WALLET = "wallet", "Кошелёк"
-    BLOCKCHAIN = "blockchain", "Блокчейн"
-    OTHER = "other", "Другое"
+    CEX = "CEX", "Классическая биржа (CEX)"
+    DEX = "DEX", "Децентрализованная биржа (DEX)"
+    PSP = "PSP", "Платёжная система (PSP)"
+    OTC = "OTC", "OTC провайдер (OTC)"
+    WALLET = "WALLET", "Кошелёк"
+    NODE = "NODE", "Нода"
+    EXCHANGER = "EXCHANGER", "Обменник"
+    BANK = "BANK", "Банк"
+    CASH = "CASH", "Наличные"
+    P2P = "P2P", "P2P"
+    MAINER = "MAINER", "Майнер"
+    OTHER = "OTHER", "Другое"
 
 
 class ProviderCode(models.TextChoices):
@@ -22,19 +29,19 @@ class ProviderCode(models.TextChoices):
 
 PROVIDER_DEFAULTS = {
     ProviderCode.WHITEBIT: {
-        "provider_type": ProviderType.EXCHANGE,
+        "provider_type": ProviderType.CEX,
         "affiliate_url": "https://whitebit.com/ref/your-ref-code",
     },
     ProviderCode.MEXC: {
-        "provider_type": ProviderType.EXCHANGE,
+        "provider_type": ProviderType.CEX,
         "affiliate_url": "",
     },
     ProviderCode.BYBIT: {
-        "provider_type": ProviderType.EXCHANGE,
+        "provider_type": ProviderType.CEX,
         "affiliate_url": "",
     },
     ProviderCode.BINANCE: {
-        "provider_type": ProviderType.EXCHANGE,
+        "provider_type": ProviderType.CEX,
         "affiliate_url": "",
     },
 }

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app_providers.models import Provider
+from app_providers.models.provider import Provider
 
 
 @admin.register(Provider)

@@ -1,10 +1,9 @@
 from django.contrib import admin
+from app_providers.models.provider_stats import ProviderStats
 
-from app_providers.models import ProviderMetrics
 
-
-@admin.register(ProviderMetrics)
-class ProviderMetricsAdmin(admin.ModelAdmin):
+@admin.register(ProviderStats)
+class ProviderStatsAdmin(admin.ModelAdmin):
     save_on_top = True
     empty_value_display = "—"
     list_select_related = ("provider",)

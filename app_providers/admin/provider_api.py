@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-from app_providers.models import ProviderApi
+from app_providers.models.provider_api import ProviderApi
 
 
 class ProviderApiAdminForm(forms.ModelForm):
