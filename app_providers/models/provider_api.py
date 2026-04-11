@@ -1,13 +1,15 @@
+from decimal import Decimal
+
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
 
 from app_core.models import UUIDTimestampedModel
 from app_core.security.crypto import decrypt_secret, encrypt_secret, mask_secret
-from app_providers.models.provider import Provider
+from app_providers.models import Provider
 
 
-class ProviderCredential(UUIDTimestampedModel):
+class ProviderApi(UUIDTimestampedModel):
     provider = models.ForeignKey(
         Provider,
         on_delete=models.CASCADE,
@@ -60,6 +62,35 @@ class ProviderCredential(UUIDTimestampedModel):
         help_text="Торговый пароль, если используется провайдером.",
     )
 
+    spot_maker_fee = models.DecimalField(
+        max_digits=10,
+        decimal_places=8,
+        default=Decimal("0.001"),
+        verbose_name="Spot Maker Fee",
+        help_text="Комиссия в долях. 0.001 = 0.1%. Отрицательные значения допустимы.",
+    )
+    spot_taker_fee = models.DecimalField(
+        max_digits=10,
+        decimal_places=8,
+        default=Decimal("0.001"),
+        verbose_name="Spot Taker Fee",
+        help_text="Комиссия в долях. 0.001 = 0.1%. Отрицательные значения допустимы.",
+    )
+    futures_maker_fee = models.DecimalField(
+        max_digits=10,
+        decimal_places=8,
+        default=Decimal("0.001"),
+        verbose_name="Futures Maker Fee",
+        help_text="Комиссия в долях. 0.001 = 0.1%. Отрицательные значения допустимы.",
+    )
+    futures_taker_fee = models.DecimalField(
+        max_digits=10,
+        decimal_places=8,
+        default=Decimal("0.001"),
+        verbose_name="Futures Taker Fee",
+        help_text="Комиссия в долях. 0.001 = 0.1%. Отрицательные значения допустимы.",
+    )
+
     is_ip_whitelist_enabled = models.BooleanField(
         default=False,
         verbose_name="Включён whitelist IP",
@@ -80,7 +111,7 @@ class ProviderCredential(UUIDTimestampedModel):
     class Meta:
         verbose_name = "Доступ"
         verbose_name_plural = "02 Доступы"
-        ordering = ("provider", "priority")
+        ordering = ("provider", "priority", "created_at")
         indexes = [
             models.Index(fields=["provider", "is_active"]),
             models.Index(fields=["provider", "priority"]),
@@ -102,8 +133,12 @@ class ProviderCredential(UUIDTimestampedModel):
             )
 
     def save(self, *args, **kwargs):
+        if self.name:
+            self.name = self.name.strip()
+
         if self.description:
             self.description = self.description.strip()
+
         super().save(*args, **kwargs)
 
     def _set_secret_value(self, field_name: str, value: str) -> None:

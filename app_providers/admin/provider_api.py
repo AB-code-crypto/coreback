@@ -1,10 +1,10 @@
 from django import forms
 from django.contrib import admin
 
-from app_providers.models.provider_credential import ProviderCredential
+from app_providers.models import ProviderApi
 
 
-class ProviderCredentialAdminForm(forms.ModelForm):
+class ProviderApiAdminForm(forms.ModelForm):
     new_api_key = forms.CharField(
         required=False,
         label="Новый API Key",
@@ -32,12 +32,16 @@ class ProviderCredentialAdminForm(forms.ModelForm):
     )
 
     class Meta:
-        model = ProviderCredential
+        model = ProviderApi
         fields = (
             "provider",
             "name",
             "is_active",
             "priority",
+            "spot_maker_fee",
+            "spot_taker_fee",
+            "futures_maker_fee",
+            "futures_taker_fee",
             "is_ip_whitelist_enabled",
             "allowed_ip_ranges",
             "description",
@@ -69,10 +73,10 @@ class ProviderCredentialAdminForm(forms.ModelForm):
         return obj
 
 
-@admin.register(ProviderCredential)
-class ProviderCredentialAdmin(admin.ModelAdmin):
+@admin.register(ProviderApi)
+class ProviderApiAdmin(admin.ModelAdmin):
     save_on_top = True
-    form = ProviderCredentialAdminForm
+    form = ProviderApiAdminForm
     empty_value_display = "—"
 
     list_display = (
@@ -80,15 +84,21 @@ class ProviderCredentialAdmin(admin.ModelAdmin):
         "name",
         "is_active",
         "priority",
-        "has_api_key_display",
-        "has_api_secret_display",
-        "has_api_passphrase_display",
-        "has_broker_key_display",
-        "has_trade_password_display",
+        "spot_maker_fee",
+        "spot_taker_fee",
+        "futures_maker_fee",
+        "futures_taker_fee",
         "updated_at",
     )
-    list_display_links = ("provider",)
-    list_editable = ("is_active", "priority")
+    list_display_links = ("provider", "name")
+    list_editable = (
+        "is_active",
+        "priority",
+        "spot_maker_fee",
+        "spot_taker_fee",
+        "futures_maker_fee",
+        "futures_taker_fee",
+    )
     list_filter = (
         "provider",
         "is_active",
@@ -97,6 +107,7 @@ class ProviderCredentialAdmin(admin.ModelAdmin):
     )
     search_fields = (
         "provider__code",
+        "name",
         "description",
     )
     readonly_fields = (
@@ -120,6 +131,17 @@ class ProviderCredentialAdmin(admin.ModelAdmin):
                     "name",
                     "is_active",
                     "priority",
+                )
+            },
+        ),
+        (
+            "Комиссии",
+            {
+                "fields": (
+                    "spot_maker_fee",
+                    "spot_taker_fee",
+                    "futures_maker_fee",
+                    "futures_taker_fee",
                 )
             },
         ),
@@ -171,26 +193,6 @@ class ProviderCredentialAdmin(admin.ModelAdmin):
             },
         ),
     )
-
-    @admin.display(boolean=True, description="API Key")
-    def has_api_key_display(self, obj):
-        return obj.has_api_key()
-
-    @admin.display(boolean=True, description="API Secret")
-    def has_api_secret_display(self, obj):
-        return obj.has_api_secret()
-
-    @admin.display(boolean=True, description="API Passphrase")
-    def has_api_passphrase_display(self, obj):
-        return obj.has_api_passphrase()
-
-    @admin.display(boolean=True, description="Broker Key")
-    def has_broker_key_display(self, obj):
-        return obj.has_broker_key()
-
-    @admin.display(boolean=True, description="Trade Password")
-    def has_trade_password_display(self, obj):
-        return obj.has_trade_password()
 
     @admin.display(description="Текущий API Key")
     def api_key_masked_display(self, obj):
