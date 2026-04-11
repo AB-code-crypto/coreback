@@ -8,7 +8,6 @@ class ProviderMetricsAdmin(admin.ModelAdmin):
     save_on_top = True
     empty_value_display = "—"
     list_select_related = ("provider",)
-    search_help_text = "Поиск по коду и названию провайдера."
 
     list_display = (
         "provider",

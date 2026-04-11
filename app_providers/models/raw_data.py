@@ -92,12 +92,6 @@ class RawData(UUIDTimestampedModel):
             models.Index(fields=["provider", "request_status"]),
             models.Index(fields=["provider", "is_processed"]),
         ]
-        constraints = [
-            models.UniqueConstraint(
-                fields=["provider", "request_type"],
-                name="unique_raw_data_per_provider_and_request_type",
-            ),
-        ]
 
     def __str__(self) -> str:
         return f"{self.provider.code} | {self.request_type} | {self.created_at:%Y-%m-%d %H:%M:%S}"

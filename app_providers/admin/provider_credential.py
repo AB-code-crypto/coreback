@@ -96,6 +96,7 @@ class ProviderCredentialAdminForm(forms.ModelForm):
 
 @admin.register(ProviderCredential)
 class ProviderCredentialAdmin(admin.ModelAdmin):
+    save_on_top = True
     form = ProviderCredentialAdminForm
 
     list_display = (

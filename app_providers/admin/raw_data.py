@@ -34,7 +34,6 @@ class RawDataAdmin(admin.ModelAdmin):
         "file_path",
         "processing_error",
     )
-    search_help_text = "Поиск по провайдеру, источнику, пути к файлу и ошибке обработки."
     ordering = ("-created_at",)
     list_per_page = 50
 

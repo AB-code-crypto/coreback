@@ -5,6 +5,7 @@ from app_providers.models.provider import Provider
 
 @admin.register(Provider)
 class ProviderAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = (
         "name",
         "is_active",
