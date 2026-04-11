@@ -21,10 +21,60 @@ class ProviderType(models.TextChoices):
 
 
 class ProviderCode(models.TextChoices):
-    WHITEBIT = "whitebit", "WhiteBIT"
-    MEXC = "mexc", "MEXC"
-    BYBIT = "bybit", "Bybit"
-    BINANCE = "binance", "Binance"
+    # Биржи (CEX/DEX)
+    WHITEBIT = "WHITEBIT", "WhiteBit"
+    MEXC = "MEXC", "MEXC"
+    BYBIT = "BYBIT", "ByBit"
+    BINANCE = "BINANCE", "Binance"
+    # KUCOIN = "KUCOIN", "KuCoin"
+    # HTX = "HTX", "HTX"
+    # RAPIRA = "RAPIRA", "Rapira"
+    # COINBASE_EXCHANGE = "COINBASE_EXCHANGE", "Coinbase Exchange"
+    # UPBIT = "UPBIT", "Upbit"
+    # BITSTAMP = "BITSTAMP", "Bitstamp"
+    # BINGX = "BINGX", "BingX"
+    # BITFINEX = "BITFINEX", "Bitfinex"
+    # GATEIO = "GATEIO", "Gate.io"
+    # BITGET = "BITGET", "Bitget"
+    # OKX = "OKX", "OKX"
+    # GEMINI = "GEMINI", "Gemini"
+    # LBANK = "LBANK", "LBank"
+    # UNISWAP = "UNISWAP", "Uniswap"
+    # PANCAKESWAP = "PANCAKESWAP", "PancakeSwap"
+    #
+    # # Платёжные системы (PSP)
+    # PAYPAL = "PAYPAL", "PayPal"
+    # ADVCASH = "ADVCASH", "Advanced Cash"
+    # FIREKASSA = "FIREKASSA", "FireKassa"
+    # APIRONE = "APIRONE", "Apirone"
+    #
+    # # Обменники (EXCHANGER)
+    # CHANGENOW = "CHANGENOW", "ChangeNOW"
+    # CHANGELLY = "CHANGELLY", "Changelly"
+    # FIXEDFLOAT = "FIXEDFLOAT", "ff.io"
+    # QUICKEX = "QUICKEX", "Quickex"
+    # ALFABIT = "ALFABIT", "Alfabit"
+    #
+    # # Кошельки (WALLET)
+    # WESTWALLET = "WESTWALLET", "WestWallet"
+    # TRUSTWALLET = "TRUSTWALLET", "Trust Wallet"
+    # TRONWALLET = "TRONWALLET", "Tron Wallet"
+    # ANTARCTICWALLET = "ANTARCTICWALLET", "Antarctic Wallet"
+    # TELEGRAM_WALLET = "TELEGRAM_WALLET", "Telegram Wallet"
+    #
+    # # Ноды (NODE)
+    # BTC_NODE = "BTC_NODE", "BTC Node"
+    # XMR_NODE = "XMR_NODE", "XMR Node"
+    # USDT_NODE = "USDT_NODE", "USDT Node"
+    # USDC_NODE = "USDC_NODE", "USDC Node"
+    # DASH_NODE = "DASH_NODE", "DASH Node"
+    #
+    # # Банки (BANK)
+    # SBERBANK = "SBERBANK", "Сбербанк"
+    # TBANK = "TBANK", "ТБанк"
+    # ALFABANK = "ALFABANK", "Альфабанк"
+    # VTB = "VTB", "ВТБ банк"
+
 
 
 PROVIDER_DEFAULTS = {
