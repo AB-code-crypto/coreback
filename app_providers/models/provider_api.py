@@ -109,8 +109,8 @@ class ProviderApi(UUIDTimestampedModel):
     )
 
     class Meta:
-        verbose_name = "Доступ"
-        verbose_name_plural = "02 Доступы"
+        verbose_name = "API ключи"
+        verbose_name_plural = "02 API ключи"
         ordering = ("provider", "priority", "created_at")
         indexes = [
             models.Index(fields=["provider", "is_active"]),
