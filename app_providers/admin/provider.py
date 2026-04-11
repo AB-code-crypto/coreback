@@ -1,13 +1,18 @@
 from django.contrib import admin
 
+from app_providers.forms import ProviderAdminForm
 from app_providers.models.provider import Provider
 
 
 @admin.register(Provider)
 class ProviderAdmin(admin.ModelAdmin):
+    form = ProviderAdminForm
     save_on_top = True
+    empty_value_display = "—"
+
     list_display = (
         "name",
+        "code",
         "is_active",
         "priority",
         "provider_type",
@@ -17,7 +22,14 @@ class ProviderAdmin(admin.ModelAdmin):
     list_editable = ("is_active", "priority")
     list_filter = ("provider_type", "is_active", "updated_at")
     search_fields = ("name", "code", "description")
-    readonly_fields = ("created_at", "updated_at")
+    search_help_text = "Поиск по названию, коду и описанию провайдера."
+    readonly_fields = (
+        "name",
+        "provider_type",
+        "affiliate_url",
+        "created_at",
+        "updated_at",
+    )
     ordering = ("-is_active", "priority", "name")
     list_per_page = 50
 
@@ -26,8 +38,8 @@ class ProviderAdmin(admin.ModelAdmin):
             "Основное",
             {
                 "fields": (
-                    "name",
                     "code",
+                    "name",
                     "provider_type",
                     "is_active",
                     "priority",
@@ -40,7 +52,6 @@ class ProviderAdmin(admin.ModelAdmin):
                 "fields": (
                     "affiliate_url",
                     "description",
-                    "metadata",
                 )
             },
         ),

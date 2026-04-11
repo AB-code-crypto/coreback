@@ -1,6 +1,12 @@
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
+
 from app_core.models import UUIDTimestampedModel
+from app_providers.config import (
+    get_supported_provider_spec,
+    normalize_provider_code,
+)
 
 
 class ProviderType(models.TextChoices):
@@ -17,19 +23,21 @@ class Provider(UUIDTimestampedModel):
         max_length=64,
         unique=True,
         verbose_name="Код",
-        help_text="Стабильный системный код провайдера, например: binance, bybit, okx.",
+        help_text="Системный код поддерживаемого провайдера.",
     )
     name = models.CharField(
         max_length=255,
+        editable=False,
         verbose_name="Название",
-        help_text="Человекочитаемое название провайдера.",
+        help_text="Автоматически заполняется по выбранному поддерживаемому провайдеру.",
     )
     provider_type = models.CharField(
         max_length=32,
         choices=ProviderType.choices,
-        default=ProviderType.EXCHANGE,
         db_index=True,
+        editable=False,
         verbose_name="Тип провайдера",
+        help_text="Автоматически заполняется по выбранному поддерживаемому провайдеру.",
     )
     is_active = models.BooleanField(
         default=True,
@@ -46,19 +54,14 @@ class Provider(UUIDTimestampedModel):
     )
     affiliate_url = models.URLField(
         blank=True,
+        editable=False,
         verbose_name="Партнёрская ссылка",
-        help_text="Реферальная ссылка на регистрацию у провайдера для подключённых обменников.",
+        help_text="Автоматически заполняется по выбранному поддерживаемому провайдеру.",
     )
     description = models.TextField(
         blank=True,
         verbose_name="Описание",
         help_text="Свободный комментарий или заметка для администратора.",
-    )
-    metadata = models.JSONField(
-        default=dict,
-        blank=True,
-        verbose_name="Метаданные",
-        help_text="Технические или дополнительные данные о провайдере в JSON-формате.",
     )
 
     class Meta:
@@ -66,16 +69,44 @@ class Provider(UUIDTimestampedModel):
         verbose_name_plural = "01 Провайдеры"
         ordering = ["priority", "name"]
         indexes = [
-            models.Index(fields=["provider_type"], name="prov_type_idx"),
-            models.Index(fields=["is_active", "priority"], name="prov_active_prio_idx"),
+            models.Index(fields=["provider_type"]),
+            models.Index(fields=["is_active", "priority"]),
         ]
 
     def __str__(self) -> str:
         return self.code
 
+    def clean(self):
+        super().clean()
+
+        self.code = normalize_provider_code(self.code)
+
+        spec = get_supported_provider_spec(self.code)
+        if spec is None:
+            raise ValidationError(
+                {"code": "Этот провайдер не поддерживается системой."}
+            )
+
     def save(self, *args, **kwargs):
-        if self.code:
-            self.code = self.code.strip().lower()
-        if self.name:
-            self.name = self.name.strip()
+        self.code = normalize_provider_code(self.code)
+
+        spec = get_supported_provider_spec(self.code)
+        if spec is None:
+            raise ValidationError(
+                {"code": "Этот провайдер не поддерживается системой."}
+            )
+
+        self.name = spec.name
+        self.provider_type = spec.provider_type
+        self.affiliate_url = spec.affiliate_url
+
+        if self.description:
+            self.description = self.description.strip()
+
         super().save(*args, **kwargs)
+
+    def get_active_credentials(self):
+        return self.credentials.filter(is_active=True).order_by("priority", "created_at", "id")
+
+    def get_default_credential(self):
+        return self.get_active_credentials().first()
