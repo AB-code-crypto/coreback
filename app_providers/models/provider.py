@@ -75,7 +75,7 @@ class Provider(UUIDTimestampedModel):
 
     price_feed_enabled = models.BooleanField(
         default=False,
-        verbose_name="Трансляция цен доступна",
+        verbose_name="Трансляция цен",
         help_text=(
             "Провайдер может использоваться как источник цен. "
             "Это относится к биржам, обменникам, агрегаторам, ЦБ РФ и другим источникам котировок. "
@@ -84,7 +84,7 @@ class Provider(UUIDTimestampedModel):
     )
     deposit_enabled = models.BooleanField(
         default=False,
-        verbose_name="Ввод средств доступен",
+        verbose_name="Ввод средств",
         help_text=(
             "Через этого провайдера можно принимать средства. "
             "Например: биржа, обменник, кошелёк, нода или другой платёжный/расчётный контур, "
@@ -93,7 +93,7 @@ class Provider(UUIDTimestampedModel):
     )
     address_generation_enabled = models.BooleanField(
         default=False,
-        verbose_name="Генерация адресов доступна",
+        verbose_name="Генерация адресов",
         help_text=(
             "Можно ли автоматически получать адрес для пополнения через этого провайдера. "
             "Это поле относится именно к генерации или выдаче депозитного адреса, а не просто "
@@ -102,7 +102,7 @@ class Provider(UUIDTimestampedModel):
     )
     withdraw_enabled = models.BooleanField(
         default=False,
-        verbose_name="Вывод средств доступен",
+        verbose_name="Вывод средств",
         help_text=(
             "Через этого провайдера можно отправлять средства наружу. "
             "Например: вывод с биржи, отправка с кошелька или перевод через собственную ноду."
@@ -110,7 +110,7 @@ class Provider(UUIDTimestampedModel):
     )
     spot_trading_enabled = models.BooleanField(
         default=False,
-        verbose_name="Спот торговля доступна",
+        verbose_name="Спот торговля",
         help_text=(
             "Провайдер поддерживает спотовую торговлю или спотовый обмен. "
             "Эта функция разрешает обмен активов на стороне провайдера"
@@ -118,7 +118,7 @@ class Provider(UUIDTimestampedModel):
     )
     futures_trading_enabled = models.BooleanField(
         default=False,
-        verbose_name="Фьючерсы доступны",
+        verbose_name="Фьючерсы",
         help_text=(
             "Провайдер поддерживает торговлю фьючерсами. "
             "Используется для хеджирования средств"

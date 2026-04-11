@@ -12,7 +12,7 @@ class ProviderAdmin(admin.ModelAdmin):
         "code",
         "provider_type",
         "priority",
-        "price_feed_enabled",
+        "spot_trading_enabled",
         "deposit_enabled",
         "withdraw_enabled",
         "updated_at",
