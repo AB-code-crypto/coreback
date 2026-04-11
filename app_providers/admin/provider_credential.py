@@ -99,7 +99,6 @@ class ProviderCredentialAdmin(admin.ModelAdmin):
         "provider__code",
         "description",
     )
-    search_help_text = "Поиск по коду провайдера и описанию."
     readonly_fields = (
         "api_key_masked_display",
         "api_secret_masked_display",
