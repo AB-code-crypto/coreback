@@ -3,10 +3,8 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 from app_core.models import UUIDTimestampedModel
-from app_providers.models.provider import Provider
 from app_core.security.crypto import decrypt_secret, encrypt_secret, mask_secret
-
-from decimal import Decimal
+from app_providers.models.provider import Provider
 
 
 class ProviderCredential(UUIDTimestampedModel):
@@ -17,9 +15,10 @@ class ProviderCredential(UUIDTimestampedModel):
         verbose_name="Провайдер",
     )
     name = models.CharField(
-        max_length=255,
+        max_length=100,
+        default="default",
         verbose_name="Название",
-        help_text="Человекочитаемое название набора доступов.",
+        help_text="Короткое название набора доступов внутри одного провайдера.",
     )
     is_active = models.BooleanField(
         default=True,
@@ -34,15 +33,16 @@ class ProviderCredential(UUIDTimestampedModel):
         verbose_name="Приоритет",
         help_text="Чем меньше число, тем выше приоритет этого набора доступов.",
     )
+
     api_key = models.TextField(
         blank=True,
         verbose_name="API Key",
-        help_text="API Key провайдера. Хранится как текст, так как может быть очень длинным.",
+        help_text="API Key провайдера. Хранится в зашифрованном виде.",
     )
     api_secret = models.TextField(
         blank=True,
         verbose_name="API Secret",
-        help_text="API Secret провайдера.",
+        help_text="API Secret провайдера. Хранится в зашифрованном виде.",
     )
     api_passphrase = models.TextField(
         blank=True,
@@ -71,69 +71,29 @@ class ProviderCredential(UUIDTimestampedModel):
         verbose_name="Разрешённые IP/CIDR",
         help_text='Список разрешённых IP или CIDR, например: ["1.2.3.4/32", "5.6.7.0/24"].',
     )
-    from decimal import Decimal
 
-    spot_maker_fee = models.DecimalField(
-        max_digits=10,
-        decimal_places=8,
-        default=Decimal("0.001"),
-        verbose_name="Spot maker fee",
-        help_text="Торговая комиссия maker на споте. Хранится в виде доли. Пример: 0.001 = 0.1%, 0 = 0%, -0.0001 = -0.01%.",
-    )
-
-    spot_taker_fee = models.DecimalField(
-        max_digits=10,
-        decimal_places=8,
-        default=Decimal("0.001"),
-        verbose_name="Spot taker fee",
-        help_text="Торговая комиссия taker на споте. Хранится в виде доли. Пример: 0.001 = 0.1%, 0 = 0%, -0.0001 = -0.01%.",
-    )
-
-    futures_maker_fee = models.DecimalField(
-        max_digits=10,
-        decimal_places=8,
-        default=Decimal("0.001"),
-        verbose_name="Futures maker fee",
-        help_text="Торговая комиссия maker на фьючерсах. Хранится в виде доли. Пример: 0.001 = 0.1%, 0 = 0%, -0.0001 = -0.01%.",
-    )
-
-    futures_taker_fee = models.DecimalField(
-        max_digits=10,
-        decimal_places=8,
-        default=Decimal("0.001"),
-        verbose_name="Futures taker fee",
-        help_text="Торговая комиссия taker на фьючерсах. Хранится в виде доли. Пример: 0.001 = 0.1%, 0 = 0%, -0.0001 = -0.01%.",
-    )
-
-    fees_updated_at = models.DateTimeField(
-        blank=True,
-        null=True,
-        verbose_name="Дата обновления комиссий",
-        help_text="Когда комиссии были последний раз обновлены вручную или автоматически.",
-    )
     description = models.TextField(
         blank=True,
         verbose_name="Описание",
-        help_text="Свободная заметка администратора.",
     )
 
     class Meta:
         verbose_name = "Доступ"
         verbose_name_plural = "02 Доступы"
-        ordering = ("provider", "priority", "name")
+        ordering = ("provider", "priority")
         indexes = [
-            models.Index(fields=["provider", "is_active"], name="provcred_prov_active_idx"),
-            models.Index(fields=["provider", "priority"], name="provcred_prov_prio_idx"),
+            models.Index(fields=["provider", "is_active"]),
+            models.Index(fields=["provider", "priority"]),
         ]
         constraints = [
             models.UniqueConstraint(
                 fields=["provider", "name"],
-                name="uniq_providercredential_provider_name",
+                name="uniq_provider_credential_name",
             ),
         ]
 
     def __str__(self) -> str:
-        return f"{self.provider.name} — {self.name}"
+        return f"{self.provider.get_code_display()} | {self.name}"
 
     def clean(self):
         if self.is_ip_whitelist_enabled and not self.allowed_ip_ranges:
@@ -142,8 +102,6 @@ class ProviderCredential(UUIDTimestampedModel):
             )
 
     def save(self, *args, **kwargs):
-        if self.name:
-            self.name = self.name.strip()
         if self.description:
             self.description = self.description.strip()
         super().save(*args, **kwargs)
