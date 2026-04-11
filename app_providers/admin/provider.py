@@ -62,6 +62,7 @@ class ProviderAdmin(admin.ModelAdmin):
                     "deposit_enabled",
                     "address_generation_enabled",
                     "withdraw_enabled",
+                    "otc_enabled",
                     "spot_trading_enabled",
                     "futures_trading_enabled",
                 )

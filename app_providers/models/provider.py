@@ -108,6 +108,14 @@ class Provider(UUIDTimestampedModel):
             "Например: вывод с биржи, отправка с кошелька или перевод через собственную ноду."
         ),
     )
+    otc_enabled = models.BooleanField(
+        default=False,
+        verbose_name="ОТС обмен",
+        help_text=(
+            "Провайдер поддерживает обмен, но это не спот. Используется для ОТС рынков "
+            "При ОТС обмене не применяется комиссия провайдера"
+        ),
+    )
     spot_trading_enabled = models.BooleanField(
         default=False,
         verbose_name="Спот торговля",
