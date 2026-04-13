@@ -129,16 +129,34 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
             quote_asset_counts[quote_code] = quote_asset_counts.get(quote_code, 0) + 1
             base_asset_counts[base_code] = base_asset_counts.get(base_code, 0) + 1
 
-        active_stablecoins = sorted(
-            [code for code in quote_asset_counts if code in stablecoin_codes]
-        )
+        active_stablecoins = [
+            code
+            for code, _count in sorted(
+                (
+                    (code, quote_asset_counts[code])
+                    for code in quote_asset_counts
+                    if code in stablecoin_codes
+                ),
+                key=lambda x: (-x[1], x[0]),
+            )
+        ]
+
         stablecoin_pair_counts = {
             code: quote_asset_counts[code]
             for code in active_stablecoins
         }
-        found_fiats = sorted(
-            [code for code in quote_asset_counts if code in fiat_codes_master]
-        )
+
+        found_fiats = [
+            code
+            for code, _count in sorted(
+                (
+                    (code, quote_asset_counts[code])
+                    for code in quote_asset_counts
+                    if code in fiat_codes_master
+                ),
+                key=lambda x: (-x[1], x[0]),
+            )
+        ]
 
         top_quote_assets = [
             code for code, _count in sorted(
