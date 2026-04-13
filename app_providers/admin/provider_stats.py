@@ -17,11 +17,12 @@ class ProviderStatsAdmin(admin.ModelAdmin):
         "provider",
         "request_status",
         "provider_is_available",
-        "response_time_ms",
-        "http_status",
+        "ping_success",
+        "ping_response_time_ms",
+        "platform_status_success",
+        "platform_status_code",
+        "stats_response_time_ms",
         "pairs_total",
-        "quote_assets_total",
-        "stablecoins_total",
         "created_at",
     )
     list_display_links = ("provider", "created_at")
@@ -29,15 +30,18 @@ class ProviderStatsAdmin(admin.ModelAdmin):
         "provider",
         "request_status",
         "provider_is_available",
-        "source",
+        "ping_success",
+        "platform_status_success",
+        "platform_status_code",
+        "stats_source",
         "created_at",
     )
     search_fields = (
         "provider__code",
-        "source",
+        "stats_source",
         "error_message",
     )
-    search_help_text = "Поиск по коду провайдера, источнику и тексту ошибки."
+    search_help_text = "Поиск по коду провайдера, источнику статистики и тексту ошибки."
     ordering = ("-created_at",)
     list_per_page = 50
 
@@ -46,11 +50,18 @@ class ProviderStatsAdmin(admin.ModelAdmin):
         "request_status",
         "requested_at",
         "responded_at",
-        "response_time_ms",
-        "http_status",
-        "source",
         "provider_is_available",
         "error_message",
+        "ping_http_status",
+        "ping_success",
+        "ping_response_time_ms",
+        "platform_status_http_status",
+        "platform_status_success",
+        "platform_status_code",
+        "platform_status_response_time_ms",
+        "stats_http_status",
+        "stats_source",
+        "stats_response_time_ms",
         "pairs_total",
         "quote_assets_total",
         "stablecoins_total",
@@ -72,19 +83,49 @@ class ProviderStatsAdmin(admin.ModelAdmin):
                     "provider",
                     "request_status",
                     "provider_is_available",
-                    "source",
+                    "error_message",
                 )
             },
         ),
         (
-            "Запрос",
+            "Время выполнения",
             {
                 "fields": (
                     "requested_at",
                     "responded_at",
-                    "response_time_ms",
-                    "http_status",
-                    "error_message",
+                    "created_at",
+                    "updated_at",
+                )
+            },
+        ),
+        (
+            "Ping",
+            {
+                "fields": (
+                    "ping_http_status",
+                    "ping_success",
+                    "ping_response_time_ms",
+                )
+            },
+        ),
+        (
+            "Platform Status",
+            {
+                "fields": (
+                    "platform_status_http_status",
+                    "platform_status_success",
+                    "platform_status_code",
+                    "platform_status_response_time_ms",
+                )
+            },
+        ),
+        (
+            "Основной запрос статистики",
+            {
+                "fields": (
+                    "stats_http_status",
+                    "stats_source",
+                    "stats_response_time_ms",
                 )
             },
         ),
@@ -99,7 +140,7 @@ class ProviderStatsAdmin(admin.ModelAdmin):
             },
         ),
         (
-            "Статистика по активам",
+            "Детальная статистика",
             {
                 "fields": (
                     "quote_asset_counts_pretty",
@@ -111,18 +152,12 @@ class ProviderStatsAdmin(admin.ModelAdmin):
                 )
             },
         ),
-        (
-            "Служебная информация",
-            {
-                "fields": (
-                    "created_at",
-                    "updated_at",
-                )
-            },
-        ),
     )
 
     def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
         return False
 
     def has_delete_permission(self, request, obj=None):

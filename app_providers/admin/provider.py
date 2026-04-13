@@ -1,10 +1,12 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 
-from app_providers.models.provider import Provider
+from app_providers.models.provider import Provider, ProviderCode
+from app_providers.services.whitebit.fetch_stats import fetch_whitebit_stats
 
 
 @admin.register(Provider)
 class ProviderAdmin(admin.ModelAdmin):
+    actions = ["fetch_provider_stats"]
     save_on_top = True
     empty_value_display = "—"
 
@@ -107,3 +109,30 @@ class ProviderAdmin(admin.ModelAdmin):
         return (
             "Комиссии не хранятся в карточке провайдера. Они находятся в API ключах потому что могут от них зависеть"
         )
+
+    @admin.action(description="Запросить статистику (пока только WhiteBIT)")
+    def fetch_provider_stats(modeladmin, request, queryset):
+        success_count = 0
+        skipped_count = 0
+
+        for provider in queryset:
+            if provider.code != ProviderCode.WHITEBIT:
+                skipped_count += 1
+                continue
+
+            fetch_whitebit_stats(provider)
+            success_count += 1
+
+        if success_count:
+            modeladmin.message_user(
+                request,
+                f"Статистика успешно запрошена для {success_count} провайдер(ов).",
+                level=messages.SUCCESS,
+            )
+
+        if skipped_count:
+            modeladmin.message_user(
+                request,
+                f"{skipped_count} провайдер(ов) пропущено: action пока поддерживает только WHITEBIT.",
+                level=messages.WARNING,
+            )

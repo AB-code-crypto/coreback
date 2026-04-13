@@ -25,5 +25,11 @@ class WhitebitClient:
             payload=response.json(),
         )
 
+    def fetch_ping(self) -> WhitebitResponse:
+        return self._get("/api/v4/public/ping")
+
     def fetch_assets(self) -> WhitebitResponse:
         return self._get("/api/v4/public/assets")
+
+    def fetch_markets(self) -> WhitebitResponse:
+        return self._get("/api/v4/public/markets")

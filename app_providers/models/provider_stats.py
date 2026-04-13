@@ -24,51 +24,92 @@ class ProviderStats(UUIDTimestampedModel):
         db_index=True,
         default=ProviderStatsRequestStatus.SUCCESS,
         verbose_name="Статус запроса",
-        help_text="Результат выполнения запроса статистики.",
+        help_text="Итоговый результат всего запуска статистики.",
     )
     requested_at = models.DateTimeField(
         null=True,
         blank=True,
         db_index=True,
         verbose_name="Запрошено",
-        help_text="Когда был отправлен запрос статистики.",
+        help_text="Когда был запущен сбор статистики.",
     )
     responded_at = models.DateTimeField(
         null=True,
         blank=True,
         db_index=True,
-        verbose_name="Получен ответ",
-        help_text="Когда был получен ответ на запрос статистики.",
-    )
-    response_time_ms = models.PositiveIntegerField(
-        null=True,
-        blank=True,
-        verbose_name="Время ответа, мс",
-        help_text="Сколько миллисекунд занял запрос статистики.",
-    )
-    http_status = models.PositiveSmallIntegerField(
-        null=True,
-        blank=True,
-        verbose_name="HTTP статус",
-        help_text="HTTP статус ответа, если запрос был по HTTP.",
-    )
-    source = models.CharField(
-        max_length=255,
-        blank=True,
-        db_index=True,
-        verbose_name="Источник",
-        help_text="Какой endpoint или источник использовался, например /status или /markets.",
+        verbose_name="Завершено",
+        help_text="Когда сбор статистики завершился.",
     )
     provider_is_available = models.BooleanField(
         default=False,
         db_index=True,
         verbose_name="Провайдер доступен",
-        help_text="Удалось ли подтвердить доступность провайдера по этому запросу.",
+        help_text="Итоговый флаг доступности по результатам health-check.",
     )
     error_message = models.TextField(
         blank=True,
         verbose_name="Ошибка",
         help_text="Текст ошибки, если запрос завершился неуспешно.",
+    )
+
+    ping_http_status = models.PositiveSmallIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Ping HTTP статус",
+    )
+    ping_success = models.BooleanField(
+        default=False,
+        verbose_name="Ping успешен",
+        help_text="Удалось ли успешно выполнить ping.",
+    )
+    ping_response_time_ms = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Ping latency, мс",
+        help_text="Задержка ответа endpoint ping.",
+    )
+
+    platform_status_http_status = models.PositiveSmallIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Platform status HTTP статус",
+    )
+    platform_status_success = models.BooleanField(
+        default=False,
+        verbose_name="Статус платформы получен",
+        help_text="Удалось ли успешно выполнить запрос platform/status.",
+    )
+    platform_status_code = models.SmallIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Код статуса платформы",
+        help_text="Например, 1 если площадка работает.",
+    )
+    platform_status_response_time_ms = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Platform status latency, мс",
+        help_text="Задержка ответа endpoint platform/status.",
+    )
+
+    stats_http_status = models.PositiveSmallIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Stats HTTP статус",
+        help_text="HTTP статус основного запроса, по которому строилась статистика рынков.",
+    )
+    stats_source = models.CharField(
+        max_length=255,
+        blank=True,
+        db_index=True,
+        verbose_name="Источник статистики",
+        help_text="Какой endpoint использовался для расчёта статистики, например /markets.",
+    )
+    stats_response_time_ms = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Stats latency, мс",
+        help_text="Задержка ответа основного запроса статистики.",
     )
 
     pairs_total = models.PositiveIntegerField(
