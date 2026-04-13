@@ -1,68 +1,124 @@
 from django.db import models
 
-from app_core.models import TimestampedModel
+from app_core.models import UUIDTimestampedModel
 from app_providers.models.provider import Provider
 
 
-class ProviderStats(TimestampedModel):
-    provider = models.OneToOneField(
+class ProviderStatsRequestStatus(models.TextChoices):
+    SUCCESS = "success", "Успешно"
+    FAILED = "failed", "Ошибка"
+    TIMEOUT = "timeout", "Таймаут"
+
+
+class ProviderStats(UUIDTimestampedModel):
+    provider = models.ForeignKey(
         Provider,
         on_delete=models.CASCADE,
-        related_name="stat",
+        related_name="stats",
         verbose_name="Провайдер",
     )
-    last_calculated_at = models.DateTimeField(
-        blank=True,
-        null=True,
-        verbose_name="Дата последнего расчёта",
-        help_text="Когда статистика по провайдеру была рассчитана в последний раз.",
+
+    request_status = models.CharField(
+        max_length=32,
+        choices=ProviderStatsRequestStatus.choices,
+        db_index=True,
+        default=ProviderStatsRequestStatus.SUCCESS,
+        verbose_name="Статус запроса",
+        help_text="Результат выполнения запроса статистики.",
     )
+    requested_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        db_index=True,
+        verbose_name="Запрошено",
+        help_text="Когда был отправлен запрос статистики.",
+    )
+    responded_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        db_index=True,
+        verbose_name="Получен ответ",
+        help_text="Когда был получен ответ на запрос статистики.",
+    )
+    response_time_ms = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Время ответа, мс",
+        help_text="Сколько миллисекунд занял запрос статистики.",
+    )
+    http_status = models.PositiveSmallIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="HTTP статус",
+        help_text="HTTP статус ответа, если запрос был по HTTP.",
+    )
+    source = models.CharField(
+        max_length=255,
+        blank=True,
+        db_index=True,
+        verbose_name="Источник",
+        help_text="Какой endpoint или источник использовался, например /status или /markets.",
+    )
+    provider_is_available = models.BooleanField(
+        default=False,
+        db_index=True,
+        verbose_name="Провайдер доступен",
+        help_text="Удалось ли подтвердить доступность провайдера по этому запросу.",
+    )
+    error_message = models.TextField(
+        blank=True,
+        verbose_name="Ошибка",
+        help_text="Текст ошибки, если запрос завершился неуспешно.",
+    )
+
     pairs_total = models.PositiveIntegerField(
         default=0,
         verbose_name="Всего торговых пар",
-        help_text="Общее количество найденных торговых пар у провайдера.",
     )
     quote_assets_total = models.PositiveIntegerField(
         default=0,
         verbose_name="Всего quote-активов",
-        help_text="Сколько разных quote-активов найдено у провайдера.",
     )
     stablecoins_total = models.PositiveIntegerField(
         default=0,
         verbose_name="Всего активных стейблкоинов",
-        help_text="Сколько quote-активов из списка стейблкоинов оказалось у провайдера.",
     )
+
     quote_asset_counts = models.JSONField(
         default=dict,
         blank=True,
         verbose_name="Количество пар по quote-активам",
-        help_text=(
-            'JSON-словарь вида {"USDT": 300, "USDC": 40}. '
-            "Показывает, сколько торговых пар найдено против каждого quote-актива."
-        ),
     )
     stablecoin_pair_counts = models.JSONField(
         default=dict,
         blank=True,
         verbose_name="Количество пар по стейблкоинам",
-        help_text=(
-            'JSON-словарь вида {"USDT": 300, "USDC": 40}. '
-            "Содержит только те quote-активы, которые попали в список стейблкоинов."
-        ),
     )
     active_stablecoins = models.JSONField(
         default=list,
         blank=True,
         verbose_name="Активные стейблкоины",
-        help_text=(
-            'JSON-список вида ["USDT", "USDC"]. '
-            "Стейблкоины отсортированы по убыванию количества торговых пар."
-        ),
+    )
+    fiat_codes = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name="Фиатные валюты",
+    )
+    top_quote_assets = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name="Популярные quote-активы",
+    )
+    top_base_assets = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name="Популярные base-активы",
     )
 
     class Meta:
         verbose_name = "Статистика"
         verbose_name_plural = "03 Статистика"
+        ordering = ("-created_at",)
 
     def __str__(self) -> str:
-        return self.provider.code
+        return f"{self.provider.code} | {self.created_at:%Y-%m-%d %H:%M:%S}"

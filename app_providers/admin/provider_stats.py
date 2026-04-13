@@ -1,4 +1,8 @@
+import json
+
 from django.contrib import admin
+from django.utils.html import format_html
+
 from app_providers.models.provider_stats import ProviderStats
 
 
@@ -7,30 +11,58 @@ class ProviderStatsAdmin(admin.ModelAdmin):
     save_on_top = True
     empty_value_display = "—"
     list_select_related = ("provider",)
+    date_hierarchy = "created_at"
 
     list_display = (
         "provider",
+        "request_status",
+        "provider_is_available",
+        "response_time_ms",
+        "http_status",
         "pairs_total",
         "quote_assets_total",
         "stablecoins_total",
-        "last_calculated_at",
-        "updated_at",
+        "created_at",
     )
-    list_display_links = ("provider",)
+    list_display_links = ("provider", "created_at")
     list_filter = (
-        "last_calculated_at",
-        "updated_at",
+        "provider",
+        "request_status",
+        "provider_is_available",
+        "source",
+        "created_at",
     )
     search_fields = (
         "provider__code",
-        "provider__name",
+        "source",
+        "error_message",
     )
+    search_help_text = "Поиск по коду провайдера, источнику и тексту ошибки."
+    ordering = ("-created_at",)
+    list_per_page = 50
+
     readonly_fields = (
+        "provider",
+        "request_status",
+        "requested_at",
+        "responded_at",
+        "response_time_ms",
+        "http_status",
+        "source",
+        "provider_is_available",
+        "error_message",
+        "pairs_total",
+        "quote_assets_total",
+        "stablecoins_total",
+        "quote_asset_counts_pretty",
+        "stablecoin_pair_counts_pretty",
+        "active_stablecoins_pretty",
+        "fiat_codes_pretty",
+        "top_quote_assets_pretty",
+        "top_base_assets_pretty",
         "created_at",
         "updated_at",
     )
-    ordering = ("provider",)
-    list_per_page = 50
 
     fieldsets = (
         (
@@ -38,8 +70,22 @@ class ProviderStatsAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "provider",
-                    "last_calculated_at",
-                ),
+                    "request_status",
+                    "provider_is_available",
+                    "source",
+                )
+            },
+        ),
+        (
+            "Запрос",
+            {
+                "fields": (
+                    "requested_at",
+                    "responded_at",
+                    "response_time_ms",
+                    "http_status",
+                    "error_message",
+                )
             },
         ),
         (
@@ -49,27 +95,20 @@ class ProviderStatsAdmin(admin.ModelAdmin):
                     "pairs_total",
                     "quote_assets_total",
                     "stablecoins_total",
-                ),
-                "description": (
-                    "Это агрегированные показатели, рассчитанные по данным провайдера: "
-                    "общее количество торговых пар, число разных quote-активов и число "
-                    "активных стейблкоинов."
-                ),
+                )
             },
         ),
         (
-            "Детализация",
+            "Статистика по активам",
             {
                 "fields": (
-                    "quote_asset_counts",
-                    "stablecoin_pair_counts",
-                    "active_stablecoins",
-                ),
-                "description": (
-                    "Здесь хранится вычисленная статистика в JSON-формате: количество пар "
-                    "по quote-активам, количество пар по стейблкоинам и итоговый список "
-                    "активных стейблкоинов в порядке убывания значимости."
-                ),
+                    "quote_asset_counts_pretty",
+                    "stablecoin_pair_counts_pretty",
+                    "active_stablecoins_pretty",
+                    "fiat_codes_pretty",
+                    "top_quote_assets_pretty",
+                    "top_base_assets_pretty",
+                )
             },
         ),
         (
@@ -78,7 +117,45 @@ class ProviderStatsAdmin(admin.ModelAdmin):
                 "fields": (
                     "created_at",
                     "updated_at",
-                ),
+                )
             },
         ),
     )
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def _pretty_json(self, value):
+        if value in (None, "", {}, []):
+            return "—"
+        return format_html(
+            "<pre style='white-space: pre-wrap; margin: 0;'>{}</pre>",
+            json.dumps(value, ensure_ascii=False, indent=2),
+        )
+
+    @admin.display(description="Количество пар по quote-активам")
+    def quote_asset_counts_pretty(self, obj):
+        return self._pretty_json(obj.quote_asset_counts)
+
+    @admin.display(description="Количество пар по стейблкоинам")
+    def stablecoin_pair_counts_pretty(self, obj):
+        return self._pretty_json(obj.stablecoin_pair_counts)
+
+    @admin.display(description="Активные стейблкоины")
+    def active_stablecoins_pretty(self, obj):
+        return self._pretty_json(obj.active_stablecoins)
+
+    @admin.display(description="Фиатные валюты")
+    def fiat_codes_pretty(self, obj):
+        return self._pretty_json(obj.fiat_codes)
+
+    @admin.display(description="Популярные quote-активы")
+    def top_quote_assets_pretty(self, obj):
+        return self._pretty_json(obj.top_quote_assets)
+
+    @admin.display(description="Популярные base-активы")
+    def top_base_assets_pretty(self, obj):
+        return self._pretty_json(obj.top_base_assets)
