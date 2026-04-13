@@ -86,8 +86,6 @@ class ProviderApiAdmin(admin.ModelAdmin):
         "priority",
         "spot_maker_fee",
         "spot_taker_fee",
-        "futures_maker_fee",
-        "futures_taker_fee",
         "updated_at",
     )
     list_display_links = ("provider", "name")
@@ -96,8 +94,6 @@ class ProviderApiAdmin(admin.ModelAdmin):
         "priority",
         "spot_maker_fee",
         "spot_taker_fee",
-        "futures_maker_fee",
-        "futures_taker_fee",
     )
     list_filter = (
         "provider",
