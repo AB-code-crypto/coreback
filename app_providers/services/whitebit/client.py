@@ -28,6 +28,9 @@ class WhitebitClient:
     def fetch_ping(self) -> WhitebitResponse:
         return self._get("/api/v4/public/ping")
 
+    def fetch_platform_status(self) -> WhitebitResponse:
+        return self._get("/api/v4/public/platform/status")
+
     def fetch_assets(self) -> WhitebitResponse:
         return self._get("/api/v4/public/assets")
 
