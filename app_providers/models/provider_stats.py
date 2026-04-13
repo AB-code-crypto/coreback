@@ -120,10 +120,6 @@ class ProviderStats(UUIDTimestampedModel):
         default=0,
         verbose_name="Всего quote-активов",
     )
-    stablecoins_total = models.PositiveIntegerField(
-        default=0,
-        verbose_name="Всего активных стейблкоинов",
-    )
 
     quote_asset_counts = models.JSONField(
         default=dict,

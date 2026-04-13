@@ -64,7 +64,6 @@ class ProviderStatsAdmin(admin.ModelAdmin):
         "stats_response_time_ms",
         "pairs_total",
         "quote_assets_total",
-        "stablecoins_total",
         "quote_asset_counts_pretty",
         "stablecoin_pair_counts_pretty",
         "fiat_codes_pretty",
@@ -132,7 +131,6 @@ class ProviderStatsAdmin(admin.ModelAdmin):
                 "fields": (
                     "pairs_total",
                     "quote_assets_total",
-                    "stablecoins_total",
                 )
             },
         ),
