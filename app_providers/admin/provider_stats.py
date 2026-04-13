@@ -67,10 +67,7 @@ class ProviderStatsAdmin(admin.ModelAdmin):
         "stablecoins_total",
         "quote_asset_counts_pretty",
         "stablecoin_pair_counts_pretty",
-        "active_stablecoins_pretty",
         "fiat_codes_pretty",
-        "top_quote_assets_pretty",
-        "top_base_assets_pretty",
         "created_at",
         "updated_at",
     )
@@ -145,10 +142,7 @@ class ProviderStatsAdmin(admin.ModelAdmin):
                 "fields": (
                     "quote_asset_counts_pretty",
                     "stablecoin_pair_counts_pretty",
-                    "active_stablecoins_pretty",
                     "fiat_codes_pretty",
-                    "top_quote_assets_pretty",
-                    "top_base_assets_pretty",
                 )
             },
         ),
@@ -179,18 +173,6 @@ class ProviderStatsAdmin(admin.ModelAdmin):
     def stablecoin_pair_counts_pretty(self, obj):
         return self._pretty_json(obj.stablecoin_pair_counts)
 
-    @admin.display(description="Активные стейблкоины")
-    def active_stablecoins_pretty(self, obj):
-        return self._pretty_json(obj.active_stablecoins)
-
     @admin.display(description="Фиатные валюты")
     def fiat_codes_pretty(self, obj):
         return self._pretty_json(obj.fiat_codes)
-
-    @admin.display(description="Популярные quote-активы")
-    def top_quote_assets_pretty(self, obj):
-        return self._pretty_json(obj.top_quote_assets)
-
-    @admin.display(description="Популярные base-активы")
-    def top_base_assets_pretty(self, obj):
-        return self._pretty_json(obj.top_base_assets)

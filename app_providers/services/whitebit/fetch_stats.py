@@ -129,9 +129,9 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
             quote_asset_counts[quote_code] = quote_asset_counts.get(quote_code, 0) + 1
             base_asset_counts[base_code] = base_asset_counts.get(base_code, 0) + 1
 
-        active_stablecoins = [
-            code
-            for code, _count in sorted(
+        stablecoin_pair_counts = {
+            code: count
+            for code, count in sorted(
                 (
                     (code, quote_asset_counts[code])
                     for code in quote_asset_counts
@@ -139,11 +139,6 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
                 ),
                 key=lambda x: (-x[1], x[0]),
             )
-        ]
-
-        stablecoin_pair_counts = {
-            code: quote_asset_counts[code]
-            for code in active_stablecoins
         }
 
         found_fiats = [
@@ -156,19 +151,6 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
                 ),
                 key=lambda x: (-x[1], x[0]),
             )
-        ]
-
-        top_quote_assets = [
-            code for code, _count in sorted(
-                quote_asset_counts.items(),
-                key=lambda x: (-x[1], x[0]),
-            )[:10]
-        ]
-        top_base_assets = [
-            code for code, _count in sorted(
-                base_asset_counts.items(),
-                key=lambda x: (-x[1], x[0]),
-            )[:10]
         ]
 
         provider_is_available = (
@@ -196,13 +178,9 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
             stats_response_time_ms=stats_response_time_ms,
             pairs_total=len(market_codes),
             quote_assets_total=len(quote_asset_counts),
-            stablecoins_total=len(active_stablecoins),
             quote_asset_counts=quote_asset_counts,
             stablecoin_pair_counts=stablecoin_pair_counts,
-            active_stablecoins=active_stablecoins,
             fiat_codes=found_fiats,
-            top_quote_assets=top_quote_assets,
-            top_base_assets=top_base_assets,
         )
 
     except requests.Timeout as exc:

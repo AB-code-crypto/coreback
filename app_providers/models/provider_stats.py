@@ -135,25 +135,10 @@ class ProviderStats(UUIDTimestampedModel):
         blank=True,
         verbose_name="Количество пар по стейблкоинам",
     )
-    active_stablecoins = models.JSONField(
-        default=list,
-        blank=True,
-        verbose_name="Активные стейблкоины",
-    )
     fiat_codes = models.JSONField(
         default=list,
         blank=True,
         verbose_name="Фиатные валюты",
-    )
-    top_quote_assets = models.JSONField(
-        default=list,
-        blank=True,
-        verbose_name="Популярные quote-активы",
-    )
-    top_base_assets = models.JSONField(
-        default=list,
-        blank=True,
-        verbose_name="Популярные base-активы",
     )
 
     class Meta:
