@@ -8,6 +8,7 @@ class AssetAliasAdmin(admin.ModelAdmin):
     save_on_top = True
     empty_value_display = "—"
     list_select_related = ("asset",)
+    autocomplete_fields = ("asset",)
 
     list_display = (
         "code",

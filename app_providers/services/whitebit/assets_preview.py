@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 
 from django.conf import settings
-from django.utils import timezone
 
 
 def resolve_raw_file_path(file_path: str) -> Path:

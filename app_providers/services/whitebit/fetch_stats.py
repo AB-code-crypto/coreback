@@ -119,7 +119,7 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
         market_codes = _extract_market_codes(markets)
 
         quote_asset_counts: dict[str, int] = {}
-        base_asset_counts: dict[str, int] = {}
+        # base_asset_counts: dict[str, int] = {}
 
         for market_code in market_codes:
             base_code, quote_code = _split_market_code(market_code)
@@ -127,7 +127,7 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
                 continue
 
             quote_asset_counts[quote_code] = quote_asset_counts.get(quote_code, 0) + 1
-            base_asset_counts[base_code] = base_asset_counts.get(base_code, 0) + 1
+            # base_asset_counts[base_code] = base_asset_counts.get(base_code, 0) + 1
 
         stablecoin_pair_counts = {
             code: count

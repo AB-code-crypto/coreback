@@ -2,8 +2,8 @@
   "summary": {
     "raw_entities_total": 424,
     "asset_candidates_total": 411,
-    "context_candidates_total": 116,
-    "asset_context_candidates_total": 419,
+    "context_candidates_total": 119,
+    "asset_context_candidates_total": 422,
     "composite_codes_total": 13
   },
   "asset_candidates": [
@@ -410,8 +410,8 @@
       "code": "BB",
       "name_long": "BounceBit",
       "kind": "crypto_like",
-      "can_deposit": false,
-      "can_withdraw": false
+      "can_deposit": true,
+      "can_withdraw": true
     },
     {
       "code": "BCH",
@@ -585,8 +585,8 @@
       "code": "CELO",
       "name_long": "Celo",
       "kind": "crypto_like",
-      "can_deposit": false,
-      "can_withdraw": false
+      "can_deposit": true,
+      "can_withdraw": true
     },
     {
       "code": "CETUS",
@@ -2307,8 +2307,8 @@
       "code": "STEEM",
       "name_long": "Steem",
       "kind": "crypto_like",
-      "can_deposit": false,
-      "can_withdraw": false
+      "can_deposit": true,
+      "can_withdraw": true
     },
     {
       "code": "STEMX",
@@ -2975,6 +2975,10 @@
       "source_kind": "provider"
     },
     {
+      "code": "BOUNCEBIT",
+      "source_kind": "network"
+    },
+    {
       "code": "BTC",
       "source_kind": "network"
     },
@@ -2984,6 +2988,10 @@
     },
     {
       "code": "CELESTIA",
+      "source_kind": "network"
+    },
+    {
+      "code": "CELO",
       "source_kind": "network"
     },
     {
@@ -3236,6 +3244,10 @@
     },
     {
       "code": "STARKNET",
+      "source_kind": "network"
+    },
+    {
+      "code": "STEEM",
       "source_kind": "network"
     },
     {
@@ -3817,6 +3829,14 @@
       "source_kind": "network"
     },
     {
+      "code": "BB__BOUNCEBIT",
+      "asset_code": "BB",
+      "context_code": "BOUNCEBIT",
+      "deposit_enabled": true,
+      "withdraw_enabled": true,
+      "source_kind": "network"
+    },
+    {
       "code": "BCH__BCH",
       "asset_code": "BCH",
       "context_code": "BCH",
@@ -3980,6 +4000,14 @@
       "code": "CCOH__ERC20",
       "asset_code": "CCOH",
       "context_code": "ERC20",
+      "deposit_enabled": true,
+      "withdraw_enabled": true,
+      "source_kind": "network"
+    },
+    {
+      "code": "CELO__CELO",
+      "asset_code": "CELO",
+      "context_code": "CELO",
       "deposit_enabled": true,
       "withdraw_enabled": true,
       "source_kind": "network"
@@ -5825,6 +5853,14 @@
       "source_kind": "network"
     },
     {
+      "code": "STEEM__STEEM",
+      "asset_code": "STEEM",
+      "context_code": "STEEM",
+      "deposit_enabled": true,
+      "withdraw_enabled": true,
+      "source_kind": "network"
+    },
+    {
       "code": "STEMX__BEP20",
       "asset_code": "STEMX",
       "context_code": "BEP20",
@@ -6824,11 +6860,6 @@
         "operational_contexts": []
       },
       {
-        "asset_code": "BB",
-        "default_context": "BOUNCEBIT",
-        "operational_contexts": []
-      },
-      {
         "asset_code": "BGN",
         "default_context": "BGN",
         "operational_contexts": []
@@ -6848,11 +6879,6 @@
       {
         "asset_code": "CCAT",
         "default_context": "ERC20",
-        "operational_contexts": []
-      },
-      {
-        "asset_code": "CELO",
-        "default_context": "CELO",
         "operational_contexts": []
       },
       {
@@ -6996,11 +7022,6 @@
         "operational_contexts": []
       },
       {
-        "asset_code": "STEEM",
-        "default_context": "STEEM",
-        "operational_contexts": []
-      },
-      {
         "asset_code": "STORY",
         "default_context": "BEP20",
         "operational_contexts": []
@@ -7065,13 +7086,6 @@
         "operational_contexts": []
       },
       {
-        "asset_code": "BB",
-        "extra_contexts": [
-          "BOUNCEBIT"
-        ],
-        "operational_contexts": []
-      },
-      {
         "asset_code": "BTCZ",
         "extra_contexts": [
           "BTCZ"
@@ -7082,13 +7096,6 @@
         "asset_code": "CCAT",
         "extra_contexts": [
           "ERC20"
-        ],
-        "operational_contexts": []
-      },
-      {
-        "asset_code": "CELO",
-        "extra_contexts": [
-          "CELO"
         ],
         "operational_contexts": []
       },
@@ -7292,13 +7299,6 @@
         "operational_contexts": []
       },
       {
-        "asset_code": "STEEM",
-        "extra_contexts": [
-          "STEEM"
-        ],
-        "operational_contexts": []
-      },
-      {
         "asset_code": "STORY",
         "extra_contexts": [
           "BEP20"
@@ -7416,13 +7416,6 @@
         "operational_contexts": []
       },
       {
-        "asset_code": "BB",
-        "extra_contexts": [
-          "BOUNCEBIT"
-        ],
-        "operational_contexts": []
-      },
-      {
         "asset_code": "BGN",
         "extra_contexts": [
           "BGN"
@@ -7440,13 +7433,6 @@
         "asset_code": "CCAT",
         "extra_contexts": [
           "ERC20"
-        ],
-        "operational_contexts": []
-      },
-      {
-        "asset_code": "CELO",
-        "extra_contexts": [
-          "CELO"
         ],
         "operational_contexts": []
       },
@@ -7688,13 +7674,6 @@
         "asset_code": "SFM",
         "extra_contexts": [
           "SOL"
-        ],
-        "operational_contexts": []
-      },
-      {
-        "asset_code": "STEEM",
-        "extra_contexts": [
-          "STEEM"
         ],
         "operational_contexts": []
       },
