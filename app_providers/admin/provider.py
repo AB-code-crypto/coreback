@@ -11,6 +11,9 @@ from app_providers.services.whitebit.assets_preview import (
     save_preview_file,
 )
 from app_providers.services.whitebit.sync_assets import sync_whitebit_assets_from_preview
+from app_providers.services.whitebit.sync_provider_asset_contexts import (
+    sync_whitebit_provider_asset_contexts_from_preview,
+)
 
 
 def _get_single_whitebit_provider(modeladmin, request, queryset):
@@ -33,6 +36,44 @@ def _get_single_whitebit_provider(modeladmin, request, queryset):
         return None
 
     return provider
+
+
+@admin.action(description="Синхронизировать ProviderAssetContext (пока только WhiteBIT)")
+def sync_provider_asset_contexts_to_db(modeladmin, request, queryset):
+    provider = _get_single_whitebit_provider(modeladmin, request, queryset)
+    if not provider:
+        return
+
+    raw_file_path = get_raw_relative_path(provider.code, "assets")
+    resolved_path = resolve_raw_file_path(raw_file_path)
+
+    if not resolved_path.exists():
+        modeladmin.message_user(
+            request,
+            "Raw assets файл не найден. Сначала запусти action получения raw assets.",
+            level=messages.WARNING,
+        )
+        return
+
+    try:
+        preview = build_preview_from_raw_file(raw_file_path)
+        result = sync_whitebit_provider_asset_contexts_from_preview(provider, preview)
+    except Exception as exc:
+        modeladmin.message_user(
+            request,
+            f"Не удалось синхронизировать ProviderAssetContext: {exc}",
+            level=messages.ERROR,
+        )
+        return
+
+    modeladmin.message_user(
+        request,
+        (
+            "Синхронизация ProviderAssetContext завершена успешно. "
+            f"Создано: {result.created}, обновлено: {result.updated}."
+        ),
+        level=messages.SUCCESS,
+    )
 
 
 @admin.action(description="Запросить статистику (пока только WhiteBIT)")
@@ -176,6 +217,7 @@ class ProviderAdmin(admin.ModelAdmin):
         fetch_provider_assets_raw,
         preview_provider_assets_raw,
         sync_provider_assets_to_db,
+        sync_provider_asset_contexts_to_db,
     ]
     save_on_top = True
     empty_value_display = "—"
