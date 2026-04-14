@@ -159,31 +159,24 @@ def _extract_fee_info_for_context(
     if not isinstance(direction_info, dict):
         return {}
 
-    # crypto: flat object with min/max/fixed/flex
+    # crypto-like format: flat object on asset level
     if any(key in direction_info for key in ("fixed", "flex", "min_amount", "max_amount")):
         fee_info = direction_info
     else:
-        # fiat/provider-based: dict keyed by provider/context id
+        # provider/fiat-like format: nested by provider/context code
         fee_info = direction_info.get(context_code) or {}
 
     if not isinstance(fee_info, dict):
         return {}
 
     fixed = _to_decimal_str(fee_info.get("fixed"))
-    flex = _to_decimal_str(fee_info.get("flex"))
+    percent = _to_decimal_str(fee_info.get("flex"))
     min_amount = _to_decimal_str(fee_info.get("min_amount"))
     max_amount = _to_decimal_str(fee_info.get("max_amount"))
 
-    fee_type = "none"
-    if fixed not in (None, "0", "0.0", "0E-18"):
-        fee_type = "fixed"
-    elif flex not in (None, "0", "0.0", "0E-18"):
-        fee_type = "percent"
-
     return {
-        f"{direction}_fee_type": fee_type,
         f"{direction}_fee_fixed": fixed,
-        f"{direction}_fee_percent": flex,
+        f"{direction}_fee_percent": percent,
         f"{direction}_fee_min_amount": None,
         f"{direction}_fee_max_amount": None,
         f"{direction}_min_amount": min_amount,
