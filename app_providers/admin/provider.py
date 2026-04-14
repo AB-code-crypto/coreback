@@ -1,15 +1,14 @@
 from django.contrib import admin, messages
 
 from app_providers.models.provider import Provider, ProviderCode
-from app_providers.services.whitebit.fetch_assets import fetch_whitebit_assets
-from app_providers.services.whitebit.fetch_stats import fetch_whitebit_stats
-
 from app_providers.services.raw_data_storage import get_raw_relative_path
 from app_providers.services.whitebit.assets_preview import (
     build_preview_from_raw_file,
     resolve_raw_file_path,
     save_preview_file,
 )
+from app_providers.services.whitebit.fetch_assets import fetch_whitebit_assets
+from app_providers.services.whitebit.fetch_stats import fetch_whitebit_stats
 from app_providers.services.whitebit.sync_assets import sync_whitebit_assets_from_preview
 from app_providers.services.whitebit.sync_provider_asset_contexts import (
     sync_whitebit_provider_asset_contexts_from_preview,
@@ -36,44 +35,6 @@ def _get_single_whitebit_provider(modeladmin, request, queryset):
         return None
 
     return provider
-
-
-@admin.action(description="Синхронизировать ProviderAssetContext (пока только WhiteBIT)")
-def sync_provider_asset_contexts_to_db(modeladmin, request, queryset):
-    provider = _get_single_whitebit_provider(modeladmin, request, queryset)
-    if not provider:
-        return
-
-    raw_file_path = get_raw_relative_path(provider.code, "assets")
-    resolved_path = resolve_raw_file_path(raw_file_path)
-
-    if not resolved_path.exists():
-        modeladmin.message_user(
-            request,
-            "Raw assets файл не найден. Сначала запусти action получения raw assets.",
-            level=messages.WARNING,
-        )
-        return
-
-    try:
-        preview = build_preview_from_raw_file(raw_file_path)
-        result = sync_whitebit_provider_asset_contexts_from_preview(provider, preview)
-    except Exception as exc:
-        modeladmin.message_user(
-            request,
-            f"Не удалось синхронизировать ProviderAssetContext: {exc}",
-            level=messages.ERROR,
-        )
-        return
-
-    modeladmin.message_user(
-        request,
-        (
-            "Синхронизация ProviderAssetContext завершена успешно. "
-            f"Создано: {result.created}, обновлено: {result.updated}."
-        ),
-        level=messages.SUCCESS,
-    )
 
 
 @admin.action(description="Запросить статистику (пока только WhiteBIT)")
@@ -210,6 +171,53 @@ def sync_provider_assets_to_db(modeladmin, request, queryset):
     )
 
 
+@admin.action(description="Синхронизировать ProviderAssetContext (пока только WhiteBIT)")
+def sync_provider_asset_contexts_to_db(modeladmin, request, queryset):
+    provider = _get_single_whitebit_provider(modeladmin, request, queryset)
+    if not provider:
+        return
+
+    raw_file_path = get_raw_relative_path(provider.code, "assets")
+    resolved_path = resolve_raw_file_path(raw_file_path)
+
+    if not resolved_path.exists():
+        modeladmin.message_user(
+            request,
+            "Raw assets файл не найден. Сначала запусти action получения raw assets.",
+            level=messages.WARNING,
+        )
+        return
+
+    try:
+        preview = build_preview_from_raw_file(raw_file_path)
+
+        # Сначала гарантируем канонический слой
+        canonical_result = sync_whitebit_assets_from_preview(preview)
+
+        # Потом provider-specific слой
+        provider_result = sync_whitebit_provider_asset_contexts_from_preview(provider, preview)
+
+    except Exception as exc:
+        modeladmin.message_user(
+            request,
+            f"Не удалось синхронизировать ProviderAssetContext: {exc}",
+            level=messages.ERROR,
+        )
+        return
+
+    modeladmin.message_user(
+        request,
+        (
+            "Синхронизация ProviderAssetContext завершена успешно. "
+            f"Assets: +{canonical_result.assets.created} / ~{canonical_result.assets.updated}; "
+            f"Contexts: +{canonical_result.contexts.created} / ~{canonical_result.contexts.updated}; "
+            f"AssetContexts: +{canonical_result.asset_contexts.created} / ~{canonical_result.asset_contexts.updated}; "
+            f"ProviderAssetContexts: +{provider_result.created} / ~{provider_result.updated}."
+        ),
+        level=messages.SUCCESS,
+    )
+
+
 @admin.register(Provider)
 class ProviderAdmin(admin.ModelAdmin):
     actions = [
@@ -248,6 +256,7 @@ class ProviderAdmin(admin.ModelAdmin):
         "affiliate_url",
         "description",
     )
+    search_help_text = "Поиск по коду, партнёрской ссылке и описанию."
     readonly_fields = (
         "provider_type",
         "provider_fees_note",

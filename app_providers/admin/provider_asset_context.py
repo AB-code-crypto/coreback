@@ -122,7 +122,6 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
             "Комиссия на ввод",
             {
                 "fields": (
-                    "deposit_fee_type",
                     "deposit_fee_fixed",
                     "deposit_fee_percent",
                     "deposit_fee_min_amount",
@@ -134,7 +133,6 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
             "Комиссия на вывод",
             {
                 "fields": (
-                    "withdraw_fee_type",
                     "withdraw_fee_fixed",
                     "withdraw_fee_percent",
                     "withdraw_fee_min_amount",
