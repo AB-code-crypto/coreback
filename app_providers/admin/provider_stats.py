@@ -125,21 +125,14 @@ class ProviderStatsAdmin(admin.ModelAdmin):
             },
         ),
         (
-            "Сводные показатели",
-            {
-                "fields": (
-                    "pairs_total",
-                    "quote_assets_total",
-                )
-            },
-        ),
-        (
             "Детальная статистика",
             {
                 "fields": (
                     "quote_asset_counts_display",
                     "stablecoin_pair_counts_display",
                     "fiat_codes_display",
+                    ("pairs_total",
+                     "quote_assets_total",),
                 )
             },
         ),
