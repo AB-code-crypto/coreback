@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
+
 from django.utils import timezone
 
 from app_providers.models.provider import Provider
@@ -22,19 +23,25 @@ def fetch_whitebit_assets(provider: Provider) -> WhitebitRawFetchResult:
     requested_at = timezone.now()
 
     try:
-        response = client.fetch_assets()
+        assets_response = client.fetch_assets()
+        fees_response = client.fetch_fee()
         responded_at = timezone.now()
+
+        payload = {
+            "assets": assets_response.payload,
+            "fees": fees_response.payload,
+        }
 
         file_path = save_raw_json_to_file(
             provider_code=provider.code,
             request_type="assets",
-            payload=response.payload,
+            payload=payload,
         )
 
         return WhitebitRawFetchResult(
             success=True,
             file_path=file_path,
-            http_status=response.http_status,
+            http_status=assets_response.http_status,
             requested_at=requested_at,
             responded_at=responded_at,
             error_message="",

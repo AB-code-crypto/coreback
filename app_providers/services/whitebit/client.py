@@ -36,3 +36,6 @@ class WhitebitClient:
 
     def fetch_markets(self) -> WhitebitResponse:
         return self._get("/api/v4/public/markets")
+
+    def fetch_fee(self):
+        return self._get("/api/v4/public/fee")

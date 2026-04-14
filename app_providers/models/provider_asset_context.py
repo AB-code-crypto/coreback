@@ -1,8 +1,16 @@
+from decimal import Decimal
+
 from django.db import models
 
 from app_core.models import UUIDTimestampedModel
 from app_assets.models import AssetContext
 from app_providers.models.provider import Provider
+
+
+class ProviderTransferFeeType(models.TextChoices):
+    NONE = "none", "Нет комиссии"
+    FIXED = "fixed", "Фиксированная"
+    PERCENT = "percent", "Процентная"
 
 
 class ProviderAssetContext(UUIDTimestampedModel):
@@ -42,6 +50,130 @@ class ProviderAssetContext(UUIDTimestampedModel):
         default=False,
         verbose_name="Вывод средств",
         help_text="Можно ли выводить этот инструмент через провайдера.",
+    )
+
+    deposit_confirmations = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Подтверждений для ввода",
+        help_text="Сколько подтверждений сети нужно для зачисления депозита.",
+    )
+    withdraw_confirmations = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Подтверждений для вывода",
+        help_text="Если провайдер отдаёт такое значение отдельно, храним его здесь.",
+    )
+
+    deposit_fee_type = models.CharField(
+        max_length=16,
+        choices=ProviderTransferFeeType.choices,
+        default=ProviderTransferFeeType.NONE,
+        verbose_name="Тип комиссии на ввод",
+    )
+    deposit_fee_fixed = models.DecimalField(
+        max_digits=30,
+        decimal_places=18,
+        null=True,
+        blank=True,
+        verbose_name="Фикс. комиссия на ввод",
+        help_text="Комиссия в единицах самого актива.",
+    )
+    deposit_fee_percent = models.DecimalField(
+        max_digits=12,
+        decimal_places=8,
+        null=True,
+        blank=True,
+        verbose_name="Комиссия на ввод, %",
+        help_text="Процентная комиссия в долях. 0.01 = 1%.",
+    )
+    deposit_fee_min_amount = models.DecimalField(
+        max_digits=30,
+        decimal_places=18,
+        null=True,
+        blank=True,
+        verbose_name="Мин. комиссия на ввод",
+        help_text="Минимальная комиссия на ввод в единицах актива.",
+    )
+    deposit_fee_max_amount = models.DecimalField(
+        max_digits=30,
+        decimal_places=18,
+        null=True,
+        blank=True,
+        verbose_name="Макс. комиссия на ввод",
+        help_text="Максимальная комиссия на ввод в единицах актива.",
+    )
+
+    withdraw_fee_type = models.CharField(
+        max_length=16,
+        choices=ProviderTransferFeeType.choices,
+        default=ProviderTransferFeeType.NONE,
+        verbose_name="Тип комиссии на вывод",
+    )
+    withdraw_fee_fixed = models.DecimalField(
+        max_digits=30,
+        decimal_places=18,
+        null=True,
+        blank=True,
+        verbose_name="Фикс. комиссия на вывод",
+        help_text="Комиссия в единицах самого актива.",
+    )
+    withdraw_fee_percent = models.DecimalField(
+        max_digits=12,
+        decimal_places=8,
+        null=True,
+        blank=True,
+        verbose_name="Комиссия на вывод, %",
+        help_text="Процентная комиссия в долях. 0.01 = 1%.",
+    )
+    withdraw_fee_min_amount = models.DecimalField(
+        max_digits=30,
+        decimal_places=18,
+        null=True,
+        blank=True,
+        verbose_name="Мин. комиссия на вывод",
+        help_text="Минимальная комиссия на вывод в единицах актива.",
+    )
+    withdraw_fee_max_amount = models.DecimalField(
+        max_digits=30,
+        decimal_places=18,
+        null=True,
+        blank=True,
+        verbose_name="Макс. комиссия на вывод",
+        help_text="Максимальная комиссия на вывод в единицах актива.",
+    )
+
+    deposit_min_amount = models.DecimalField(
+        max_digits=30,
+        decimal_places=18,
+        null=True,
+        blank=True,
+        verbose_name="Мин. сумма ввода",
+        help_text="Минимальная сумма ввода в единицах актива.",
+    )
+    deposit_max_amount = models.DecimalField(
+        max_digits=30,
+        decimal_places=18,
+        null=True,
+        blank=True,
+        verbose_name="Макс. сумма ввода",
+        help_text="Максимальная сумма ввода в единицах актива, если провайдер её отдаёт.",
+    )
+    withdraw_min_amount = models.DecimalField(
+        max_digits=30,
+        decimal_places=18,
+        null=True,
+        blank=True,
+        verbose_name="Мин. сумма вывода",
+        help_text="Минимальная сумма вывода в единицах актива.",
+    )
+    withdraw_max_amount = models.DecimalField(
+        max_digits=30,
+        decimal_places=18,
+        null=True,
+        blank=True,
+        verbose_name="Макс. сумма вывода",
+        help_text="Максимальная сумма вывода в единицах актива, если провайдер её отдаёт.",
     )
 
     description = models.TextField(
