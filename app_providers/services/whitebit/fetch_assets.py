@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-
+from datetime import datetime
 from django.utils import timezone
 
 from app_providers.models.provider import Provider
@@ -12,8 +12,8 @@ class WhitebitRawFetchResult:
     success: bool
     file_path: str
     http_status: int | None = None
-    requested_at = None
-    responded_at = None
+    requested_at: datetime | None = None
+    responded_at: datetime | None = None
     error_message: str = ""
 
 
