@@ -3,43 +3,21 @@ from pathlib import Path
 
 from django.conf import settings
 
-from app_providers.models import RawData, RawRequestStatus, RawRequestType
-from app_providers.models.provider import Provider
+
+def get_raw_relative_path(provider_code: str, request_type: str) -> str:
+    return str(Path("raw") / provider_code / f"{request_type}.json")
+
+
+def get_raw_full_path(provider_code: str, request_type: str) -> Path:
+    relative_path = get_raw_relative_path(provider_code, request_type)
+    return Path(settings.BASE_DIR) / "storage" / relative_path
 
 
 def save_raw_json_to_file(*, provider_code: str, request_type: str, payload: object) -> str:
-    relative_path = Path("raw") / provider_code / f"{request_type}.json"
-    full_path = Path(settings.BASE_DIR) / "storage" / relative_path
-
+    full_path = get_raw_full_path(provider_code=provider_code, request_type=request_type)
     full_path.parent.mkdir(parents=True, exist_ok=True)
 
     with full_path.open("w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    return str(relative_path)
-
-
-def create_raw_data_record(
-        *,
-        provider: Provider,
-        request_type: RawRequestType,
-        source: str,
-        http_status: int | None,
-        requested_at,
-        responded_at,
-        file_path: str,
-        request_status: RawRequestStatus,
-        processing_error: str = "",
-) -> RawData:
-    return RawData.objects.create(
-        provider=provider,
-        request_type=request_type,
-        request_status=request_status,
-        source=source,
-        http_status=http_status,
-        requested_at=requested_at,
-        responded_at=responded_at,
-        file_path=file_path,
-        is_processed=False,
-        processing_error=processing_error,
-    )
+    return get_raw_relative_path(provider_code=provider_code, request_type=request_type)

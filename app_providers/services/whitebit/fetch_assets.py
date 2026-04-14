@@ -1,15 +1,23 @@
+from dataclasses import dataclass
+
 from django.utils import timezone
 
-from app_providers.models import RawRequestStatus, RawRequestType
 from app_providers.models.provider import Provider
-from app_providers.services.raw_data_storage import (
-    create_raw_data_record,
-    save_raw_json_to_file,
-)
+from app_providers.services.raw_data_storage import save_raw_json_to_file
 from app_providers.services.whitebit.client import WhitebitClient
 
 
-def fetch_whitebit_assets(provider: Provider):
+@dataclass
+class WhitebitRawFetchResult:
+    success: bool
+    file_path: str
+    http_status: int | None = None
+    requested_at = None
+    responded_at = None
+    error_message: str = ""
+
+
+def fetch_whitebit_assets(provider: Provider) -> WhitebitRawFetchResult:
     client = WhitebitClient()
     requested_at = timezone.now()
 
@@ -19,43 +27,37 @@ def fetch_whitebit_assets(provider: Provider):
 
         file_path = save_raw_json_to_file(
             provider_code=provider.code,
-            request_type=RawRequestType.ASSETS,
+            request_type="assets",
             payload=response.payload,
         )
 
-        return create_raw_data_record(
-            provider=provider,
-            request_type=RawRequestType.ASSETS,
-            source="whitebit.public.assets",
+        return WhitebitRawFetchResult(
+            success=True,
+            file_path=file_path,
             http_status=response.http_status,
             requested_at=requested_at,
             responded_at=responded_at,
-            file_path=file_path,
-            request_status=RawRequestStatus.SUCCESS,
+            error_message="",
         )
 
     except Exception as exc:
         responded_at = timezone.now()
 
-        # при ошибке тоже можно сохранить минимальный error-payload в файл
         error_payload = {
             "error": str(exc),
         }
 
         file_path = save_raw_json_to_file(
             provider_code=provider.code,
-            request_type=RawRequestType.ASSETS,
+            request_type="assets",
             payload=error_payload,
         )
 
-        return create_raw_data_record(
-            provider=provider,
-            request_type=RawRequestType.ASSETS,
-            source="whitebit.public.assets",
+        return WhitebitRawFetchResult(
+            success=False,
+            file_path=file_path,
             http_status=None,
             requested_at=requested_at,
             responded_at=responded_at,
-            file_path=file_path,
-            request_status=RawRequestStatus.FAILED,
-            processing_error=str(exc),
+            error_message=str(exc),
         )

@@ -1,10 +1,10 @@
 from django.contrib import admin, messages
 
 from app_providers.models.provider import Provider, ProviderCode
-from app_providers.models.raw_data import RawData, RawRequestType, RawRequestStatus
-
+from app_providers.services.raw_data_storage import get_raw_relative_path
 from app_providers.services.whitebit.assets_preview import (
     build_preview_from_raw_file,
+    resolve_raw_file_path,
     save_preview_file,
 )
 from app_providers.services.whitebit.fetch_assets import fetch_whitebit_assets
@@ -68,25 +68,18 @@ def fetch_provider_assets_raw(modeladmin, request, queryset):
     if not provider:
         return
 
-    raw_data = fetch_whitebit_assets(provider)
+    result = fetch_whitebit_assets(provider)
 
-    if raw_data.request_status == RawRequestStatus.SUCCESS:
+    if result.success:
         modeladmin.message_user(
             request,
-            (
-                f"Raw assets получены успешно: "
-                f"id={raw_data.id}, file={raw_data.file_path}"
-            ),
+            f"Raw assets получены успешно: file={result.file_path}",
             level=messages.SUCCESS,
         )
     else:
         modeladmin.message_user(
             request,
-            (
-                f"Raw assets получены с ошибкой: "
-                f"id={raw_data.id}, file={raw_data.file_path}, "
-                f"error={raw_data.processing_error or '—'}"
-            ),
+            f"Raw assets получены с ошибкой: file={result.file_path}, error={result.error_message or '—'}",
             level=messages.WARNING,
         )
 
@@ -97,26 +90,19 @@ def preview_provider_assets_raw(modeladmin, request, queryset):
     if not provider:
         return
 
-    raw_data = (
-        RawData.objects.filter(
-            provider=provider,
-            request_type=RawRequestType.ASSETS,
-            request_status=RawRequestStatus.SUCCESS,
-        )
-        .order_by("-created_at")
-        .first()
-    )
+    raw_file_path = get_raw_relative_path(provider.code, "assets")
+    resolved_path = resolve_raw_file_path(raw_file_path)
 
-    if raw_data is None:
+    if not resolved_path.exists():
         modeladmin.message_user(
             request,
-            "Нет успешного raw assets для этого провайдера. Сначала запусти action получения raw assets.",
+            "Raw assets файл не найден. Сначала запусти action получения raw assets.",
             level=messages.WARNING,
         )
         return
 
     try:
-        preview = build_preview_from_raw_file(raw_data.file_path)
+        preview = build_preview_from_raw_file(raw_file_path)
         preview_file_path = save_preview_file(provider.code, preview)
     except Exception as exc:
         modeladmin.message_user(
