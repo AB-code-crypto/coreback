@@ -1,5 +1,3 @@
-import json
-
 from django.contrib import admin
 from django.utils.html import format_html, format_html_join
 from app_providers.models.provider_stats import ProviderStats
@@ -16,11 +14,9 @@ class ProviderStatsAdmin(admin.ModelAdmin):
         "provider",
         "request_status",
         "provider_is_available",
+        "platform_status_success",
         "ping_success",
         "ping_response_time_ms",
-        "platform_status_success",
-        "platform_status_code",
-        "stats_response_time_ms",
         "pairs_total",
         "created_at",
     )
@@ -32,7 +28,6 @@ class ProviderStatsAdmin(admin.ModelAdmin):
         "ping_success",
         "platform_status_success",
         "platform_status_code",
-        "stats_source",
         "created_at",
     )
     search_fields = (
@@ -40,7 +35,6 @@ class ProviderStatsAdmin(admin.ModelAdmin):
         "stats_source",
         "error_message",
     )
-    search_help_text = "Поиск по коду провайдера, источнику статистики и тексту ошибки."
     ordering = ("-created_at",)
     list_per_page = 50
 
