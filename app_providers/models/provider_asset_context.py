@@ -76,9 +76,6 @@ class ProviderAssetContext(UUIDTimestampedModel):
         if self.provider_code:
             self.provider_code = self.provider_code.strip()
 
-        if self.provider_name:
-            self.provider_name = self.provider_name.strip()
-
         if self.description:
             self.description = self.description.strip()
 

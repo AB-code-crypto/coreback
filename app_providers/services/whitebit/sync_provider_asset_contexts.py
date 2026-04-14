@@ -25,7 +25,6 @@ def sync_whitebit_provider_asset_contexts_from_preview(
         asset_context = AssetContext.objects.get(code=asset_context_code)
 
         defaults = {
-            "provider_name": "",
             "is_active": True,
             "deposit_enabled": bool(candidate.get("deposit_enabled", False)),
             "withdraw_enabled": bool(candidate.get("withdraw_enabled", False)),
