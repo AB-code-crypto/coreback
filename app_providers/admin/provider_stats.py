@@ -1,8 +1,7 @@
 import json
 
 from django.contrib import admin
-from django.utils.html import format_html
-
+from django.utils.html import format_html, format_html_join
 from app_providers.models.provider_stats import ProviderStats
 
 
@@ -64,9 +63,9 @@ class ProviderStatsAdmin(admin.ModelAdmin):
         "stats_response_time_ms",
         "pairs_total",
         "quote_assets_total",
-        "quote_asset_counts_pretty",
-        "stablecoin_pair_counts_pretty",
-        "fiat_codes_pretty",
+        "quote_asset_counts_display",
+        "stablecoin_pair_counts_display",
+        "fiat_codes_display",
         "created_at",
         "updated_at",
     )
@@ -138,9 +137,9 @@ class ProviderStatsAdmin(admin.ModelAdmin):
             "Детальная статистика",
             {
                 "fields": (
-                    "quote_asset_counts_pretty",
-                    "stablecoin_pair_counts_pretty",
-                    "fiat_codes_pretty",
+                    "quote_asset_counts_display",
+                    "stablecoin_pair_counts_display",
+                    "fiat_codes_display",
                 )
             },
         ),
@@ -155,22 +154,42 @@ class ProviderStatsAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
-    def _pretty_json(self, value):
-        if value in (None, "", {}, []):
+    def _render_counts_dict(self, value):
+        if not value:
             return "—"
+
+        items = sorted(value.items(), key=lambda x: (-x[1], x[0]))
+
         return format_html(
-            "<pre style='white-space: pre-wrap; margin: 0;'>{}</pre>",
-            json.dumps(value, ensure_ascii=False, indent=2),
+            '<div style="font-size: 14px; line-height: 1.7; max-width: 1100px;">{}</div>',
+            format_html_join(
+                ", ",
+                "<span><b>{}</b> — {}</span>",
+                ((key, count) for key, count in items),
+            ),
+        )
+
+    def _render_code_list(self, value):
+        if not value:
+            return "—"
+
+        return format_html(
+            '<div style="font-size: 14px; line-height: 1.7; max-width: 1100px;">{}</div>',
+            format_html_join(
+                ", ",
+                "<span><b>{}</b></span>",
+                ((item,) for item in value),
+            ),
         )
 
     @admin.display(description="Количество пар по quote-активам")
-    def quote_asset_counts_pretty(self, obj):
-        return self._pretty_json(obj.quote_asset_counts)
+    def quote_asset_counts_display(self, obj):
+        return self._render_counts_dict(obj.quote_asset_counts)
 
     @admin.display(description="Количество пар по стейблкоинам")
-    def stablecoin_pair_counts_pretty(self, obj):
-        return self._pretty_json(obj.stablecoin_pair_counts)
+    def stablecoin_pair_counts_display(self, obj):
+        return self._render_counts_dict(obj.stablecoin_pair_counts)
 
     @admin.display(description="Фиатные валюты")
-    def fiat_codes_pretty(self, obj):
-        return self._pretty_json(obj.fiat_codes)
+    def fiat_codes_display(self, obj):
+        return self._render_code_list(obj.fiat_codes)
