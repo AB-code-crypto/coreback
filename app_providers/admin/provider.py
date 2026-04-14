@@ -1,14 +1,16 @@
 from django.contrib import admin, messages
 
 from app_providers.models.provider import Provider, ProviderCode
+from app_providers.services.whitebit.fetch_assets import fetch_whitebit_assets
+from app_providers.services.whitebit.fetch_stats import fetch_whitebit_stats
+
 from app_providers.services.raw_data_storage import get_raw_relative_path
 from app_providers.services.whitebit.assets_preview import (
     build_preview_from_raw_file,
     resolve_raw_file_path,
     save_preview_file,
 )
-from app_providers.services.whitebit.fetch_assets import fetch_whitebit_assets
-from app_providers.services.whitebit.fetch_stats import fetch_whitebit_stats
+from app_providers.services.whitebit.sync_assets import sync_whitebit_assets_from_preview
 
 
 def _get_single_whitebit_provider(modeladmin, request, queryset):
@@ -127,12 +129,53 @@ def preview_provider_assets_raw(modeladmin, request, queryset):
     )
 
 
+@admin.action(description="Синхронизировать assets в БД (пока только WhiteBIT)")
+def sync_provider_assets_to_db(modeladmin, request, queryset):
+    provider = _get_single_whitebit_provider(modeladmin, request, queryset)
+    if not provider:
+        return
+
+    raw_file_path = get_raw_relative_path(provider.code, "assets")
+    resolved_path = resolve_raw_file_path(raw_file_path)
+
+    if not resolved_path.exists():
+        modeladmin.message_user(
+            request,
+            "Raw assets файл не найден. Сначала запусти action получения raw assets.",
+            level=messages.WARNING,
+        )
+        return
+
+    try:
+        preview = build_preview_from_raw_file(raw_file_path)
+        result = sync_whitebit_assets_from_preview(preview)
+    except Exception as exc:
+        modeladmin.message_user(
+            request,
+            f"Не удалось синхронизировать assets в БД: {exc}",
+            level=messages.ERROR,
+        )
+        return
+
+    modeladmin.message_user(
+        request,
+        (
+            "Синхронизация assets завершена успешно. "
+            f"Assets: +{result.assets.created} / ~{result.assets.updated}; "
+            f"Contexts: +{result.contexts.created} / ~{result.contexts.updated}; "
+            f"AssetContexts: +{result.asset_contexts.created} / ~{result.asset_contexts.updated}."
+        ),
+        level=messages.SUCCESS,
+    )
+
+
 @admin.register(Provider)
 class ProviderAdmin(admin.ModelAdmin):
     actions = [
         fetch_provider_stats,
         fetch_provider_assets_raw,
         preview_provider_assets_raw,
+        sync_provider_assets_to_db,
     ]
     save_on_top = True
     empty_value_display = "—"
