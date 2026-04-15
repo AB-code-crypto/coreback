@@ -1,0 +1,1185 @@
+{
+  "error": null,
+  "taker": "0.1",
+  "maker": "0.1",
+  "custom_fee": {
+    "0G_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "1INCH_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "2Z_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AAVE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ACE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ACT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ACX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ADA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AERGO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AEVO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AGLD_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AIXBT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ALGO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ALLO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ALT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ANIME_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ANKR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "APE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "API3_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "APT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ARB_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ARKM_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ARK_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ARPA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ASTER_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ASTR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ATH_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ATOM_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AUCTION_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AVAX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AVNT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AXL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "AXS_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "A_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BABY_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BANANA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BAND_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BARD_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BASED_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BAT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BB_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BCH_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BEAM_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BERA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BICO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BIGTIME_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BIO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BLUR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BNB_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BNT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BOME_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BONK_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BRETT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BREV_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "BTC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "C98_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CAKE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CATI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CELO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CETUS_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CFG_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CGPT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CHZ_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CKB_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "COAI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "COMP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CRV_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CVC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CVX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "CYBER_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "DASH_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "DEGEN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "DEXE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "DOGE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "DOOD_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "DOT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "DRIFT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "DYDX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "DYM_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "EDEN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "EGLD_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "EIGEN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ENA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ENJ_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ENSO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ENS_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ERA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ESP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ETC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ETHFI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ETHW_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ETH_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "FARTCOIN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "FET_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "FF_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "FIL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "FLOKI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "FLOW_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "FLUX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "FOGO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "GALA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "GAS_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "GIGGLE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "GLM_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "GMT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "GMX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "GOAT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "GRASS_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "GRT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "HAEDAL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "HBAR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "HOME_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "HUMA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "HYPER_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "HYPE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ICP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ICX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ID_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "IMX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "INIT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "INJ_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "IOST_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "IO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "IP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "JASMY_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "JST_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "JTO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "JUP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "KAIA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "KAITO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "KAS_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "KAT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "KAVA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "KERNEL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "KITE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "KMNO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "KNC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "KSM_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "LAYER_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "LA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "LDO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "LINEA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "LINK_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "LIT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "LPT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "LQTY_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "LRC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "LTC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MAGIC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MANA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MANTA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MANTRA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MASK_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MELANIA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MEME_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MERL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "METIS_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MET_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MEW_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ME_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MINA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MIRA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MMT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MOCA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MON_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MOODENG_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MORPHO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "MOVE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "M_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "NEAR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "NEIRO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "NEO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "NEWT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "NIGHT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "NIL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "NMR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "NOM_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "NOT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "NXPC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ONDO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ONT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "OPEN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "OPN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "OP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ORCA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ORDI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PARTI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PAXG_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PENDLE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PENGU_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PEOPLE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PEPE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PHA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PIXEL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PLUME_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PNUT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "POL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "POPCAT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PORTAL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PROVE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PUMP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "PYTH_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "QNT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "QTUM_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "RARE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "RED_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "RENDER_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "REZ_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ROBO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "RON_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ROSE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "RPL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "RSR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "RUNE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "RVN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SAFE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SAGA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SAHARA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SAND_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SCR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SEI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SENT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SHELL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SHIB_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SIGN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SKL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SKY_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SNX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SOL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SOMI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SONIC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SOPH_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SSV_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "STG_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "STORJ_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "STRK_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "STX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SUI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SUN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SUPER_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SUSHI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SXT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "SYRUP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "S_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TAO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "THETA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TIA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TNSR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TON_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TOWNS_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TRB_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TREE_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TRIA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TRUMP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TRX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "TURBO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "T_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "UMA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "UNI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "USUAL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "VANA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "VET_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "VIRTUAL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "WAL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "WAXP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "WBT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "WCT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "WIF_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "WLD_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "WLFI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "WOO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "W_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "XAN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "XAUT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "XLM_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "XMR_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "XPL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "XRP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "XTZ_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "YFI_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "YGG_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZAMA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZBT_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZEC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZEN_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZETA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZIL_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZKC_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZKP_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZK_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZORA_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZRO_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    },
+    "ZRX_PERP": {
+      "taker": "0.055",
+      "maker": "0.01"
+    }
+  },
+  "futures_taker": "0.055",
+  "futures_maker": "0.01"
+}

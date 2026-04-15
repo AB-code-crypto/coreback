@@ -68,6 +68,30 @@ def _split_market_code(code: str):
     return None, None
 
 
+def _extract_maintenance_status(payload):
+    if not isinstance(payload, dict):
+        return None
+
+    return payload.get("status")
+
+
+def _maintenance_status_to_code(status) -> int | None:
+    if status == 1:
+        return 1
+    if status == 0:
+        return 0
+
+    if isinstance(status, str):
+        normalized = status.strip().lower()
+
+        if normalized in {"system operational", "operational", "ok"}:
+            return 1
+        if normalized in {"system maintenance", "maintenance"}:
+            return 0
+
+    return None
+
+
 def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
     if provider.code != ProviderCode.WHITEBIT:
         raise ValueError("Этот сервис пока поддерживает только WHITEBIT.")
@@ -88,28 +112,27 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
     platform_status_response_time_ms = None
 
     stats_http_status = None
-    stats_source = "whitebit.public.markets"
+    stats_source = "whitebit.public.market_info"
     stats_response_time_ms = None
 
     try:
         ping_started = perf_counter()
-        ping_response = client.fetch_ping()
+        ping_response = client.fetch_server_status()
         ping_response_time_ms = int((perf_counter() - ping_started) * 1000)
         ping_http_status = ping_response.http_status
         ping_success = ping_response.payload == ["pong"]
 
         platform_started = perf_counter()
-        platform_response = client.fetch_platform_status()
+        maintenance_response = client.fetch_maintenance_status()
         platform_status_response_time_ms = int((perf_counter() - platform_started) * 1000)
-        platform_status_http_status = platform_response.http_status
+        platform_status_http_status = maintenance_response.http_status
 
-        if isinstance(platform_response.payload, dict):
-            platform_status_code = platform_response.payload.get("status")
-
+        maintenance_status = _extract_maintenance_status(maintenance_response.payload)
+        platform_status_code = _maintenance_status_to_code(maintenance_status)
         platform_status_success = platform_status_code == 1
 
         stats_started = perf_counter()
-        markets_response = client.fetch_markets()
+        markets_response = client.fetch_market_info()
         stats_response_time_ms = int((perf_counter() - stats_started) * 1000)
         stats_http_status = markets_response.http_status
 
@@ -119,7 +142,6 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
         market_codes = _extract_market_codes(markets)
 
         quote_asset_counts: dict[str, int] = {}
-        # base_asset_counts: dict[str, int] = {}
 
         for market_code in market_codes:
             base_code, quote_code = _split_market_code(market_code)
@@ -127,7 +149,6 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
                 continue
 
             quote_asset_counts[quote_code] = quote_asset_counts.get(quote_code, 0) + 1
-            # base_asset_counts[base_code] = base_asset_counts.get(base_code, 0) + 1
 
         stablecoin_pair_counts = {
             code: count
@@ -153,11 +174,7 @@ def fetch_whitebit_stats(provider: Provider) -> ProviderStats:
             )
         ]
 
-        provider_is_available = (
-                ping_success
-                and platform_status_success
-                and platform_status_code == 1
-        )
+        provider_is_available = ping_success and platform_status_success
 
         return ProviderStats.objects.create(
             provider=provider,

@@ -1,6 +1,10 @@
 from django.contrib import admin, messages
 from app_providers.services.whitebit.fetch_all_raw import fetch_whitebit_all_raw
 from app_providers.models.provider import Provider, ProviderCode
+from services.whitebit.fetch_stats import fetch_whitebit_stats
+from app_providers.services.whitebit.sync_provider_asset_contexts import (
+    sync_whitebit_provider_asset_contexts_from_raw,
+)
 
 
 def _get_single_whitebit_provider(modeladmin, request, queryset):
@@ -23,6 +27,34 @@ def _get_single_whitebit_provider(modeladmin, request, queryset):
         return None
 
     return provider
+
+
+@admin.action(description="Заполнить ProviderAssetContext из raw JSON WhiteBIT")
+def sync_provider_asset_contexts_from_raw_action(modeladmin, request, queryset):
+    provider = _get_single_whitebit_provider(modeladmin, request, queryset)
+    if not provider:
+        return
+
+    try:
+        result = sync_whitebit_provider_asset_contexts_from_raw(provider)
+    except Exception as exc:
+        modeladmin.message_user(
+            request,
+            f"Не удалось заполнить ProviderAssetContext: {exc}",
+            level=messages.ERROR,
+        )
+        return
+
+    modeladmin.message_user(
+        request,
+        (
+            "ProviderAssetContext заполнен успешно. "
+            f"Создано: {result.created}, "
+            f"обновлено: {result.updated}, "
+            f"без изменений: {result.skipped}."
+        ),
+        level=messages.SUCCESS,
+    )
 
 
 @admin.action(description="Обновить все raw JSON WhiteBIT")
@@ -56,10 +88,41 @@ def fetch_provider_all_raw(modeladmin, request, queryset):
     )
 
 
+@admin.action(description="Обновить статистику WhiteBIT")
+def fetch_provider_stats(modeladmin, request, queryset):
+    provider = _get_single_whitebit_provider(modeladmin, request, queryset)
+    if not provider:
+        return
+
+    stats = fetch_whitebit_stats(provider)
+
+    if stats.request_status == "success":
+        modeladmin.message_user(
+            request,
+            (
+                f"Статистика обновлена: provider={provider.code}, "
+                f"pairs_total={stats.pairs_total}, "
+                f"available={stats.provider_is_available}."
+            ),
+            level=messages.SUCCESS,
+        )
+    else:
+        modeladmin.message_user(
+            request,
+            (
+                f"Запрос статистики завершился со статусом '{stats.request_status}'. "
+                f"Ошибка: {stats.error_message or '—'}"
+            ),
+            level=messages.WARNING,
+        )
+
+
 @admin.register(Provider)
 class ProviderAdmin(admin.ModelAdmin):
     actions = [
         fetch_provider_all_raw,
+        fetch_provider_stats,
+        sync_provider_asset_contexts_from_raw_action,
     ]
     save_on_top = True
     empty_value_display = "—"
