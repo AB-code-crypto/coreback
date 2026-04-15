@@ -256,7 +256,6 @@ class ProviderAdmin(admin.ModelAdmin):
         "affiliate_url",
         "description",
     )
-    search_help_text = "Поиск по коду, партнёрской ссылке и описанию."
     readonly_fields = (
         "provider_type",
         "provider_fees_note",

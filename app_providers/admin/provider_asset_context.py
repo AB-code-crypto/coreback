@@ -37,8 +37,6 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
         "is_front",
         "D",
         "W",
-        "AD",
-        "AW",
     )
     list_filter = (
         "provider",
@@ -68,10 +66,6 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
         "status_note",
         "description",
     )
-    search_help_text = (
-        "Поиск по провайдеру, нормализованным и raw кодам/названиям, "
-        "контракту, кластеру, комментарию к статусу и описанию."
-    )
     readonly_fields = (
         "deposit_enabled_display",
         "withdraw_enabled_display",
@@ -92,6 +86,8 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
         "reserve_max_display",
         "created_at",
         "updated_at",
+        "AD",
+        "AW",
     )
     ordering = (
         "provider",
