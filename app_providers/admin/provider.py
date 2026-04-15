@@ -66,7 +66,7 @@ def fetch_provider_stats(modeladmin, request, queryset):
         )
 
 
-@admin.action(description="Получить raw assets (пока только WhiteBIT)")
+@admin.action(description="Получить raw assets + fees (пока только WhiteBIT)")
 def fetch_provider_assets_raw(modeladmin, request, queryset):
     provider = _get_single_whitebit_provider(modeladmin, request, queryset)
     if not provider:
@@ -77,7 +77,7 @@ def fetch_provider_assets_raw(modeladmin, request, queryset):
     if result.success:
         modeladmin.message_user(
             request,
-            f"Raw assets получены успешно: file={result.file_path}",
+            f"Raw assets + fees получены успешно: file={result.file_path}",
             level=messages.SUCCESS,
         )
     else:

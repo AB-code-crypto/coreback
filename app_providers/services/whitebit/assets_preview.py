@@ -42,10 +42,12 @@ def get_assets_payload(payload: dict) -> dict:
     return payload
 
 
-def get_fees_payload(payload: dict) -> dict:
+def get_fees_payload(payload: dict):
     fees = payload.get("fees")
-    if isinstance(fees, dict):
+
+    if isinstance(fees, (dict, list)):
         return fees
+
     return {}
 
 
@@ -147,12 +149,63 @@ def _extract_amount_limits(item: dict, context_code: str, direction: str) -> tup
     return min_amount, max_amount
 
 
+def _build_private_fee_index(fees_payload) -> dict[str, dict]:
+    if not isinstance(fees_payload, list):
+        return {}
+
+    result = {}
+
+    for item in fees_payload:
+        if not isinstance(item, dict):
+            continue
+
+        ticker = str(item.get("ticker") or "").strip().upper()
+        if not ticker:
+            continue
+
+        result[ticker] = item
+
+    return result
+
+
 def _extract_fee_info_for_context(
-        fees_payload: dict,
+        fees_payload,
         asset_code: str,
         context_code: str,
         direction: str,
+        private_fee_index: dict[str, dict] | None = None,
 ) -> dict:
+    # Новый private WhiteBIT format: list[{"ticker": "...", "deposit": {...}, "withdraw": {...}}]
+    if isinstance(fees_payload, list):
+        if private_fee_index is None:
+            private_fee_index = _build_private_fee_index(fees_payload)
+
+        asset_fee_info = private_fee_index.get(asset_code.upper()) or {}
+        direction_info = asset_fee_info.get(direction) or {}
+
+        if not isinstance(direction_info, dict):
+            return {}
+
+        fixed = _to_decimal_str(direction_info.get("fixed"))
+        percent = _to_decimal_str(direction_info.get("percentFlex") or direction_info.get("flex"))
+        min_fee_amount = _to_decimal_str(direction_info.get("minFlex"))
+        max_fee_amount = _to_decimal_str(direction_info.get("maxFlex"))
+        min_amount = _to_decimal_str(direction_info.get("minAmount") or direction_info.get("min_amount"))
+        max_amount = _to_decimal_str(direction_info.get("maxAmount") or direction_info.get("max_amount"))
+
+        return {
+            f"{direction}_fee_fixed": fixed,
+            f"{direction}_fee_percent": percent,
+            f"{direction}_fee_min_amount": min_fee_amount,
+            f"{direction}_fee_max_amount": max_fee_amount,
+            f"{direction}_min_amount": min_amount,
+            f"{direction}_max_amount": max_amount,
+        }
+
+    # Старый dict format оставляем для обратной совместимости
+    if not isinstance(fees_payload, dict):
+        return {}
+
     asset_fee_info = fees_payload.get(asset_code) or {}
     direction_info = asset_fee_info.get(direction) or {}
 
@@ -187,6 +240,7 @@ def _extract_fee_info_for_context(
 def build_asset_candidates(payload: dict) -> dict:
     assets_payload = get_assets_payload(payload)
     fees_payload = get_fees_payload(payload)
+    private_fee_index = _build_private_fee_index(fees_payload)
 
     all_codes = set(assets_payload.keys())
 
@@ -262,8 +316,20 @@ def build_asset_candidates(payload: dict) -> dict:
                 deposit_confirmations, withdraw_confirmations = _extract_confirmations(item, context_code)
                 deposit_min_amount, deposit_max_amount = _extract_amount_limits(item, context_code, "deposit")
                 withdraw_min_amount, withdraw_max_amount = _extract_amount_limits(item, context_code, "withdraw")
-                deposit_fee_info = _extract_fee_info_for_context(fees_payload, code, context_code, "deposit")
-                withdraw_fee_info = _extract_fee_info_for_context(fees_payload, code, context_code, "withdraw")
+                deposit_fee_info = _extract_fee_info_for_context(
+                    fees_payload,
+                    code,
+                    context_code,
+                    "deposit",
+                    private_fee_index=private_fee_index,
+                )
+                withdraw_fee_info = _extract_fee_info_for_context(
+                    fees_payload,
+                    code,
+                    context_code,
+                    "withdraw",
+                    private_fee_index=private_fee_index,
+                )
 
                 candidate_code = f"{code}__{context_code}"
                 asset_context_candidates[candidate_code] = {
@@ -297,8 +363,20 @@ def build_asset_candidates(payload: dict) -> dict:
             deposit_confirmations, withdraw_confirmations = _extract_confirmations(item, context_code)
             deposit_min_amount, deposit_max_amount = _extract_amount_limits(item, context_code, "deposit")
             withdraw_min_amount, withdraw_max_amount = _extract_amount_limits(item, context_code, "withdraw")
-            deposit_fee_info = _extract_fee_info_for_context(fees_payload, code, context_code, "deposit")
-            withdraw_fee_info = _extract_fee_info_for_context(fees_payload, code, context_code, "withdraw")
+            deposit_fee_info = _extract_fee_info_for_context(
+                fees_payload,
+                code,
+                context_code,
+                "deposit",
+                private_fee_index=private_fee_index,
+            )
+            withdraw_fee_info = _extract_fee_info_for_context(
+                fees_payload,
+                code,
+                context_code,
+                "withdraw",
+                private_fee_index=private_fee_index,
+            )
 
             candidate_code = f"{code}__{context_code}"
             asset_context_candidates[candidate_code] = {

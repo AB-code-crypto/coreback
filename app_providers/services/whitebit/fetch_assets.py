@@ -18,13 +18,38 @@ class WhitebitRawFetchResult:
     error_message: str = ""
 
 
+def _get_active_provider_api(provider):
+    provider_api = (
+        provider.apis
+        .filter(is_active=True)
+        .order_by("priority", "id")
+        .first()
+    )
+
+    if not provider_api:
+        raise ValueError("У провайдера нет активного API-набора.")
+
+    if not provider_api.has_api_key():
+        raise ValueError("У активного API-набора не заполнен api_key.")
+
+    if not provider_api.has_api_secret():
+        raise ValueError("У активного API-набора не заполнен api_secret.")
+
+    return provider_api
+
+
 def fetch_whitebit_assets(provider: Provider) -> WhitebitRawFetchResult:
     client = WhitebitClient()
     requested_at = timezone.now()
 
     try:
+        provider_api = _get_active_provider_api(provider)
+
         assets_response = client.fetch_assets()
-        fees_response = client.fetch_fee()
+        fees_response = client.fetch_fees_private(
+            api_key=provider_api.get_api_key(),
+            api_secret=provider_api.get_api_secret(),
+        )
         responded_at = timezone.now()
 
         payload = {
