@@ -1,18 +1,6 @@
 from django.contrib import admin, messages
-
+from app_providers.services.whitebit.fetch_all_raw import fetch_whitebit_all_raw
 from app_providers.models.provider import Provider, ProviderCode
-from app_providers.services.raw_data_storage import get_raw_relative_path
-from app_providers.services.whitebit.assets_preview import (
-    build_preview_from_raw_file,
-    resolve_raw_file_path,
-    save_preview_file,
-)
-from app_providers.services.whitebit.fetch_assets import fetch_whitebit_assets
-from app_providers.services.whitebit.fetch_stats import fetch_whitebit_stats
-from app_providers.services.whitebit.sync_assets import sync_whitebit_assets_from_preview
-from app_providers.services.whitebit.sync_provider_asset_contexts import (
-    sync_whitebit_provider_asset_contexts_from_preview,
-)
 
 
 def _get_single_whitebit_provider(modeladmin, request, queryset):
@@ -37,195 +25,41 @@ def _get_single_whitebit_provider(modeladmin, request, queryset):
     return provider
 
 
-@admin.action(description="Запросить статистику (пока только WhiteBIT)")
-def fetch_provider_stats(modeladmin, request, queryset):
+@admin.action(description="Обновить все raw JSON WhiteBIT")
+def fetch_provider_all_raw(modeladmin, request, queryset):
     provider = _get_single_whitebit_provider(modeladmin, request, queryset)
     if not provider:
         return
 
-    stats = fetch_whitebit_stats(provider)
+    result = fetch_whitebit_all_raw(provider)
 
-    if stats.request_status == "success":
+    if result.failed_count == 0:
         modeladmin.message_user(
             request,
             (
-                f"Статистика получена: provider={provider.code}, "
-                f"pairs_total={stats.pairs_total}, "
-                f"available={stats.provider_is_available}."
+                f"Успешно обновлено {result.success_count}/{result.total_count} raw JSON "
+                f"в storage/raw/{provider.code}/"
             ),
             level=messages.SUCCESS,
         )
-    else:
-        modeladmin.message_user(
-            request,
-            (
-                f"Запрос статистики завершился со статусом '{stats.request_status}'. "
-                f"Ошибка: {stats.error_message or '—'}"
-            ),
-            level=messages.WARNING,
-        )
-
-
-@admin.action(description="Получить raw assets + fees (пока только WhiteBIT)")
-def fetch_provider_assets_raw(modeladmin, request, queryset):
-    provider = _get_single_whitebit_provider(modeladmin, request, queryset)
-    if not provider:
         return
 
-    result = fetch_whitebit_assets(provider)
-
-    if result.success:
-        modeladmin.message_user(
-            request,
-            f"Raw assets + fees получены успешно: file={result.file_path}",
-            level=messages.SUCCESS,
-        )
-    else:
-        modeladmin.message_user(
-            request,
-            f"Raw assets получены с ошибкой: file={result.file_path}, error={result.error_message or '—'}",
-            level=messages.WARNING,
-        )
-
-
-@admin.action(description="Построить preview assets (пока только WhiteBIT)")
-def preview_provider_assets_raw(modeladmin, request, queryset):
-    provider = _get_single_whitebit_provider(modeladmin, request, queryset)
-    if not provider:
-        return
-
-    raw_file_path = get_raw_relative_path(provider.code, "assets")
-    resolved_path = resolve_raw_file_path(raw_file_path)
-
-    if not resolved_path.exists():
-        modeladmin.message_user(
-            request,
-            "Raw assets файл не найден. Сначала запусти action получения raw assets.",
-            level=messages.WARNING,
-        )
-        return
-
-    try:
-        preview = build_preview_from_raw_file(raw_file_path)
-        preview_file_path = save_preview_file(provider.code, preview)
-    except Exception as exc:
-        modeladmin.message_user(
-            request,
-            f"Не удалось построить preview: {exc}",
-            level=messages.ERROR,
-        )
-        return
-
-    summary = preview["summary"]
+    failed_names = ", ".join(item.name for item in result.items if not item.success)
 
     modeladmin.message_user(
         request,
         (
-            "Preview assets построен успешно: "
-            f"file={preview_file_path}, "
-            f"assets={summary['asset_candidates_total']}, "
-            f"contexts={summary['context_candidates_total']}, "
-            f"asset_contexts={summary['asset_context_candidates_total']}."
+            f"Обновлено {result.success_count}/{result.total_count} raw JSON. "
+            f"Ошибки в endpoint'ах: {failed_names}"
         ),
-        level=messages.SUCCESS,
-    )
-
-
-@admin.action(description="Синхронизировать assets в БД (пока только WhiteBIT)")
-def sync_provider_assets_to_db(modeladmin, request, queryset):
-    provider = _get_single_whitebit_provider(modeladmin, request, queryset)
-    if not provider:
-        return
-
-    raw_file_path = get_raw_relative_path(provider.code, "assets")
-    resolved_path = resolve_raw_file_path(raw_file_path)
-
-    if not resolved_path.exists():
-        modeladmin.message_user(
-            request,
-            "Raw assets файл не найден. Сначала запусти action получения raw assets.",
-            level=messages.WARNING,
-        )
-        return
-
-    try:
-        preview = build_preview_from_raw_file(raw_file_path)
-        result = sync_whitebit_assets_from_preview(preview)
-    except Exception as exc:
-        modeladmin.message_user(
-            request,
-            f"Не удалось синхронизировать assets в БД: {exc}",
-            level=messages.ERROR,
-        )
-        return
-
-    modeladmin.message_user(
-        request,
-        (
-            "Синхронизация assets завершена успешно. "
-            f"Assets: +{result.assets.created} / ~{result.assets.updated}; "
-            f"Contexts: +{result.contexts.created} / ~{result.contexts.updated}; "
-            f"AssetContexts: +{result.asset_contexts.created} / ~{result.asset_contexts.updated}."
-        ),
-        level=messages.SUCCESS,
-    )
-
-
-@admin.action(description="Синхронизировать ProviderAssetContext (пока только WhiteBIT)")
-def sync_provider_asset_contexts_to_db(modeladmin, request, queryset):
-    provider = _get_single_whitebit_provider(modeladmin, request, queryset)
-    if not provider:
-        return
-
-    raw_file_path = get_raw_relative_path(provider.code, "assets")
-    resolved_path = resolve_raw_file_path(raw_file_path)
-
-    if not resolved_path.exists():
-        modeladmin.message_user(
-            request,
-            "Raw assets файл не найден. Сначала запусти action получения raw assets.",
-            level=messages.WARNING,
-        )
-        return
-
-    try:
-        preview = build_preview_from_raw_file(raw_file_path)
-
-        # Сначала гарантируем канонический слой
-        canonical_result = sync_whitebit_assets_from_preview(preview)
-
-        # Потом provider-specific слой
-        provider_result = sync_whitebit_provider_asset_contexts_from_preview(provider, preview)
-
-    except Exception as exc:
-        modeladmin.message_user(
-            request,
-            f"Не удалось синхронизировать ProviderAssetContext: {exc}",
-            level=messages.ERROR,
-        )
-        return
-
-    modeladmin.message_user(
-        request,
-        (
-            "Синхронизация ProviderAssetContext завершена успешно. "
-            f"Assets: +{canonical_result.assets.created} / ~{canonical_result.assets.updated}; "
-            f"Contexts: +{canonical_result.contexts.created} / ~{canonical_result.contexts.updated}; "
-            f"AssetContexts: +{canonical_result.asset_contexts.created} / ~{canonical_result.asset_contexts.updated}; "
-            f"ProviderAssetContexts: +{provider_result.created} / ~{provider_result.updated}."
-        ),
-        level=messages.SUCCESS,
+        level=messages.WARNING,
     )
 
 
 @admin.register(Provider)
 class ProviderAdmin(admin.ModelAdmin):
     actions = [
-        fetch_provider_stats,
-        fetch_provider_assets_raw,
-        preview_provider_assets_raw,
-        sync_provider_assets_to_db,
-        sync_provider_asset_contexts_to_db,
+        fetch_provider_all_raw,
     ]
     save_on_top = True
     empty_value_display = "—"
