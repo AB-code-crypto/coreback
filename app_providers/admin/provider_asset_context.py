@@ -8,69 +8,73 @@ from app_providers.models.provider_asset_context import ProviderAssetContext
 class ProviderAssetContextAdmin(admin.ModelAdmin):
     save_on_top = True
     empty_value_display = "—"
-    list_select_related = (
-        "provider",
-        "asset_context",
-        "asset_context__asset",
-        "asset_context__context",
-    )
-
-    autocomplete_fields = (
-        "provider",
-        "asset_context",
-    )
+    list_select_related = ("provider",)
+    autocomplete_fields = ("provider",)
 
     list_display = (
         "provider",
-        "provider_code",
-        "asset_context",
         "asset_code",
         "context_code",
-        "is_active",
-        "deposit_enabled",
-        "withdraw_enabled",
-        "deposit_confirmations",
-        "withdraw_confirmations",
+        "cluster_no",
+        "is_front",
+        "deposit_enabled_display",
+        "withdraw_enabled_display",
+        "D",
+        "W",
+        "AD",
+        "AW",
+        "match_status",
+        "reserve_current_display",
         "updated_at",
     )
     list_display_links = (
         "provider",
-        "provider_code",
+        "asset_code",
+        "context_code",
     )
     list_editable = (
-        "is_active",
-        "deposit_enabled",
-        "withdraw_enabled",
+        "cluster_no",
+        "is_front",
+        "D",
+        "W",
+        "AD",
+        "AW",
     )
     list_filter = (
         "provider",
         "is_active",
-        "deposit_enabled",
-        "withdraw_enabled",
-        "asset_context__asset__asset_type",
-        "asset_context__context__context_type",
+        "is_front",
+        "match_status",
+        "is_stablecoin",
+        "D",
+        "W",
+        "AD",
+        "AW",
         "created_at",
         "updated_at",
     )
     search_fields = (
         "provider__code",
-        "provider_code",
-        "asset_context__code",
-        "asset_context__asset__code",
-        "asset_context__asset__name_short",
-        "asset_context__asset__name_long",
-        "asset_context__context__code",
-        "asset_context__context__name_short",
-        "asset_context__context__name_long",
+        "asset_code",
+        "asset_name",
+        "context_code",
+        "context_name",
+        "asset_code_pl",
+        "asset_name_pl",
+        "context_code_pl",
+        "context_name_pl",
+        "contract_raw",
+        "cluster_no",
+        "status_note",
         "description",
     )
     search_help_text = (
-        "Поиск по коду провайдера, внешнему коду, AssetContext, "
-        "коду/названию актива, коду/названию контекста и описанию."
+        "Поиск по провайдеру, нормализованным и raw кодам/названиям, "
+        "контракту, кластеру, комментарию к статусу и описанию."
     )
     readonly_fields = (
-        "provider_asset_context_name_short",
-        "provider_asset_context_name_long",
+        "deposit_enabled_display",
+        "withdraw_enabled_display",
         "deposit_fee_fixed_display",
         "deposit_fee_percent_display",
         "deposit_fee_min_amount_display",
@@ -83,12 +87,18 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
         "deposit_max_amount_display",
         "withdraw_min_amount_display",
         "withdraw_max_amount_display",
+        "reserve_current_display",
+        "reserve_min_display",
+        "reserve_max_display",
         "created_at",
         "updated_at",
     )
     ordering = (
         "provider",
-        "provider_code",
+        "cluster_no",
+        "asset_code",
+        "context_code",
+        "id",
     )
     list_per_page = 50
 
@@ -98,18 +108,33 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "provider",
-                    "provider_code",
-                    "asset_context",
                     "is_active",
+                    "cluster_no",
+                    "is_front",
+                    "match_status",
                 )
             },
         ),
         (
-            "Каноническая сущность",
+            "Raw данные от провайдера",
             {
                 "fields": (
-                    "provider_asset_context_name_short",
-                    "provider_asset_context_name_long",
+                    "asset_code_pl",
+                    "asset_name_pl",
+                    "context_code_pl",
+                    "context_name_pl",
+                    "contract_raw",
+                )
+            },
+        ),
+        (
+            "Нормализованные поля",
+            {
+                "fields": (
+                    "asset_code",
+                    "asset_name",
+                    "context_code",
+                    "context_name",
                 )
             },
         ),
@@ -117,8 +142,13 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
             "Доступность",
             {
                 "fields": (
-                    "deposit_enabled",
-                    "withdraw_enabled",
+                    "deposit_enabled_display",
+                    "withdraw_enabled_display",
+                    "D",
+                    "W",
+                    "AD",
+                    "AW",
+                    "status_note",
                 )
             },
         ),
@@ -135,9 +165,13 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
             "Комиссия на ввод",
             {
                 "fields": (
+                    "deposit_fee_fixed",
                     "deposit_fee_fixed_display",
+                    "deposit_fee_percent",
                     "deposit_fee_percent_display",
+                    "deposit_fee_min_amount",
                     "deposit_fee_min_amount_display",
+                    "deposit_fee_max_amount",
                     "deposit_fee_max_amount_display",
                 )
             },
@@ -146,9 +180,13 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
             "Комиссия на вывод",
             {
                 "fields": (
+                    "withdraw_fee_fixed",
                     "withdraw_fee_fixed_display",
+                    "withdraw_fee_percent",
                     "withdraw_fee_percent_display",
+                    "withdraw_fee_min_amount",
                     "withdraw_fee_min_amount_display",
+                    "withdraw_fee_max_amount",
                     "withdraw_fee_max_amount_display",
                 )
             },
@@ -157,17 +195,54 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
             "Лимиты",
             {
                 "fields": (
+                    "deposit_min_amount",
                     "deposit_min_amount_display",
+                    "deposit_max_amount",
                     "deposit_max_amount_display",
+                    "withdraw_min_amount",
                     "withdraw_min_amount_display",
+                    "withdraw_max_amount",
                     "withdraw_max_amount_display",
                 )
             },
         ),
         (
-            "Дополнительно",
+            "Тип / точность / номинал",
             {
                 "fields": (
+                    "is_stablecoin",
+                    "amount_precision",
+                    "nominal",
+                )
+            },
+        ),
+        (
+            "Резервы",
+            {
+                "fields": (
+                    "reserve_current",
+                    "reserve_current_display",
+                    "reserve_min",
+                    "reserve_min_display",
+                    "reserve_max",
+                    "reserve_max_display",
+                )
+            },
+        ),
+        (
+            "Медиа / витрина",
+            {
+                "fields": (
+                    "icon_file",
+                    "icon_url",
+                )
+            },
+        ),
+        (
+            "Сырые метаданные и описание",
+            {
+                "fields": (
+                    "raw_metadata",
                     "description",
                 )
             },
@@ -183,21 +258,13 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
         ),
     )
 
-    @admin.display(description="Asset")
-    def asset_code(self, obj):
-        return obj.asset_context.asset.code
+    @admin.display(boolean=True, description="Ввод")
+    def deposit_enabled_display(self, obj):
+        return obj.deposit_enabled
 
-    @admin.display(description="Context")
-    def context_code(self, obj):
-        return obj.asset_context.context.code
-
-    @admin.display(description="Короткое название")
-    def provider_asset_context_name_short(self, obj):
-        return obj.asset_context.name_short
-
-    @admin.display(description="Полное название")
-    def provider_asset_context_name_long(self, obj):
-        return obj.asset_context.name_long
+    @admin.display(boolean=True, description="Вывод")
+    def withdraw_enabled_display(self, obj):
+        return obj.withdraw_enabled
 
     @admin.display(description="Фикс. комиссия на ввод")
     def deposit_fee_fixed_display(self, obj):
@@ -246,3 +313,15 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
     @admin.display(description="Макс. сумма вывода")
     def withdraw_max_amount_display(self, obj):
         return format_decimal_for_admin(obj.withdraw_max_amount)
+
+    @admin.display(description="Текущий резерв")
+    def reserve_current_display(self, obj):
+        return format_decimal_for_admin(obj.reserve_current)
+
+    @admin.display(description="Мин. резерв")
+    def reserve_min_display(self, obj):
+        return format_decimal_for_admin(obj.reserve_min)
+
+    @admin.display(description="Макс. резерв")
+    def reserve_max_display(self, obj):
+        return format_decimal_for_admin(obj.reserve_max)
