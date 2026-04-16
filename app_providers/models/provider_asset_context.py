@@ -309,6 +309,22 @@ class ProviderAssetContext(UUIDTimestampedModel):
         verbose_name="Макс. сумма вывода",
         help_text="Максимальная сумма вывода в единицах актива, если провайдер её отдаёт.",
     )
+    min_trade_amount_usdt = models.DecimalField(
+        max_digits=AMOUNT_MAX_DIGITS,
+        decimal_places=AMOUNT_DECIMAL_PLACES,
+        default=Decimal("5"),
+        validators=[NON_NEGATIVE_DECIMAL],
+        verbose_name="Мин. торговый объём, USDT",
+        help_text=(
+            "Минимальный торговый объём / минимальный лот в эквиваленте USDT. "
+        ),
+    )
+    trades_enabled = models.BooleanField(
+        default=False,
+        db_index=True,
+        verbose_name="Торговля разрешена",
+        help_text="Можно ли торговать этим активом у провайдера на спотовом рынке.",
+    )
 
     # ---------------------------------------------------------
     # ТИП / ТОЧНОСТЬ / НОМИНАЛ

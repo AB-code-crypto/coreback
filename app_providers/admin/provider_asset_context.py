@@ -159,6 +159,8 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
                     "deposit_max_amount",
                     "withdraw_min_amount",
                     "withdraw_max_amount",
+                    "min_trade_amount_usdt",
+                    "trades_enabled",
                 )
             },
         ),

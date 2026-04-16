@@ -167,6 +167,43 @@ def _maintenance_is_operational(status) -> bool:
     raise ValueError(f"Unknown maintenance status format: {status!r}")
 
 
+def _extract_market_info_index(payload) -> dict[str, dict]:
+    payload = _require_list(payload, "market_info")
+
+    result: dict[str, dict] = {}
+
+    for idx, item in enumerate(payload):
+        item = _require_dict(item, f"market_info[{idx}]")
+
+        if "type" not in item:
+            raise KeyError(f"Missing key: market_info[{idx}].type")
+        if "stock" not in item:
+            raise KeyError(f"Missing key: market_info[{idx}].stock")
+        if "money" not in item:
+            raise KeyError(f"Missing key: market_info[{idx}].money")
+        if "minTotal" not in item:
+            raise KeyError(f"Missing key: market_info[{idx}].minTotal")
+        if "tradesEnabled" not in item:
+            raise KeyError(f"Missing key: market_info[{idx}].tradesEnabled")
+
+        market_type = str(item["type"]).strip().lower()
+        stock = str(item["stock"]).strip().upper()
+        money = str(item["money"]).strip().upper()
+
+        if not stock:
+            raise ValueError(f"Empty stock in market_info[{idx}]")
+
+        if market_type != "spot":
+            continue
+
+        if money != "USDT":
+            continue
+
+        result[stock] = item
+
+    return result
+
+
 def _extract_account_fee_index(payload) -> dict[str, dict]:
     payload = _require_list(payload, "account_fees")
 
@@ -498,7 +535,11 @@ def _build_candidate_base(parsed: dict, context_code_pl: str) -> dict:
     }
 
 
-def _build_candidates(asset_status_payload: dict, account_fee_index: dict):
+def _build_candidates(
+        asset_status_payload: dict,
+        account_fee_index: dict,
+        market_info_index: dict,
+):
     asset_status_payload = _require_dict(asset_status_payload, "asset_status_list")
 
     candidates: dict[tuple[str, str], dict] = {}
@@ -513,7 +554,16 @@ def _build_candidates(asset_status_payload: dict, account_fee_index: dict):
         if parsed is None:
             skipped_inactive_assets += 1
             continue
+        market_item = market_info_index.get(parsed["asset_code_pl"].upper())
 
+        if market_item is None:
+            trades_enabled = False
+            min_trade_amount_usdt = Decimal("5")
+        else:
+            trades_enabled = bool(market_item["tradesEnabled"])
+            min_trade_amount_usdt = _to_non_negative_decimal_or_none(market_item["minTotal"])
+            if min_trade_amount_usdt is None:
+                min_trade_amount_usdt = Decimal("5")
         account_fee_key = parsed.get("raw_composite_code", asset_code_raw).upper()
         account_fee_item = account_fee_index.get(account_fee_key)
 
@@ -594,6 +644,9 @@ def _build_candidates(asset_status_payload: dict, account_fee_index: dict):
                 "withdraw_fee_min_amount": _to_decimal(withdraw_fee_block.get("minFlex"), default="0"),
                 "withdraw_fee_max_amount": _to_fee_max_amount_or_none(withdraw_fee_block.get("maxFlex")),
                 "raw_fee_item": account_fee_item,
+                "trades_enabled": trades_enabled,
+                "min_trade_amount_usdt": min_trade_amount_usdt,
+                "raw_market_item": market_item or {},
             }
 
             key = (candidate["asset_code"], candidate["context_code"])
@@ -605,15 +658,19 @@ def _build_candidates(asset_status_payload: dict, account_fee_index: dict):
 def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounters:
     asset_status_payload = _load_raw_json(provider.code, "asset_status_list")
     account_fees_payload = _load_raw_json(provider.code, "account_fees")
+    market_info_payload = _load_raw_json(provider.code, "market_info")
     maintenance_payload = _load_raw_json(provider.code, "maintenance_status")
 
     maintenance_status = _extract_maintenance_status(maintenance_payload)
     is_operational = _maintenance_is_operational(maintenance_status)
 
     account_fee_index = _extract_account_fee_index(account_fees_payload)
+    market_info_index = _extract_market_info_index(market_info_payload)
+
     candidates, skipped_inactive_assets = _build_candidates(
         asset_status_payload,
         account_fee_index,
+        market_info_index,
     )
     stablecoin_codes = _get_stablecoin_codes()
 
@@ -631,6 +688,7 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
             "item_kind": candidate["item_kind"],
             "asset_status_item": candidate["raw_asset_item"],
             "account_fee_item": candidate["raw_fee_item"],
+            "market_info_item": candidate["raw_market_item"],
             "maintenance_status": maintenance_status,
         }
 
@@ -669,6 +727,8 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
             "is_stablecoin": candidate["asset_code"] in stablecoin_codes,
             "amount_precision": _to_precision(candidate["amount_precision"], default=8),
             "nominal": 1,
+            "trades_enabled": candidate["trades_enabled"],
+            "min_trade_amount_usdt": candidate["min_trade_amount_usdt"],
             "icon_url": candidate["icon_url"],
         }
 
@@ -715,6 +775,8 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
             "is_stablecoin",
             "amount_precision",
             "nominal",
+            "trades_enabled",
+            "min_trade_amount_usdt",
             "icon_url",
         ]
 
