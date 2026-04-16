@@ -17,13 +17,10 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
         "context_code",
         "cluster_no",
         "is_front",
-        "deposit_enabled_display",
-        "withdraw_enabled_display",
         "D",
         "W",
         "AD",
         "AW",
-        "match_status",
         "reserve_current_display",
         "updated_at",
     )
@@ -42,13 +39,11 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
         "provider",
         "is_active",
         "is_front",
-        "match_status",
         "is_stablecoin",
         "D",
         "W",
         "AD",
         "AW",
-        "created_at",
         "updated_at",
     )
     search_fields = (
@@ -67,8 +62,6 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
         "description",
     )
     readonly_fields = (
-        "deposit_enabled_display",
-        "withdraw_enabled_display",
         "deposit_fee_fixed_display",
         "deposit_fee_percent_display",
         "deposit_fee_min_amount_display",
@@ -138,8 +131,6 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
             "Доступность",
             {
                 "fields": (
-                    "deposit_enabled_display",
-                    "withdraw_enabled_display",
                     "D",
                     "W",
                     "AD",
@@ -253,14 +244,6 @@ class ProviderAssetContextAdmin(admin.ModelAdmin):
             },
         ),
     )
-
-    @admin.display(boolean=True, description="Ввод")
-    def deposit_enabled_display(self, obj):
-        return obj.deposit_enabled
-
-    @admin.display(boolean=True, description="Вывод")
-    def withdraw_enabled_display(self, obj):
-        return obj.withdraw_enabled
 
     @admin.display(description="Фикс. комиссия на ввод")
     def deposit_fee_fixed_display(self, obj):
