@@ -7246,7 +7246,7 @@
     "stock": "RTF",
     "money": "USDT",
     "stockPrec": "3",
-    "moneyPrec": "5",
+    "moneyPrec": "6",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -7255,7 +7255,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000",
+    "maxTotal": "1000000",
     "isTradFiFutures": false
   },
   {

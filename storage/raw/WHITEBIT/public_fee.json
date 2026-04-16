@@ -30,8 +30,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.62",
-      "fixed": "0.31",
+      "min_amount": "0.66",
+      "fixed": "0.33",
       "flex": null
     },
     "deposit": {
@@ -114,8 +114,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "2.232",
-      "fixed": "0.744",
+      "min_amount": "2.115",
+      "fixed": "0.705",
       "flex": null
     },
     "deposit": {
@@ -135,8 +135,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "8",
-      "fixed": "4",
+      "min_amount": "10",
+      "fixed": "5",
       "flex": null
     },
     "deposit": {
@@ -157,7 +157,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "20",
-      "fixed": "23.3",
+      "fixed": "21.5",
       "flex": null
     },
     "deposit": {
@@ -177,8 +177,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1.34",
-      "fixed": "0.67",
+      "min_amount": "1.42",
+      "fixed": "0.71",
       "flex": null
     },
     "deposit": {
@@ -219,8 +219,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.78",
-      "fixed": "0.39",
+      "min_amount": "0.8",
+      "fixed": "0.4",
       "flex": null
     },
     "deposit": {
@@ -240,8 +240,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1.26",
-      "fixed": "0.63",
+      "min_amount": "1.34",
+      "fixed": "0.67",
       "flex": null
     },
     "deposit": {
@@ -262,7 +262,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "30",
-      "fixed": "1.26",
+      "fixed": "1.25",
       "flex": null
     },
     "deposit": {
@@ -282,8 +282,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "216.3",
-      "fixed": "72.102",
+      "min_amount": "216.74",
+      "fixed": "72.247",
       "flex": null
     },
     "deposit": {
@@ -366,8 +366,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "15.9813",
-      "fixed": "5.3271",
+      "min_amount": "14.8242",
+      "fixed": "4.9414",
       "flex": null
     },
     "deposit": {
@@ -408,8 +408,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.715",
-      "fixed": "0.2385",
+      "min_amount": "0.603",
+      "fixed": "0.201",
       "flex": null
     },
     "deposit": {
@@ -450,8 +450,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.526",
-      "fixed": "0.263",
+      "min_amount": "0.54",
+      "fixed": "0.27",
       "flex": null
     },
     "deposit": {
@@ -492,8 +492,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "9.28",
-      "fixed": "4.64",
+      "min_amount": "9.22",
+      "fixed": "4.61",
       "flex": null
     },
     "deposit": {
@@ -534,8 +534,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "146",
-      "fixed": "73",
+      "min_amount": "154",
+      "fixed": "77",
       "flex": null
     },
     "deposit": {
@@ -577,7 +577,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "260",
-      "fixed": "14.6",
+      "fixed": "14.54",
       "flex": null
     },
     "deposit": {
@@ -598,7 +598,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "530",
-      "fixed": "5",
+      "fixed": "6",
       "flex": null
     },
     "deposit": {
@@ -660,8 +660,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.206",
-      "fixed": "0.103",
+      "min_amount": "0.208",
+      "fixed": "0.104",
       "flex": null
     },
     "deposit": {
@@ -765,8 +765,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.7",
-      "fixed": "0.35",
+      "min_amount": "0.6",
+      "fixed": "0.31",
       "flex": null
     },
     "deposit": {
@@ -870,8 +870,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "9.6",
-      "fixed": "4.8",
+      "min_amount": "10.2",
+      "fixed": "5.1",
       "flex": null
     },
     "deposit": {
@@ -933,8 +933,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "4.34",
-      "fixed": "2.17",
+      "min_amount": "4.62",
+      "fixed": "2.31",
       "flex": null
     },
     "deposit": {
@@ -1080,8 +1080,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1.28",
-      "fixed": "0.64",
+      "min_amount": "1.04",
+      "fixed": "0.52",
       "flex": null
     },
     "deposit": {
@@ -1101,8 +1101,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.052",
-      "fixed": "0.026",
+      "min_amount": "0.054",
+      "fixed": "0.027",
       "flex": null
     },
     "deposit": {
@@ -1185,8 +1185,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.0234",
-      "fixed": "0.0117",
+      "min_amount": "0.0232",
+      "fixed": "0.0116",
       "flex": null
     },
     "deposit": {
@@ -1206,8 +1206,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.82",
-      "fixed": "0.41",
+      "min_amount": "0.84",
+      "fixed": "0.42",
       "flex": null
     },
     "deposit": {
@@ -1290,8 +1290,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.6",
-      "fixed": "0.3",
+      "min_amount": "0.64",
+      "fixed": "0.32",
       "flex": null
     },
     "deposit": {
@@ -1353,8 +1353,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "32.64",
-      "fixed": "16.32",
+      "min_amount": "34.36",
+      "fixed": "17.18",
       "flex": null
     },
     "deposit": {
@@ -1425,8 +1425,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "4.58",
-      "fixed": "2.29",
+      "min_amount": "4.62",
+      "fixed": "2.31",
       "flex": null
     },
     "deposit": {
@@ -1467,8 +1467,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "2.56",
-      "fixed": "1.28",
+      "min_amount": "1.74",
+      "fixed": "0.87",
       "flex": null
     },
     "deposit": {
@@ -1489,7 +1489,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "40",
-      "fixed": "1.53",
+      "fixed": "1.35",
       "flex": null
     },
     "deposit": {
@@ -1552,7 +1552,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "1066",
-      "fixed": "789.2",
+      "fixed": "692.7",
       "flex": null
     },
     "deposit": {
@@ -1573,7 +1573,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "194061",
-      "fixed": "56168.87",
+      "fixed": "54998.17",
       "flex": null
     },
     "deposit": {
@@ -1677,8 +1677,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "12.525",
-      "fixed": "4.175",
+      "min_amount": "11.934",
+      "fixed": "3.978",
       "flex": null
     },
     "deposit": {
@@ -1698,8 +1698,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.159",
-      "fixed": "0.053",
+      "min_amount": "0.1611",
+      "fixed": "0.0537",
       "flex": null
     },
     "deposit": {
@@ -1783,7 +1783,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "349477",
-      "fixed": "44",
+      "fixed": "46",
       "flex": null
     },
     "deposit": {
@@ -1887,8 +1887,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "11.91",
-      "fixed": "3.97",
+      "min_amount": "11.85",
+      "fixed": "3.95",
       "flex": null
     },
     "deposit": {
@@ -1908,8 +1908,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "3.24",
-      "fixed": "1.62",
+      "min_amount": "3.28",
+      "fixed": "1.64",
       "flex": null
     },
     "deposit": {
@@ -1992,8 +1992,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "4.34",
-      "fixed": "2.17",
+      "min_amount": "4.54",
+      "fixed": "2.27",
       "flex": null
     },
     "deposit": {
@@ -2013,8 +2013,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.26",
-      "fixed": "0.13",
+      "min_amount": "0.28",
+      "fixed": "0.14",
       "flex": null
     },
     "deposit": {
@@ -2034,8 +2034,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1.88",
-      "fixed": "0.94",
+      "min_amount": "1.64",
+      "fixed": "0.82",
       "flex": null
     },
     "deposit": {
@@ -2055,8 +2055,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "2",
-      "fixed": "1",
+      "min_amount": "2.08",
+      "fixed": "1.04",
       "flex": null
     },
     "deposit": {
@@ -2097,8 +2097,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.537",
-      "fixed": "0.179",
+      "min_amount": "0.51",
+      "fixed": "0.17",
       "flex": null
     },
     "deposit": {
@@ -2211,8 +2211,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "62090",
-      "fixed": "31045",
+      "min_amount": "66880",
+      "fixed": "33440",
       "flex": null
     },
     "deposit": {
@@ -2253,8 +2253,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "18.33",
-      "fixed": "6.11",
+      "min_amount": "17.67",
+      "fixed": "5.89",
       "flex": null
     },
     "deposit": {
@@ -2274,8 +2274,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.008",
-      "fixed": "0.004",
+      "min_amount": "0.01",
+      "fixed": "0.005",
       "flex": null
     },
     "deposit": {
@@ -2295,8 +2295,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "423",
-      "fixed": "141",
+      "min_amount": "438.75",
+      "fixed": "146.25",
       "flex": null
     },
     "deposit": {
@@ -2316,8 +2316,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.32",
-      "fixed": "0.16",
+      "min_amount": "0.34",
+      "fixed": "0.17",
       "flex": null
     },
     "deposit": {
@@ -2337,8 +2337,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "3.5",
-      "fixed": "1.75",
+      "min_amount": "3.6",
+      "fixed": "1.8",
       "flex": null
     },
     "deposit": {
@@ -2484,8 +2484,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1.401",
-      "fixed": "0.467",
+      "min_amount": "1.407",
+      "fixed": "0.469",
       "flex": null
     },
     "deposit": {
@@ -2568,8 +2568,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "3.8",
-      "fixed": "1.9",
+      "min_amount": "4",
+      "fixed": "2",
       "flex": null
     },
     "deposit": {
@@ -2631,8 +2631,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.48",
-      "fixed": "0.24",
+      "min_amount": "0.46",
+      "fixed": "0.23",
       "flex": null
     },
     "deposit": {
@@ -2842,7 +2842,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "0.0038",
-      "fixed": "0.000206",
+      "fixed": "0.000207",
       "flex": null
     },
     "deposit": {
@@ -2863,7 +2863,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "0.0038",
-      "fixed": "0.0000164",
+      "fixed": "0.0000176",
       "flex": null
     },
     "deposit": {
@@ -2988,8 +2988,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.0001696",
-      "fixed": "0.0000848",
+      "min_amount": "0.0001848",
+      "fixed": "0.0000924",
       "flex": null
     },
     "deposit": {
@@ -3392,8 +3392,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "4160",
-      "fixed": "2080",
+      "min_amount": "4202",
+      "fixed": "2101",
       "flex": null
     },
     "deposit": {
@@ -3434,8 +3434,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1.04",
-      "fixed": "0.52",
+      "min_amount": "1.1",
+      "fixed": "0.55",
       "flex": null
     },
     "deposit": {
@@ -3560,8 +3560,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "16.4",
-      "fixed": "8.2",
+      "min_amount": "17.26",
+      "fixed": "8.63",
       "flex": null
     },
     "deposit": {
@@ -3581,8 +3581,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "25.8",
-      "fixed": "12.9",
+      "min_amount": "25",
+      "fixed": "12.5",
       "flex": null
     },
     "deposit": {
@@ -3703,8 +3703,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.46",
-      "fixed": "0.23",
+      "min_amount": "0.48",
+      "fixed": "0.24",
       "flex": null
     },
     "deposit": {
@@ -3746,7 +3746,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "40",
-      "fixed": "31.6",
+      "fixed": "30.6",
       "flex": null
     },
     "deposit": {
@@ -3850,8 +3850,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "2.4",
-      "fixed": "1.22",
+      "min_amount": "2.5",
+      "fixed": "1.27",
       "flex": null
     },
     "deposit": {
@@ -3955,8 +3955,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "19320",
-      "fixed": "9660",
+      "min_amount": "20812",
+      "fixed": "10406",
       "flex": null
     },
     "deposit": {
@@ -4044,7 +4044,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "145",
-      "fixed": "17.2",
+      "fixed": "17.6",
       "flex": null
     },
     "deposit": {
@@ -4085,8 +4085,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "346",
-      "fixed": "173",
+      "min_amount": "372",
+      "fixed": "186",
       "flex": null
     },
     "deposit": {
@@ -4148,8 +4148,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "5.898",
-      "fixed": "2.949",
+      "min_amount": "5.678",
+      "fixed": "2.839",
       "flex": null
     },
     "deposit": {
@@ -4211,8 +4211,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.39",
-      "fixed": "0.195",
+      "min_amount": "0.384",
+      "fixed": "0.192",
       "flex": null
     },
     "deposit": {
@@ -4254,7 +4254,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "0.019",
-      "fixed": "0.0097",
+      "fixed": "0.0095",
       "flex": null
     },
     "deposit": {
@@ -4317,7 +4317,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "3",
-      "fixed": "3.31",
+      "fixed": "3.11",
       "flex": null
     },
     "deposit": {
@@ -4400,8 +4400,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "541.314",
-      "fixed": "180.438",
+      "min_amount": "544.188",
+      "fixed": "181.396",
       "flex": null
     },
     "deposit": {
@@ -4527,7 +4527,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "10",
-      "fixed": "1.99",
+      "fixed": "1.96",
       "flex": null
     },
     "deposit": {
@@ -4568,8 +4568,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.02634",
-      "fixed": "0.00878",
+      "min_amount": "0.02565",
+      "fixed": "0.00855",
       "flex": null
     },
     "deposit": {
@@ -4715,8 +4715,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.54",
-      "fixed": "0.27",
+      "min_amount": "0.58",
+      "fixed": "0.29",
       "flex": null
     },
     "deposit": {
@@ -4907,7 +4907,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "11.35",
-      "fixed": "4.05",
+      "fixed": "4.02",
       "flex": null
     },
     "deposit": {
@@ -4948,8 +4948,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "4.62",
-      "fixed": "1.54",
+      "min_amount": "4.8",
+      "fixed": "1.6",
       "flex": null
     },
     "deposit": {
@@ -5074,8 +5074,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "96",
-      "fixed": "48",
+      "min_amount": "102",
+      "fixed": "51",
       "flex": null
     },
     "deposit": {
@@ -5116,8 +5116,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.216",
-      "fixed": "0.108",
+      "min_amount": "0.224",
+      "fixed": "0.112",
       "flex": null
     },
     "deposit": {
@@ -5137,8 +5137,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "3.64",
-      "fixed": "1.82",
+      "min_amount": "3.84",
+      "fixed": "1.92",
       "flex": null
     },
     "deposit": {
@@ -5246,8 +5246,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.72",
-      "fixed": "0.36",
+      "min_amount": "0.74",
+      "fixed": "0.37",
       "flex": null
     },
     "deposit": {
@@ -5309,8 +5309,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.12",
-      "fixed": "0.06",
+      "min_amount": "0.14",
+      "fixed": "0.07",
       "flex": null
     },
     "deposit": {
@@ -5330,8 +5330,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "16.83",
-      "fixed": "5.61",
+      "min_amount": "15.6",
+      "fixed": "5.2",
       "flex": null
     },
     "deposit": {
@@ -5351,8 +5351,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "26658",
-      "fixed": "13329",
+      "min_amount": "28714",
+      "fixed": "14357",
       "flex": null
     },
     "deposit": {
@@ -5372,8 +5372,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "112",
-      "fixed": "56",
+      "min_amount": "110",
+      "fixed": "55",
       "flex": null
     },
     "deposit": {
@@ -5436,7 +5436,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "1270",
-      "fixed": "468.6",
+      "fixed": "451.3",
       "flex": null
     },
     "deposit": {
@@ -5583,7 +5583,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "59",
-      "fixed": "6.55",
+      "fixed": "6.18",
       "flex": null
     },
     "deposit": {
@@ -5624,8 +5624,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "3.8",
-      "fixed": "1.9",
+      "min_amount": "4",
+      "fixed": "2",
       "flex": null
     },
     "deposit": {
@@ -5750,8 +5750,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1670",
-      "fixed": "835",
+      "min_amount": "1314",
+      "fixed": "657",
       "flex": null
     },
     "deposit": {
@@ -5813,8 +5813,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.068",
-      "fixed": "0.034",
+      "min_amount": "0.072",
+      "fixed": "0.036",
       "flex": null
     },
     "deposit": {
@@ -5834,8 +5834,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "22.61",
-      "fixed": "7.539",
+      "min_amount": "20.83",
+      "fixed": "6.946",
       "flex": null
     },
     "deposit": {
@@ -5897,8 +5897,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.0078",
-      "fixed": "0.0039",
+      "min_amount": "0.0084",
+      "fixed": "0.0042",
       "flex": null
     },
     "deposit": {
@@ -5982,7 +5982,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "3",
-      "fixed": "1.58",
+      "fixed": "1.66",
       "flex": null
     },
     "deposit": {
@@ -6023,8 +6023,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.28",
-      "fixed": "0.14",
+      "min_amount": "0.3",
+      "fixed": "0.15",
       "flex": null
     },
     "deposit": {
@@ -6128,8 +6128,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "6.6",
-      "fixed": "3.3",
+      "min_amount": "7",
+      "fixed": "3.5",
       "flex": null
     },
     "deposit": {
@@ -6212,8 +6212,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "5.7",
-      "fixed": "2.85",
+      "min_amount": "6.26",
+      "fixed": "3.13",
       "flex": null
     },
     "deposit": {
@@ -6233,8 +6233,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "6.111",
-      "fixed": "2.037",
+      "min_amount": "6.1725",
+      "fixed": "2.0575",
       "flex": null
     },
     "deposit": {
@@ -6275,8 +6275,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.06",
-      "fixed": "0.03",
+      "min_amount": "0.058",
+      "fixed": "0.029",
       "flex": null
     },
     "deposit": {
@@ -6297,7 +6297,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "2195",
-      "fixed": "47.1",
+      "fixed": "45.4",
       "flex": null
     },
     "deposit": {
@@ -6338,8 +6338,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "20116",
-      "fixed": "10058",
+      "min_amount": "20572",
+      "fixed": "10286",
       "flex": null
     },
     "deposit": {
@@ -6359,8 +6359,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1.6",
-      "fixed": "0.8",
+      "min_amount": "1.8",
+      "fixed": "0.9",
       "flex": null
     },
     "deposit": {
@@ -6380,8 +6380,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "7.2",
-      "fixed": "3.6",
+      "min_amount": "7.74",
+      "fixed": "3.87",
       "flex": null
     },
     "deposit": {
@@ -6472,7 +6472,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "5.4",
-      "fixed": "7.38",
+      "fixed": "6.16",
       "flex": null
     },
     "deposit": {
@@ -6492,8 +6492,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.708",
-      "fixed": "0.354",
+      "min_amount": "0.736",
+      "fixed": "0.368",
       "flex": null
     },
     "deposit": {
@@ -6555,8 +6555,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "36",
-      "fixed": "18",
+      "min_amount": "38",
+      "fixed": "19",
       "flex": null
     },
     "deposit": {
@@ -6576,8 +6576,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "7.38",
-      "fixed": "3.69",
+      "min_amount": "7.32",
+      "fixed": "3.66",
       "flex": null
     },
     "deposit": {
@@ -6597,8 +6597,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.9",
-      "fixed": "0.45",
+      "min_amount": "0.94",
+      "fixed": "0.47",
       "flex": null
     },
     "deposit": {
@@ -6702,8 +6702,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.28",
-      "fixed": "0.14",
+      "min_amount": "0.3",
+      "fixed": "0.15",
       "flex": null
     },
     "deposit": {
@@ -6724,7 +6724,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "20",
-      "fixed": "7.74",
+      "fixed": "7.46",
       "flex": null
     },
     "deposit": {
@@ -6807,8 +6807,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.2",
-      "fixed": "0.14",
+      "min_amount": "0.3",
+      "fixed": "0.15",
       "flex": null
     },
     "deposit": {
@@ -6913,7 +6913,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "18",
-      "fixed": "0.18",
+      "fixed": "0.21",
       "flex": null
     },
     "deposit": {
@@ -6996,8 +6996,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "17.2",
-      "fixed": "8.6",
+      "min_amount": "18",
+      "fixed": "9",
       "flex": null
     },
     "deposit": {
@@ -7143,8 +7143,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "31.54",
-      "fixed": "10.5145",
+      "min_amount": "33.18",
+      "fixed": "11.0607",
       "flex": null
     },
     "deposit": {
@@ -7164,8 +7164,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "7.3",
-      "fixed": "3.65",
+      "min_amount": "8.22",
+      "fixed": "4.11",
       "flex": null
     },
     "deposit": {
@@ -7311,8 +7311,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.74",
-      "fixed": "0.37",
+      "min_amount": "0.78",
+      "fixed": "0.39",
       "flex": null
     },
     "deposit": {
@@ -7332,8 +7332,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "17690",
-      "fixed": "8845",
+      "min_amount": "18986",
+      "fixed": "9493",
       "flex": null
     },
     "deposit": {
@@ -7442,7 +7442,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "20",
-      "fixed": "2.47",
+      "fixed": "2.34",
       "flex": null
     },
     "deposit": {
@@ -7462,8 +7462,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "10070",
-      "fixed": "5035",
+      "min_amount": "10580",
+      "fixed": "5290",
       "flex": null
     },
     "deposit": {
@@ -7546,8 +7546,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.64",
-      "fixed": "0.32",
+      "min_amount": "0.68",
+      "fixed": "0.34",
       "flex": null
     },
     "deposit": {
@@ -7589,7 +7589,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "14",
-      "fixed": "9.73",
+      "fixed": "9.4",
       "flex": null
     },
     "deposit": {
@@ -7630,8 +7630,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "54",
-      "fixed": "18",
+      "min_amount": "57",
+      "fixed": "19",
       "flex": null
     },
     "deposit": {
@@ -7672,8 +7672,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.026",
-      "fixed": "0.013",
+      "min_amount": "0.024",
+      "fixed": "0.012",
       "flex": null
     },
     "deposit": {
@@ -7714,8 +7714,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1874.07",
-      "fixed": "624.69",
+      "min_amount": "1883.46",
+      "fixed": "627.82",
       "flex": null
     },
     "deposit": {
@@ -7735,8 +7735,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.27",
-      "fixed": "0.135",
+      "min_amount": "0.276",
+      "fixed": "0.138",
       "flex": null
     },
     "deposit": {
@@ -7756,8 +7756,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.6",
-      "fixed": "0.303",
+      "min_amount": "0.61",
+      "fixed": "0.309",
       "flex": null
     },
     "deposit": {
@@ -7798,8 +7798,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1.88",
-      "fixed": "0.94",
+      "min_amount": "1.96",
+      "fixed": "0.98",
       "flex": null
     },
     "deposit": {
@@ -7925,7 +7925,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "7",
-      "fixed": "0.4667",
+      "fixed": "0.4344",
       "flex": null
     },
     "deposit": {
@@ -7946,7 +7946,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "15",
-      "fixed": "0.15",
+      "fixed": "0.149",
       "flex": null
     },
     "deposit": {
@@ -8114,7 +8114,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "6",
-      "fixed": "8.53",
+      "fixed": "8.47",
       "flex": null
     },
     "deposit": {
@@ -8219,7 +8219,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "0.26",
-      "fixed": "0.124",
+      "fixed": "0.122",
       "flex": null
     },
     "deposit": {
@@ -8415,7 +8415,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "25",
-      "fixed": "0.03",
+      "fixed": "0.04",
       "flex": null
     },
     "deposit": {
@@ -8456,8 +8456,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "4.32",
-      "fixed": "1.44",
+      "min_amount": "4.473",
+      "fixed": "1.491",
       "flex": null
     },
     "deposit": {
@@ -8494,9 +8494,9 @@
         "min_amount": "2000",
         "fixed": null,
         "flex": {
-          "percent": "4",
-          "min_fee": "80",
-          "max_fee": "2000"
+          "percent": "4.5",
+          "min_fee": "90",
+          "max_fee": "2250"
         },
         "is_api_depositable": true
       }
@@ -8557,7 +8557,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "760",
-      "fixed": "52",
+      "fixed": "56",
       "flex": null
     },
     "deposit": {
@@ -8607,9 +8607,9 @@
       "min_amount": "2000",
       "fixed": null,
       "flex": {
-        "percent": "4",
-        "min_fee": "80",
-        "max_fee": "2000"
+        "percent": "4.5",
+        "min_fee": "90",
+        "max_fee": "2250"
       }
     }
   },
@@ -9596,7 +9596,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "8",
-      "fixed": "28.25",
+      "fixed": "26.72",
       "flex": null
     },
     "deposit": {
@@ -9768,7 +9768,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "4.8",
-      "fixed": "1.73",
+      "fixed": "1.61",
       "flex": null
     },
     "deposit": {
@@ -9830,8 +9830,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "3.26",
-      "fixed": "1.63",
+      "min_amount": "3.32",
+      "fixed": "1.66",
       "flex": null
     },
     "deposit": {
@@ -9851,8 +9851,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "4.478",
-      "fixed": "2.239",
+      "min_amount": "4.858",
+      "fixed": "2.429",
       "flex": null
     },
     "deposit": {
@@ -9894,7 +9894,7 @@
     "withdraw": {
       "max_amount": "0",
       "min_amount": "0",
-      "fixed": "0.00000817",
+      "fixed": "0.00000879",
       "flex": null
     },
     "deposit": {
@@ -10153,8 +10153,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "1.52",
-      "fixed": "0.76",
+      "min_amount": "1.58",
+      "fixed": "0.79",
       "flex": null
     },
     "deposit": {
@@ -10384,8 +10384,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.03",
-      "fixed": "0.015",
+      "min_amount": "0.032",
+      "fixed": "0.016",
       "flex": null
     },
     "deposit": {
@@ -10405,8 +10405,8 @@
     "providers": [],
     "withdraw": {
       "max_amount": "0",
-      "min_amount": "0.56",
-      "fixed": "0.28",
+      "min_amount": "0.58",
+      "fixed": "0.29",
       "flex": null
     },
     "deposit": {

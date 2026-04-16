@@ -38,8 +38,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.31",
-      "minAmount": "0.62",
+      "fixed": "0.33",
+      "minAmount": "0.66",
       "maxAmount": "0"
     }
   },
@@ -126,8 +126,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.744",
-      "minAmount": "2.232",
+      "fixed": "0.705",
+      "minAmount": "2.115",
       "maxAmount": "0"
     }
   },
@@ -148,8 +148,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "4",
-      "minAmount": "8",
+      "fixed": "5",
+      "minAmount": "10",
       "maxAmount": "0"
     }
   },
@@ -170,7 +170,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "23.3",
+      "fixed": "21.5",
       "minAmount": "20",
       "maxAmount": "0"
     }
@@ -192,8 +192,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.67",
-      "minAmount": "1.34",
+      "fixed": "0.71",
+      "minAmount": "1.42",
       "maxAmount": "0"
     }
   },
@@ -236,8 +236,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.39",
-      "minAmount": "0.78",
+      "fixed": "0.4",
+      "minAmount": "0.8",
       "maxAmount": "0"
     }
   },
@@ -258,8 +258,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.63",
-      "minAmount": "1.26",
+      "fixed": "0.67",
+      "minAmount": "1.34",
       "maxAmount": "0"
     }
   },
@@ -280,7 +280,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.26",
+      "fixed": "1.25",
       "minAmount": "30",
       "maxAmount": "0"
     }
@@ -302,8 +302,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "72.102",
-      "minAmount": "216.3",
+      "fixed": "72.247",
+      "minAmount": "216.74",
       "maxAmount": "0"
     }
   },
@@ -412,8 +412,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "5.3271",
-      "minAmount": "15.9813",
+      "fixed": "4.9414",
+      "minAmount": "14.8242",
       "maxAmount": "0"
     }
   },
@@ -456,8 +456,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.2385",
-      "minAmount": "0.715",
+      "fixed": "0.201",
+      "minAmount": "0.603",
       "maxAmount": "0"
     }
   },
@@ -500,8 +500,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.263",
-      "minAmount": "0.526",
+      "fixed": "0.27",
+      "minAmount": "0.54",
       "maxAmount": "0"
     }
   },
@@ -544,8 +544,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "4.64",
-      "minAmount": "9.28",
+      "fixed": "4.61",
+      "minAmount": "9.22",
       "maxAmount": "0"
     }
   },
@@ -588,8 +588,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "73",
-      "minAmount": "146",
+      "fixed": "77",
+      "minAmount": "154",
       "maxAmount": "0"
     }
   },
@@ -654,7 +654,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "14.6",
+      "fixed": "14.54",
       "minAmount": "260",
       "maxAmount": "0"
     }
@@ -676,7 +676,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "5",
+      "fixed": "6",
       "minAmount": "530",
       "maxAmount": "0"
     }
@@ -764,8 +764,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.103",
-      "minAmount": "0.206",
+      "fixed": "0.104",
+      "minAmount": "0.208",
       "maxAmount": "0"
     }
   },
@@ -874,8 +874,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.35",
-      "minAmount": "0.7",
+      "fixed": "0.31",
+      "minAmount": "0.6",
       "maxAmount": "0"
     }
   },
@@ -984,8 +984,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "4.8",
-      "minAmount": "9.6",
+      "fixed": "5.1",
+      "minAmount": "10.2",
       "maxAmount": "0"
     }
   },
@@ -1050,8 +1050,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "2.17",
-      "minAmount": "4.34",
+      "fixed": "2.31",
+      "minAmount": "4.62",
       "maxAmount": "0"
     }
   },
@@ -1226,8 +1226,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.64",
-      "minAmount": "1.28",
+      "fixed": "0.52",
+      "minAmount": "1.04",
       "maxAmount": "0"
     }
   },
@@ -1248,8 +1248,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.026",
-      "minAmount": "0.052",
+      "fixed": "0.027",
+      "minAmount": "0.054",
       "maxAmount": "0"
     }
   },
@@ -1358,8 +1358,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.0117",
-      "minAmount": "0.0234",
+      "fixed": "0.0116",
+      "minAmount": "0.0232",
       "maxAmount": "0"
     }
   },
@@ -1380,8 +1380,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.41",
-      "minAmount": "0.82",
+      "fixed": "0.42",
+      "minAmount": "0.84",
       "maxAmount": "0"
     }
   },
@@ -1468,8 +1468,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.3",
-      "minAmount": "0.6",
+      "fixed": "0.32",
+      "minAmount": "0.64",
       "maxAmount": "0"
     }
   },
@@ -1534,8 +1534,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "16.32",
-      "minAmount": "32.64",
+      "fixed": "17.18",
+      "minAmount": "34.36",
       "maxAmount": "0"
     }
   },
@@ -1622,8 +1622,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "2.29",
-      "minAmount": "4.58",
+      "fixed": "2.31",
+      "minAmount": "4.62",
       "maxAmount": "0"
     }
   },
@@ -1666,8 +1666,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.28",
-      "minAmount": "2.56",
+      "fixed": "0.87",
+      "minAmount": "1.74",
       "maxAmount": "0"
     }
   },
@@ -1688,7 +1688,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.53",
+      "fixed": "1.35",
       "minAmount": "40",
       "maxAmount": "0"
     }
@@ -1776,7 +1776,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "789.2",
+      "fixed": "692.7",
       "minAmount": "1066",
       "maxAmount": "0"
     }
@@ -1798,7 +1798,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "56168.87",
+      "fixed": "54998.17",
       "minAmount": "194061",
       "maxAmount": "0"
     }
@@ -1908,8 +1908,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "4.175",
-      "minAmount": "12.525",
+      "fixed": "3.978",
+      "minAmount": "11.934",
       "maxAmount": "0"
     }
   },
@@ -1930,8 +1930,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.053",
-      "minAmount": "0.159",
+      "fixed": "0.0537",
+      "minAmount": "0.1611",
       "maxAmount": "0"
     }
   },
@@ -2018,7 +2018,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "44",
+      "fixed": "46",
       "minAmount": "349477",
       "maxAmount": "0"
     }
@@ -2128,8 +2128,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "3.97",
-      "minAmount": "11.91",
+      "fixed": "3.95",
+      "minAmount": "11.85",
       "maxAmount": "0"
     }
   },
@@ -2150,8 +2150,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.62",
-      "minAmount": "3.24",
+      "fixed": "1.64",
+      "minAmount": "3.28",
       "maxAmount": "0"
     }
   },
@@ -2238,8 +2238,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "2.17",
-      "minAmount": "4.34",
+      "fixed": "2.27",
+      "minAmount": "4.54",
       "maxAmount": "0"
     }
   },
@@ -2260,8 +2260,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.13",
-      "minAmount": "0.26",
+      "fixed": "0.14",
+      "minAmount": "0.28",
       "maxAmount": "0"
     }
   },
@@ -2282,8 +2282,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.94",
-      "minAmount": "1.88",
+      "fixed": "0.82",
+      "minAmount": "1.64",
       "maxAmount": "0"
     }
   },
@@ -2304,8 +2304,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1",
-      "minAmount": "2",
+      "fixed": "1.04",
+      "minAmount": "2.08",
       "maxAmount": "0"
     }
   },
@@ -2348,8 +2348,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.179",
-      "minAmount": "0.537",
+      "fixed": "0.17",
+      "minAmount": "0.51",
       "maxAmount": "0"
     }
   },
@@ -2612,8 +2612,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "31045",
-      "minAmount": "62090",
+      "fixed": "33440",
+      "minAmount": "66880",
       "maxAmount": "0"
     }
   },
@@ -2656,8 +2656,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "6.11",
-      "minAmount": "18.33",
+      "fixed": "5.89",
+      "minAmount": "17.67",
       "maxAmount": "0"
     }
   },
@@ -2678,8 +2678,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.004",
-      "minAmount": "0.008",
+      "fixed": "0.005",
+      "minAmount": "0.01",
       "maxAmount": "0"
     }
   },
@@ -2700,8 +2700,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "141",
-      "minAmount": "423",
+      "fixed": "146.25",
+      "minAmount": "438.75",
       "maxAmount": "0"
     }
   },
@@ -2722,8 +2722,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.16",
-      "minAmount": "0.32",
+      "fixed": "0.17",
+      "minAmount": "0.34",
       "maxAmount": "0"
     }
   },
@@ -2744,8 +2744,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.75",
-      "minAmount": "3.5",
+      "fixed": "1.8",
+      "minAmount": "3.6",
       "maxAmount": "0"
     }
   },
@@ -2920,8 +2920,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.467",
-      "minAmount": "1.401",
+      "fixed": "0.469",
+      "minAmount": "1.407",
       "maxAmount": "0"
     }
   },
@@ -3030,8 +3030,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.9",
-      "minAmount": "3.8",
+      "fixed": "2",
+      "minAmount": "4",
       "maxAmount": "0"
     }
   },
@@ -3096,8 +3096,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.24",
-      "minAmount": "0.48",
+      "fixed": "0.23",
+      "minAmount": "0.46",
       "maxAmount": "0"
     }
   },
@@ -3338,7 +3338,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.000206",
+      "fixed": "0.000207",
       "minAmount": "0.0038",
       "maxAmount": "0"
     }
@@ -3360,7 +3360,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.0000164",
+      "fixed": "0.0000176",
       "minAmount": "0.0038",
       "maxAmount": "0"
     }
@@ -3492,8 +3492,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.0000848",
-      "minAmount": "0.0001696",
+      "fixed": "0.0000924",
+      "minAmount": "0.0001848",
       "maxAmount": "0"
     }
   },
@@ -11280,8 +11280,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "2080",
-      "minAmount": "4160",
+      "fixed": "2101",
+      "minAmount": "4202",
       "maxAmount": "0"
     }
   },
@@ -11324,8 +11324,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.52",
-      "minAmount": "1.04",
+      "fixed": "0.55",
+      "minAmount": "1.1",
       "maxAmount": "0"
     }
   },
@@ -11456,8 +11456,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "8.2",
-      "minAmount": "16.4",
+      "fixed": "8.63",
+      "minAmount": "17.26",
       "maxAmount": "0"
     }
   },
@@ -11478,8 +11478,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "12.9",
-      "minAmount": "25.8",
+      "fixed": "12.5",
+      "minAmount": "25",
       "maxAmount": "0"
     }
   },
@@ -11698,8 +11698,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.23",
-      "minAmount": "0.46",
+      "fixed": "0.24",
+      "minAmount": "0.48",
       "maxAmount": "0"
     }
   },
@@ -11742,7 +11742,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "31.6",
+      "fixed": "30.6",
       "minAmount": "40",
       "maxAmount": "0"
     }
@@ -11874,8 +11874,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.22",
-      "minAmount": "2.4",
+      "fixed": "1.27",
+      "minAmount": "2.5",
       "maxAmount": "0"
     }
   },
@@ -11984,8 +11984,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "9660",
-      "minAmount": "19320",
+      "fixed": "10406",
+      "minAmount": "20812",
       "maxAmount": "0"
     }
   },
@@ -12072,7 +12072,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "17.2",
+      "fixed": "17.6",
       "minAmount": "145",
       "maxAmount": "0"
     }
@@ -12116,8 +12116,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "173",
-      "minAmount": "346",
+      "fixed": "186",
+      "minAmount": "372",
       "maxAmount": "0"
     }
   },
@@ -12182,8 +12182,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "2.949",
-      "minAmount": "5.898",
+      "fixed": "2.839",
+      "minAmount": "5.678",
       "maxAmount": "0"
     }
   },
@@ -12248,8 +12248,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.195",
-      "minAmount": "0.39",
+      "fixed": "0.192",
+      "minAmount": "0.384",
       "maxAmount": "0"
     }
   },
@@ -12314,7 +12314,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.0097",
+      "fixed": "0.0095",
       "minAmount": "0.019",
       "maxAmount": "0"
     }
@@ -12380,7 +12380,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "3.31",
+      "fixed": "3.11",
       "minAmount": "3",
       "maxAmount": "0"
     }
@@ -12468,8 +12468,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "180.438",
-      "minAmount": "541.314",
+      "fixed": "181.396",
+      "minAmount": "544.188",
       "maxAmount": "0"
     }
   },
@@ -12600,7 +12600,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.99",
+      "fixed": "1.96",
       "minAmount": "10",
       "maxAmount": "0"
     }
@@ -12644,8 +12644,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.00878",
-      "minAmount": "0.02634",
+      "fixed": "0.00855",
+      "minAmount": "0.02565",
       "maxAmount": "0"
     }
   },
@@ -12798,8 +12798,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.27",
-      "minAmount": "0.54",
+      "fixed": "0.29",
+      "minAmount": "0.58",
       "maxAmount": "0"
     }
   },
@@ -12952,7 +12952,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "4.05",
+      "fixed": "4.02",
       "minAmount": "11.35",
       "maxAmount": "0"
     }
@@ -13018,8 +13018,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.54",
-      "minAmount": "4.62",
+      "fixed": "1.6",
+      "minAmount": "4.8",
       "maxAmount": "0"
     }
   },
@@ -13172,8 +13172,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "48",
-      "minAmount": "96",
+      "fixed": "51",
+      "minAmount": "102",
       "maxAmount": "0"
     }
   },
@@ -13216,8 +13216,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.108",
-      "minAmount": "0.216",
+      "fixed": "0.112",
+      "minAmount": "0.224",
       "maxAmount": "0"
     }
   },
@@ -13238,8 +13238,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.82",
-      "minAmount": "3.64",
+      "fixed": "1.92",
+      "minAmount": "3.84",
       "maxAmount": "0"
     }
   },
@@ -13348,8 +13348,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.36",
-      "minAmount": "0.72",
+      "fixed": "0.37",
+      "minAmount": "0.74",
       "maxAmount": "0"
     }
   },
@@ -13414,8 +13414,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.06",
-      "minAmount": "0.12",
+      "fixed": "0.07",
+      "minAmount": "0.14",
       "maxAmount": "0"
     }
   },
@@ -13436,8 +13436,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "5.61",
-      "minAmount": "16.83",
+      "fixed": "5.2",
+      "minAmount": "15.6",
       "maxAmount": "0"
     }
   },
@@ -13458,8 +13458,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "13329",
-      "minAmount": "26658",
+      "fixed": "14357",
+      "minAmount": "28714",
       "maxAmount": "0"
     }
   },
@@ -13480,8 +13480,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "56",
-      "minAmount": "112",
+      "fixed": "55",
+      "minAmount": "110",
       "maxAmount": "0"
     }
   },
@@ -13546,7 +13546,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "468.6",
+      "fixed": "451.3",
       "minAmount": "1270",
       "maxAmount": "0"
     }
@@ -13700,7 +13700,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "6.55",
+      "fixed": "6.18",
       "minAmount": "59",
       "maxAmount": "0"
     }
@@ -13744,8 +13744,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.9",
-      "minAmount": "3.8",
+      "fixed": "2",
+      "minAmount": "4",
       "maxAmount": "0"
     }
   },
@@ -13876,8 +13876,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "835",
-      "minAmount": "1670",
+      "fixed": "657",
+      "minAmount": "1314",
       "maxAmount": "0"
     }
   },
@@ -13942,8 +13942,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.034",
-      "minAmount": "0.068",
+      "fixed": "0.036",
+      "minAmount": "0.072",
       "maxAmount": "0"
     }
   },
@@ -13964,8 +13964,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "7.539",
-      "minAmount": "22.61",
+      "fixed": "6.946",
+      "minAmount": "20.83",
       "maxAmount": "0"
     }
   },
@@ -14030,8 +14030,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.0039",
-      "minAmount": "0.0078",
+      "fixed": "0.0042",
+      "minAmount": "0.0084",
       "maxAmount": "0"
     }
   },
@@ -14118,7 +14118,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.58",
+      "fixed": "1.66",
       "minAmount": "3",
       "maxAmount": "0"
     }
@@ -14162,8 +14162,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.14",
-      "minAmount": "0.28",
+      "fixed": "0.15",
+      "minAmount": "0.3",
       "maxAmount": "0"
     }
   },
@@ -14272,8 +14272,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "3.3",
-      "minAmount": "6.6",
+      "fixed": "3.5",
+      "minAmount": "7",
       "maxAmount": "0"
     }
   },
@@ -14360,8 +14360,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "2.85",
-      "minAmount": "5.7",
+      "fixed": "3.13",
+      "minAmount": "6.26",
       "maxAmount": "0"
     }
   },
@@ -14382,8 +14382,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "2.037",
-      "minAmount": "6.111",
+      "fixed": "2.0575",
+      "minAmount": "6.1725",
       "maxAmount": "0"
     }
   },
@@ -14426,8 +14426,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.03",
-      "minAmount": "0.06",
+      "fixed": "0.029",
+      "minAmount": "0.058",
       "maxAmount": "0"
     }
   },
@@ -14448,7 +14448,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "47.1",
+      "fixed": "45.4",
       "minAmount": "2195",
       "maxAmount": "0"
     }
@@ -14492,8 +14492,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "10058",
-      "minAmount": "20116",
+      "fixed": "10286",
+      "minAmount": "20572",
       "maxAmount": "0"
     }
   },
@@ -14514,8 +14514,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.8",
-      "minAmount": "1.6",
+      "fixed": "0.9",
+      "minAmount": "1.8",
       "maxAmount": "0"
     }
   },
@@ -14536,8 +14536,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "3.6",
-      "minAmount": "7.2",
+      "fixed": "3.87",
+      "minAmount": "7.74",
       "maxAmount": "0"
     }
   },
@@ -14734,7 +14734,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "7.38",
+      "fixed": "6.16",
       "minAmount": "5.4",
       "maxAmount": "0"
     }
@@ -14778,8 +14778,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.354",
-      "minAmount": "0.708",
+      "fixed": "0.368",
+      "minAmount": "0.736",
       "maxAmount": "0"
     }
   },
@@ -14844,8 +14844,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "18",
-      "minAmount": "36",
+      "fixed": "19",
+      "minAmount": "38",
       "maxAmount": "0"
     }
   },
@@ -14866,8 +14866,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "3.69",
-      "minAmount": "7.38",
+      "fixed": "3.66",
+      "minAmount": "7.32",
       "maxAmount": "0"
     }
   },
@@ -14888,8 +14888,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.45",
-      "minAmount": "0.9",
+      "fixed": "0.47",
+      "minAmount": "0.94",
       "maxAmount": "0"
     }
   },
@@ -14998,8 +14998,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.14",
-      "minAmount": "0.28",
+      "fixed": "0.15",
+      "minAmount": "0.3",
       "maxAmount": "0"
     }
   },
@@ -15020,7 +15020,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "7.74",
+      "fixed": "7.46",
       "minAmount": "20",
       "maxAmount": "0"
     }
@@ -15108,8 +15108,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.14",
-      "minAmount": "0.2",
+      "fixed": "0.15",
+      "minAmount": "0.3",
       "maxAmount": "0"
     }
   },
@@ -15218,7 +15218,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.18",
+      "fixed": "0.21",
       "minAmount": "18",
       "maxAmount": "0"
     }
@@ -15306,8 +15306,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "8.6",
-      "minAmount": "17.2",
+      "fixed": "9",
+      "minAmount": "18",
       "maxAmount": "0"
     }
   },
@@ -15482,8 +15482,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "10.5145",
-      "minAmount": "31.54",
+      "fixed": "11.0607",
+      "minAmount": "33.18",
       "maxAmount": "0"
     }
   },
@@ -15504,8 +15504,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "3.65",
-      "minAmount": "7.3",
+      "fixed": "4.11",
+      "minAmount": "8.22",
       "maxAmount": "0"
     }
   },
@@ -15658,8 +15658,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.37",
-      "minAmount": "0.74",
+      "fixed": "0.39",
+      "minAmount": "0.78",
       "maxAmount": "0"
     }
   },
@@ -15680,8 +15680,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "8845",
-      "minAmount": "17690",
+      "fixed": "9493",
+      "minAmount": "18986",
       "maxAmount": "0"
     }
   },
@@ -15790,7 +15790,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "2.47",
+      "fixed": "2.34",
       "minAmount": "20",
       "maxAmount": "0"
     }
@@ -15812,8 +15812,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "5035",
-      "minAmount": "10070",
+      "fixed": "5290",
+      "minAmount": "10580",
       "maxAmount": "0"
     }
   },
@@ -15900,8 +15900,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.32",
-      "minAmount": "0.64",
+      "fixed": "0.34",
+      "minAmount": "0.68",
       "maxAmount": "0"
     }
   },
@@ -15944,7 +15944,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "9.73",
+      "fixed": "9.4",
       "minAmount": "14",
       "maxAmount": "0"
     }
@@ -15988,8 +15988,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "18",
-      "minAmount": "54",
+      "fixed": "19",
+      "minAmount": "57",
       "maxAmount": "0"
     }
   },
@@ -16032,8 +16032,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.013",
-      "minAmount": "0.026",
+      "fixed": "0.012",
+      "minAmount": "0.024",
       "maxAmount": "0"
     }
   },
@@ -16076,8 +16076,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "624.69",
-      "minAmount": "1874.07",
+      "fixed": "627.82",
+      "minAmount": "1883.46",
       "maxAmount": "0"
     }
   },
@@ -16098,8 +16098,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.135",
-      "minAmount": "0.27",
+      "fixed": "0.138",
+      "minAmount": "0.276",
       "maxAmount": "0"
     }
   },
@@ -16120,8 +16120,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.303",
-      "minAmount": "0.6",
+      "fixed": "0.309",
+      "minAmount": "0.61",
       "maxAmount": "0"
     }
   },
@@ -16186,8 +16186,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.94",
-      "minAmount": "1.88",
+      "fixed": "0.98",
+      "minAmount": "1.96",
       "maxAmount": "0"
     }
   },
@@ -16340,7 +16340,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.4667",
+      "fixed": "0.4344",
       "minAmount": "7",
       "maxAmount": "0"
     }
@@ -16362,7 +16362,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.15",
+      "fixed": "0.149",
       "minAmount": "15",
       "maxAmount": "0"
     }
@@ -16538,7 +16538,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "8.53",
+      "fixed": "8.47",
       "minAmount": "6",
       "maxAmount": "0"
     }
@@ -16648,7 +16648,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.124",
+      "fixed": "0.122",
       "minAmount": "0.26",
       "maxAmount": "0"
     }
@@ -16780,7 +16780,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.03",
+      "fixed": "0.04",
       "minAmount": "25",
       "maxAmount": "0"
     }
@@ -16824,8 +16824,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.44",
-      "minAmount": "4.32",
+      "fixed": "1.491",
+      "minAmount": "4.473",
       "maxAmount": "0"
     }
   },
@@ -16857,9 +16857,9 @@
     "can_deposit": true,
     "can_withdraw": true,
     "deposit": {
-      "minFlex": "80",
-      "maxFlex": "1000",
-      "percentFlex": "4",
+      "minFlex": "90",
+      "maxFlex": "1125",
+      "percentFlex": "4.5",
       "fixed": "0",
       "minAmount": "2000",
       "maxAmount": "24999"
@@ -16879,9 +16879,9 @@
     "can_deposit": true,
     "can_withdraw": false,
     "deposit": {
-      "minFlex": "80",
-      "maxFlex": "2000",
-      "percentFlex": "4",
+      "minFlex": "90",
+      "maxFlex": "2250",
+      "percentFlex": "4.5",
       "fixed": "0",
       "minAmount": "2000",
       "maxAmount": "50000"
@@ -17022,7 +17022,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "52",
+      "fixed": "56",
       "minAmount": "760",
       "maxAmount": "0"
     }
@@ -18144,7 +18144,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "28.25",
+      "fixed": "26.72",
       "minAmount": "8",
       "maxAmount": "0"
     }
@@ -18364,7 +18364,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.73",
+      "fixed": "1.61",
       "minAmount": "4.8",
       "maxAmount": "0"
     }
@@ -18430,8 +18430,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "1.63",
-      "minAmount": "3.26",
+      "fixed": "1.66",
+      "minAmount": "3.32",
       "maxAmount": "0"
     }
   },
@@ -18452,8 +18452,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "2.239",
-      "minAmount": "4.478",
+      "fixed": "2.429",
+      "minAmount": "4.858",
       "maxAmount": "0"
     }
   },
@@ -18496,7 +18496,7 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.00000817",
+      "fixed": "0.00000879",
       "minAmount": "0",
       "maxAmount": "0"
     }
@@ -18760,8 +18760,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.76",
-      "minAmount": "1.52",
+      "fixed": "0.79",
+      "minAmount": "1.58",
       "maxAmount": "0"
     }
   },
@@ -19002,8 +19002,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.015",
-      "minAmount": "0.03",
+      "fixed": "0.016",
+      "minAmount": "0.032",
       "maxAmount": "0"
     }
   },
@@ -19024,8 +19024,8 @@
       "minFlex": "0",
       "maxFlex": "0",
       "percentFlex": "0",
-      "fixed": "0.28",
-      "minAmount": "0.56",
+      "fixed": "0.29",
+      "minAmount": "0.58",
       "maxAmount": "0"
     }
   }
