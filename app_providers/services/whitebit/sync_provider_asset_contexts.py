@@ -16,6 +16,7 @@ class SyncCounters:
     created: int = 0
     updated: int = 0
     skipped: int = 0
+    skipped_inactive_assets: int = 0
 
 
 def _load_raw_json(provider_code: str, request_type: str):
@@ -45,15 +46,6 @@ def _require_dict(value, path: str) -> dict:
 def _require_list(value, path: str) -> list:
     if not isinstance(value, list):
         raise TypeError(f"{path} must be list, got {type(value).__name__}")
-    return value
-
-
-def _require_str_key(d: dict, key: str, path: str) -> str:
-    if key not in d:
-        raise KeyError(f"Missing key: {path}.{key}")
-    value = d[key]
-    if not isinstance(value, str):
-        raise TypeError(f"{path}.{key} must be str, got {type(value).__name__}")
     return value
 
 
@@ -177,85 +169,23 @@ def _extract_fee_block(account_fee_item: dict, direction: str, path: str) -> dic
     return _require_dict(account_fee_item[direction], f"{path}.{direction}")
 
 
-def _extract_asset_status_components(asset_code: str, item: dict):
-    item = _require_dict(item, f"asset_status_list.{asset_code}")
+def _classify_asset_status_item(item: dict, asset_code: str) -> str:
+    has_confirmations = "confirmations" in item
+    has_providers = "providers" in item
 
-    if "name" not in item:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.name")
-    asset_name_pl = str(item["name"]).strip() or asset_code
+    if has_confirmations:
+        return "crypto"
 
-    if "currency_precision" not in item:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.currency_precision")
-    amount_precision = _to_precision(item["currency_precision"], default=8)
+    if has_providers:
+        return "fiat_currency"
 
-    if "networks" not in item:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks")
-    networks = _require_dict(item["networks"], f"asset_status_list.{asset_code}.networks")
+    if "_" in asset_code:
+        return "fiat_payment_method"
 
-    if "deposits" not in networks:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks.deposits")
-    if "withdraws" not in networks:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks.withdraws")
-
-    deposit_networks = {
-        str(x).strip()
-        for x in _require_list(
-            networks["deposits"],
-            f"asset_status_list.{asset_code}.networks.deposits",
-        )
-    }
-    withdraw_networks = {
-        str(x).strip()
-        for x in _require_list(
-            networks["withdraws"],
-            f"asset_status_list.{asset_code}.networks.withdraws",
-        )
-    }
-
-    if "confirmations" not in item:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.confirmations")
-    confirmations = _require_dict(
-        item["confirmations"],
-        f"asset_status_list.{asset_code}.confirmations",
+    raise ValueError(
+        f"Cannot classify asset_status_list.{asset_code}: "
+        f"no confirmations, no providers, and code is not composite"
     )
-
-    if "limits" not in item:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.limits")
-    limits = _require_dict(item["limits"], f"asset_status_list.{asset_code}.limits")
-
-    if "deposit" not in limits:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.limits.deposit")
-    if "withdraw" not in limits:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.limits.withdraw")
-
-    deposit_limits = _require_dict(
-        limits["deposit"],
-        f"asset_status_list.{asset_code}.limits.deposit",
-    )
-    withdraw_limits = _require_dict(
-        limits["withdraw"],
-        f"asset_status_list.{asset_code}.limits.withdraw",
-    )
-
-    all_contexts = (
-            set(deposit_networks)
-            | set(withdraw_networks)
-            | set(confirmations.keys())
-            | set(deposit_limits.keys())
-            | set(withdraw_limits.keys())
-    )
-
-    return {
-        "item": item,
-        "asset_name_pl": asset_name_pl,
-        "amount_precision": amount_precision,
-        "deposit_networks": deposit_networks,
-        "withdraw_networks": withdraw_networks,
-        "confirmations": confirmations,
-        "deposit_limits": deposit_limits,
-        "withdraw_limits": withdraw_limits,
-        "all_contexts": {str(x).strip() for x in all_contexts if str(x).strip()},
-    }
 
 
 def _extract_confirmations_for_context(
@@ -315,85 +245,290 @@ def _extract_limit_pair(
 
     if "min" not in limit_item:
         raise KeyError(f"Missing key: {path}.min")
-    if "max" not in limit_item:
-        raise KeyError(f"Missing key: {path}.max")
 
     min_amount = _to_non_negative_decimal_or_none(limit_item["min"])
-    max_amount = _to_non_negative_decimal_or_none(limit_item["max"])
+    max_amount = _to_non_negative_decimal_or_none(limit_item.get("max"))
 
     return min_amount, max_amount
 
 
-def _build_candidates(asset_status_payload: dict, account_fee_index: dict) -> dict[tuple[str, str], dict]:
+def _extract_asset_status_components(asset_code: str, item: dict):
+    item = _require_dict(item, f"asset_status_list.{asset_code}")
+
+    if "name" not in item:
+        raise KeyError(f"Missing key: asset_status_list.{asset_code}.name")
+    asset_name_pl = str(item["name"]).strip() or asset_code
+
+    if "currency_precision" not in item:
+        raise KeyError(f"Missing key: asset_status_list.{asset_code}.currency_precision")
+    amount_precision = _to_precision(item["currency_precision"], default=8)
+
+    if "limits" not in item:
+        raise KeyError(f"Missing key: asset_status_list.{asset_code}.limits")
+    limits = _require_dict(item["limits"], f"asset_status_list.{asset_code}.limits")
+
+    if "deposit" not in limits:
+        raise KeyError(f"Missing key: asset_status_list.{asset_code}.limits.deposit")
+    if "withdraw" not in limits:
+        raise KeyError(f"Missing key: asset_status_list.{asset_code}.limits.withdraw")
+
+    deposit_limits = _require_dict(
+        limits["deposit"],
+        f"asset_status_list.{asset_code}.limits.deposit",
+    )
+    withdraw_limits = _require_dict(
+        limits["withdraw"],
+        f"asset_status_list.{asset_code}.limits.withdraw",
+    )
+
+    item_kind = _classify_asset_status_item(item, asset_code)
+
+    if item_kind == "crypto":
+        confirmations = _require_dict(
+            item["confirmations"],
+            f"asset_status_list.{asset_code}.confirmations",
+        )
+
+        if "networks" not in item:
+            raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks")
+
+        networks = _require_dict(
+            item["networks"],
+            f"asset_status_list.{asset_code}.networks",
+        )
+
+        # Бизнес-правило:
+        # если у crypto-актива вообще нет deposits/withdraws keys,
+        # значит актив сейчас нерабочий и мы его не импортируем.
+        if "deposits" not in networks or "withdraws" not in networks:
+            return None
+
+        deposit_sources = {
+            str(x).strip()
+            for x in _require_list(
+                networks["deposits"],
+                f"asset_status_list.{asset_code}.networks.deposits",
+            )
+            if str(x).strip()
+        }
+        withdraw_sources = {
+            str(x).strip()
+            for x in _require_list(
+                networks["withdraws"],
+                f"asset_status_list.{asset_code}.networks.withdraws",
+            )
+            if str(x).strip()
+        }
+
+        all_contexts = (
+                set(deposit_sources)
+                | set(withdraw_sources)
+                | {str(x).strip() for x in confirmations.keys() if str(x).strip()}
+                | {str(x).strip() for x in deposit_limits.keys() if str(x).strip()}
+                | {str(x).strip() for x in withdraw_limits.keys() if str(x).strip()}
+        )
+
+        return {
+            "item_kind": "crypto",
+            "item": item,
+            "asset_code_pl": asset_code,
+            "asset_name_pl": asset_name_pl,
+            "amount_precision": amount_precision,
+            "deposit_sources": deposit_sources,
+            "withdraw_sources": withdraw_sources,
+            "confirmations": confirmations,
+            "deposit_limits": deposit_limits,
+            "withdraw_limits": withdraw_limits,
+            "all_contexts": all_contexts,
+        }
+
+    if item_kind == "fiat_currency":
+        providers = _require_dict(
+            item["providers"],
+            f"asset_status_list.{asset_code}.providers",
+        )
+
+        if "deposits" not in providers:
+            raise KeyError(f"Missing key: asset_status_list.{asset_code}.providers.deposits")
+        if "withdraws" not in providers:
+            raise KeyError(f"Missing key: asset_status_list.{asset_code}.providers.withdraws")
+
+        deposit_sources = {
+            str(x).strip()
+            for x in _require_list(
+                providers["deposits"],
+                f"asset_status_list.{asset_code}.providers.deposits",
+            )
+            if str(x).strip()
+        }
+        withdraw_sources = {
+            str(x).strip()
+            for x in _require_list(
+                providers["withdraws"],
+                f"asset_status_list.{asset_code}.providers.withdraws",
+            )
+            if str(x).strip()
+        }
+
+        all_contexts = (
+                set(deposit_sources)
+                | set(withdraw_sources)
+                | {str(x).strip() for x in deposit_limits.keys() if str(x).strip()}
+                | {str(x).strip() for x in withdraw_limits.keys() if str(x).strip()}
+        )
+
+        return {
+            "item_kind": "fiat_currency",
+            "item": item,
+            "asset_code_pl": asset_code,
+            "asset_name_pl": asset_name_pl,
+            "amount_precision": amount_precision,
+            "deposit_sources": deposit_sources,
+            "withdraw_sources": withdraw_sources,
+            "confirmations": {},
+            "deposit_limits": deposit_limits,
+            "withdraw_limits": withdraw_limits,
+            "all_contexts": all_contexts,
+        }
+
+    # fiat_payment_method
+    if "networks" not in item:
+        raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks")
+
+    networks = _require_dict(
+        item["networks"],
+        f"asset_status_list.{asset_code}.networks",
+    )
+
+    if "deposits" not in networks:
+        raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks.deposits")
+    if "withdraws" not in networks:
+        raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks.withdraws")
+
+    deposit_sources = {
+        str(x).strip()
+        for x in _require_list(
+            networks["deposits"],
+            f"asset_status_list.{asset_code}.networks.deposits",
+        )
+        if str(x).strip()
+    }
+    withdraw_sources = {
+        str(x).strip()
+        for x in _require_list(
+            networks["withdraws"],
+            f"asset_status_list.{asset_code}.networks.withdraws",
+        )
+        if str(x).strip()
+    }
+
+    base_asset_code, context_code = asset_code.split("_", 1)
+
+    all_contexts = (
+            set(deposit_sources)
+            | set(withdraw_sources)
+            | {str(x).strip() for x in deposit_limits.keys() if str(x).strip()}
+            | {str(x).strip() for x in withdraw_limits.keys() if str(x).strip()}
+            | {context_code.strip()}
+    )
+
+    return {
+        "item_kind": "fiat_payment_method",
+        "item": item,
+        "asset_code_pl": base_asset_code.strip(),
+        "asset_name_pl": asset_name_pl,
+        "amount_precision": amount_precision,
+        "deposit_sources": deposit_sources,
+        "withdraw_sources": withdraw_sources,
+        "confirmations": {},
+        "deposit_limits": deposit_limits,
+        "withdraw_limits": withdraw_limits,
+        "all_contexts": all_contexts,
+        "raw_composite_code": asset_code,
+    }
+
+
+def _build_candidates(asset_status_payload: dict, account_fee_index: dict):
     asset_status_payload = _require_dict(asset_status_payload, "asset_status_list")
+
     candidates: dict[tuple[str, str], dict] = {}
+    skipped_inactive_assets = 0
 
     for raw_asset_code, raw_item in asset_status_payload.items():
-        asset_code_pl = str(raw_asset_code).strip()
-        if not asset_code_pl:
+        asset_code_raw = str(raw_asset_code).strip()
+        if not asset_code_raw:
             raise ValueError("Empty asset code in asset_status_list")
 
-        parsed = _extract_asset_status_components(asset_code_pl, raw_item)
-        account_fee_item = account_fee_index.get(asset_code_pl.upper())
+        parsed = _extract_asset_status_components(asset_code_raw, raw_item)
+        if parsed is None:
+            skipped_inactive_assets += 1
+            continue
+
+        account_fee_key = (
+            parsed.get("raw_composite_code", asset_code_raw).upper()
+        )
+        account_fee_item = account_fee_index.get(account_fee_key)
+
+        if account_fee_item is None and "raw_composite_code" in parsed:
+            account_fee_item = account_fee_index.get(parsed["asset_code_pl"].upper())
+
         if account_fee_item is None:
-            raise KeyError(f"account_fees entry not found for asset {asset_code_pl}")
+            raise KeyError(f"account_fees entry not found for asset {account_fee_key}")
 
         deposit_fee_block = _extract_fee_block(
             account_fee_item,
             "deposit",
-            f"account_fees[{asset_code_pl}]",
+            f"account_fees[{account_fee_key}]",
         )
         withdraw_fee_block = _extract_fee_block(
             account_fee_item,
             "withdraw",
-            f"account_fees[{asset_code_pl}]",
+            f"account_fees[{account_fee_key}]",
         )
 
         for context_code_pl in sorted(parsed["all_contexts"]):
             deposit_confirmations, withdraw_confirmations = _extract_confirmations_for_context(
                 parsed["confirmations"],
-                asset_code_pl,
+                asset_code_raw,
                 context_code_pl,
             )
 
             deposit_min_amount, deposit_max_amount = _extract_limit_pair(
                 parsed["deposit_limits"],
-                asset_code_pl,
+                asset_code_raw,
                 "deposit",
                 context_code_pl,
             )
             withdraw_min_amount, withdraw_max_amount = _extract_limit_pair(
                 parsed["withdraw_limits"],
-                asset_code_pl,
+                asset_code_raw,
                 "withdraw",
                 context_code_pl,
             )
 
-            has_deposit_network = context_code_pl in parsed["deposit_networks"]
-            has_withdraw_network = context_code_pl in parsed["withdraw_networks"]
-            has_deposit_confirmations = context_code_pl in parsed["confirmations"]
-            has_withdraw_confirmations = context_code_pl in parsed["confirmations"]
+            has_deposit_source = context_code_pl in parsed["deposit_sources"]
+            has_withdraw_source = context_code_pl in parsed["withdraw_sources"]
             has_deposit_limits = context_code_pl in parsed["deposit_limits"]
             has_withdraw_limits = context_code_pl in parsed["withdraw_limits"]
 
-            ad = (
-                    has_deposit_network
-                    and has_deposit_confirmations
-                    and has_deposit_limits
-            )
-            aw = (
-                    has_withdraw_network
-                    and has_withdraw_confirmations
-                    and has_withdraw_limits
-            )
+            if parsed["item_kind"] == "crypto":
+                has_deposit_confirmations = context_code_pl in parsed["confirmations"]
+                has_withdraw_confirmations = context_code_pl in parsed["confirmations"]
 
-            key = (asset_code_pl.upper(), context_code_pl.upper())
+                ad = has_deposit_source and has_deposit_confirmations and has_deposit_limits
+                aw = has_withdraw_source and has_withdraw_confirmations and has_withdraw_limits
+            else:
+                ad = has_deposit_source and has_deposit_limits
+                aw = has_withdraw_source and has_withdraw_limits
+
+            key = (parsed["asset_code_pl"].upper(), context_code_pl.upper())
+
             candidates[key] = {
-                "asset_code_pl": asset_code_pl,
+                "asset_code_pl": parsed["asset_code_pl"],
                 "asset_name_pl": parsed["asset_name_pl"],
                 "context_code_pl": context_code_pl,
                 "context_name_pl": context_code_pl,
-                "asset_code": asset_code_pl.upper(),
+                "asset_code": parsed["asset_code_pl"].upper(),
                 "asset_name": parsed["asset_name_pl"],
                 "context_code": context_code_pl.upper(),
                 "context_name": context_code_pl,
@@ -410,23 +545,24 @@ def _build_candidates(asset_status_payload: dict, account_fee_index: dict) -> di
                 "withdraw_max_amount": withdraw_max_amount,
                 "deposit_fee_fixed": _to_decimal(deposit_fee_block.get("fixed"), default="0"),
                 "deposit_fee_percent": _to_decimal(
-                    deposit_fee_block.get("percentFlex") if "percentFlex" in deposit_fee_block else deposit_fee_block.get("flex"),
+                    deposit_fee_block["percentFlex"] if "percentFlex" in deposit_fee_block else deposit_fee_block.get("flex"),
                     default="0",
                 ),
                 "deposit_fee_min_amount": _to_decimal(deposit_fee_block.get("minFlex"), default="0"),
                 "deposit_fee_max_amount": _to_decimal(deposit_fee_block.get("maxFlex"), default="0"),
                 "withdraw_fee_fixed": _to_decimal(withdraw_fee_block.get("fixed"), default="0"),
                 "withdraw_fee_percent": _to_decimal(
-                    withdraw_fee_block.get("percentFlex") if "percentFlex" in withdraw_fee_block else withdraw_fee_block.get("flex"),
+                    withdraw_fee_block["percentFlex"] if "percentFlex" in withdraw_fee_block else withdraw_fee_block.get("flex"),
                     default="0",
                 ),
                 "withdraw_fee_min_amount": _to_decimal(withdraw_fee_block.get("minFlex"), default="0"),
                 "withdraw_fee_max_amount": _to_decimal(withdraw_fee_block.get("maxFlex"), default="0"),
+                "item_kind": parsed["item_kind"],
                 "raw_asset_item": parsed["item"],
                 "raw_fee_item": account_fee_item,
             }
 
-    return candidates
+    return candidates, skipped_inactive_assets
 
 
 def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounters:
@@ -438,10 +574,13 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
     is_operational = _maintenance_is_operational(maintenance_status)
 
     account_fee_index = _extract_account_fee_index(account_fees_payload)
-    candidates = _build_candidates(asset_status_payload, account_fee_index)
+    candidates, skipped_inactive_assets = _build_candidates(
+        asset_status_payload,
+        account_fee_index,
+    )
     stablecoin_codes = _get_stablecoin_codes()
 
-    counters = SyncCounters()
+    counters = SyncCounters(skipped_inactive_assets=skipped_inactive_assets)
 
     for candidate in candidates.values():
         ad = bool(candidate["AD"])
@@ -455,6 +594,7 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
             status_note = ""
 
         raw_metadata = {
+            "item_kind": candidate["item_kind"],
             "asset_status_item": candidate["raw_asset_item"],
             "account_fee_item": candidate["raw_fee_item"],
             "maintenance_status": maintenance_status,

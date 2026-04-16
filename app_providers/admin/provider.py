@@ -51,7 +51,8 @@ def sync_provider_asset_contexts_from_raw_action(modeladmin, request, queryset):
             "ProviderAssetContext заполнен успешно. "
             f"Создано: {result.created}, "
             f"обновлено: {result.updated}, "
-            f"без изменений: {result.skipped}."
+            f"без изменений: {result.skipped}, "
+            f"пропущено неактивных crypto-активов: {result.skipped_inactive_assets}."
         ),
         level=messages.SUCCESS,
     )
