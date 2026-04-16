@@ -169,7 +169,7 @@ def _extract_fee_block(account_fee_item: dict, direction: str, path: str) -> dic
     return _require_dict(account_fee_item[direction], f"{path}.{direction}")
 
 
-def _classify_asset_status_item(item: dict, asset_code: str) -> str:
+def _classify_asset_status_item(item: dict, asset_code: str) -> str | None:
     has_confirmations = "confirmations" in item
     has_providers = "providers" in item
 
@@ -182,10 +182,10 @@ def _classify_asset_status_item(item: dict, asset_code: str) -> str:
     if "_" in asset_code:
         return "fiat_payment_method"
 
-    raise ValueError(
-        f"Cannot classify asset_status_list.{asset_code}: "
-        f"no confirmations, no providers, and code is not composite"
-    )
+    # Бизнес-правило:
+    # если не можем классифицировать и это не composite-code,
+    # значит пока не работаем с такой сущностью и пропускаем её.
+    return None
 
 
 def _extract_confirmations_for_context(
@@ -282,6 +282,8 @@ def _extract_asset_status_components(asset_code: str, item: dict):
     )
 
     item_kind = _classify_asset_status_item(item, asset_code)
+    if item_kind is None:
+        return None
 
     if item_kind == "crypto":
         confirmations = _require_dict(
@@ -394,6 +396,7 @@ def _extract_asset_status_components(asset_code: str, item: dict):
         }
 
     # fiat_payment_method
+    # fiat_payment_method
     if "networks" not in item:
         raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks")
 
@@ -402,27 +405,37 @@ def _extract_asset_status_components(asset_code: str, item: dict):
         f"asset_status_list.{asset_code}.networks",
     )
 
-    if "deposits" not in networks:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks.deposits")
-    if "withdraws" not in networks:
-        raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks.withdraws")
+    has_deposits_key = "deposits" in networks
+    has_withdraws_key = "withdraws" in networks
 
-    deposit_sources = {
-        str(x).strip()
-        for x in _require_list(
-            networks["deposits"],
-            f"asset_status_list.{asset_code}.networks.deposits",
-        )
-        if str(x).strip()
-    }
-    withdraw_sources = {
-        str(x).strip()
-        for x in _require_list(
-            networks["withdraws"],
-            f"asset_status_list.{asset_code}.networks.withdraws",
-        )
-        if str(x).strip()
-    }
+    # Бизнес-правило:
+    # если нет ни deposits, ни withdraws, то такой платёжный метод пока нерабочий
+    # и мы его не импортируем.
+    if not has_deposits_key and not has_withdraws_key:
+        return None
+
+    deposit_sources = set()
+    withdraw_sources = set()
+
+    if has_deposits_key:
+        deposit_sources = {
+            str(x).strip()
+            for x in _require_list(
+                networks["deposits"],
+                f"asset_status_list.{asset_code}.networks.deposits",
+            )
+            if str(x).strip()
+        }
+
+    if has_withdraws_key:
+        withdraw_sources = {
+            str(x).strip()
+            for x in _require_list(
+                networks["withdraws"],
+                f"asset_status_list.{asset_code}.networks.withdraws",
+            )
+            if str(x).strip()
+        }
 
     base_asset_code, context_code = asset_code.split("_", 1)
 
