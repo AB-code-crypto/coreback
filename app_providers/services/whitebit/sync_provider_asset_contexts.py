@@ -348,10 +348,12 @@ def _extract_asset_status_components(asset_code: str, item: dict):
             f"asset_status_list.{asset_code}.providers",
         )
 
-        if "deposits" not in providers:
-            raise KeyError(f"Missing key: asset_status_list.{asset_code}.providers.deposits")
-        if "withdraws" not in providers:
-            raise KeyError(f"Missing key: asset_status_list.{asset_code}.providers.withdraws")
+        # Бизнес-правило:
+        # если у фиата нет providers.deposits или providers.withdraws,
+        # значит мы пока не знаем, как его вводить/выводить,
+        # и такую валюту не импортируем.
+        if "deposits" not in providers or "withdraws" not in providers:
+            return None
 
         deposit_sources = {
             str(x).strip()
