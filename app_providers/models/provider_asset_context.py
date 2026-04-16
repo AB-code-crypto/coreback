@@ -229,9 +229,10 @@ class ProviderAssetContext(UUIDTimestampedModel):
     deposit_fee_max_amount = models.DecimalField(
         max_digits=AMOUNT_MAX_DIGITS,
         decimal_places=AMOUNT_DECIMAL_PLACES,
-        default=Decimal("0"),
+        null=True,
+        blank=True,
         verbose_name="Макс. комиссия на ввод",
-        help_text="Максимальная комиссия на ввод в единицах актива. Может быть отрицательной.",
+        help_text="Максимальная комиссия на ввод в единицах актива. Если лимита нет, поле остаётся пустым.",
     )
 
     # ---------------------------------------------------------
@@ -263,11 +264,11 @@ class ProviderAssetContext(UUIDTimestampedModel):
     withdraw_fee_max_amount = models.DecimalField(
         max_digits=AMOUNT_MAX_DIGITS,
         decimal_places=AMOUNT_DECIMAL_PLACES,
-        default=Decimal("0"),
+        null=True,
+        blank=True,
         verbose_name="Макс. комиссия на вывод",
-        help_text="Максимальная комиссия на вывод в единицах актива. Может быть отрицательной.",
+        help_text="Максимальная комиссия на вывод в единицах актива. Если лимита нет, поле остаётся пустым.",
     )
-
     # ---------------------------------------------------------
     # ЛИМИТЫ
     # ---------------------------------------------------------
