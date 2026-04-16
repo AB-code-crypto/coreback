@@ -185,14 +185,6 @@ class ProviderAssetContext(UUIDTimestampedModel):
         help_text="Автоматический статус вывода, полученный от провайдера.",
     )
 
-    status_note = models.CharField(
-        max_length=255,
-        blank=True,
-        default="",
-        verbose_name="Комментарий к статусу",
-        help_text="Причина отключения, техработы, служебная пометка и т.п.",
-    )
-
     # ---------------------------------------------------------
     # ПОДТВЕРЖДЕНИЯ
     # ---------------------------------------------------------
@@ -438,9 +430,6 @@ class ProviderAssetContext(UUIDTimestampedModel):
 
         if self.contract_raw:
             self.contract_raw = self.contract_raw.strip()
-
-        if self.status_note:
-            self.status_note = self.status_note.strip()
 
         if self.description:
             self.description = self.description.strip()
