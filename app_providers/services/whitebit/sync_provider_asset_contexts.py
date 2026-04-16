@@ -10,6 +10,20 @@ from app_providers.models.provider_asset_context import (
 )
 from app_providers.services.raw_data_storage import get_raw_full_path
 
+WHITEBIT_UNLIMITED_MAX_SENTINEL = Decimal("999999999999999999")
+
+
+def _to_fee_max_amount_or_none(value):
+    if value in (None, ""):
+        return None
+
+    dec = _to_decimal(value)
+
+    if dec == WHITEBIT_UNLIMITED_MAX_SENTINEL:
+        return None
+
+    return dec
+
 
 @dataclass
 class SyncCounters:
@@ -571,14 +585,14 @@ def _build_candidates(asset_status_payload: dict, account_fee_index: dict):
                     default="0",
                 ),
                 "deposit_fee_min_amount": _to_decimal(deposit_fee_block.get("minFlex"), default="0"),
-                "deposit_fee_max_amount": _to_decimal(deposit_fee_block.get("maxFlex"), default="0"),
+                "deposit_fee_max_amount": _to_fee_max_amount_or_none(deposit_fee_block.get("maxFlex")),
                 "withdraw_fee_fixed": _to_decimal(withdraw_fee_block.get("fixed"), default="0"),
                 "withdraw_fee_percent": _to_decimal(
                     withdraw_fee_block["percentFlex"] if "percentFlex" in withdraw_fee_block else withdraw_fee_block.get("flex"),
                     default="0",
                 ),
                 "withdraw_fee_min_amount": _to_decimal(withdraw_fee_block.get("minFlex"), default="0"),
-                "withdraw_fee_max_amount": _to_decimal(withdraw_fee_block.get("maxFlex"), default="0"),
+                "withdraw_fee_max_amount": _to_fee_max_amount_or_none(withdraw_fee_block.get("maxFlex")),
                 "raw_fee_item": account_fee_item,
             }
 
@@ -612,9 +626,6 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
         if not is_operational:
             ad = False
             aw = False
-            status_note = "Platform maintenance"
-        else:
-            status_note = ""
 
         raw_metadata = {
             "item_kind": candidate["item_kind"],
@@ -641,7 +652,6 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
             "raw_metadata": raw_metadata,
             "AD": ad,
             "AW": aw,
-            "status_note": status_note,
             "deposit_confirmations": _to_non_negative_int_zero(candidate["deposit_confirmations"]),
             "withdraw_confirmations": _to_non_negative_int_zero(candidate["withdraw_confirmations"]),
             "deposit_fee_fixed": candidate["deposit_fee_fixed"],
@@ -688,7 +698,6 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
             "raw_metadata",
             "AD",
             "AW",
-            "status_note",
             "deposit_confirmations",
             "withdraw_confirmations",
             "deposit_fee_fixed",
