@@ -1,7 +1,7 @@
 from django.contrib import admin, messages
-from app_providers.services.whitebit.fetch_all_raw import fetch_whitebit_all_raw
 from app_providers.models.provider import Provider, ProviderCode
-from services.whitebit.fetch_stats import fetch_whitebit_stats
+from app_providers.services.whitebit.fetch_stats import fetch_whitebit_stats
+from app_providers.services.whitebit.fetch_all_raw import fetch_whitebit_all_raw
 from app_providers.services.whitebit.sync_provider_asset_contexts import (
     sync_whitebit_provider_asset_contexts_from_raw,
 )
