@@ -13,18 +13,6 @@ from app_providers.services.raw_data_storage import get_raw_full_path
 WHITEBIT_UNLIMITED_MAX_SENTINEL = Decimal("999999999999999999")
 
 
-def _to_fee_max_amount_or_none(value):
-    if value in (None, ""):
-        return None
-
-    dec = _to_decimal(value)
-
-    if dec == WHITEBIT_UNLIMITED_MAX_SENTINEL:
-        return None
-
-    return dec
-
-
 @dataclass
 class SyncCounters:
     created: int = 0
@@ -135,6 +123,18 @@ def _to_non_negative_decimal_or_none(value):
     return dec
 
 
+def _to_fee_max_amount_or_none(value):
+    if value in (None, ""):
+        return None
+
+    dec = _to_decimal(value)
+
+    if dec == WHITEBIT_UNLIMITED_MAX_SENTINEL:
+        return None
+
+    return dec
+
+
 def _to_precision(value, default: int = 8) -> int:
     if value in (None, ""):
         return default
@@ -166,6 +166,26 @@ def _maintenance_is_operational(status) -> bool:
             return False
 
     raise ValueError(f"Unknown maintenance status format: {status!r}")
+
+
+def _extract_account_fee_index(payload) -> dict[str, dict]:
+    payload = _require_list(payload, "account_fees")
+
+    result: dict[str, dict] = {}
+
+    for idx, item in enumerate(payload):
+        item = _require_dict(item, f"account_fees[{idx}]")
+
+        if "ticker" not in item:
+            raise KeyError(f"Missing key: account_fees[{idx}].ticker")
+
+        ticker = str(item["ticker"]).strip().upper()
+        if not ticker:
+            raise ValueError(f"Empty ticker in account_fees[{idx}]")
+
+        result[ticker] = item
+
+    return result
 
 
 def _extract_market_info_index(payload) -> dict[str, dict]:
@@ -201,26 +221,6 @@ def _extract_market_info_index(payload) -> dict[str, dict]:
             continue
 
         result[stock] = item
-
-    return result
-
-
-def _extract_account_fee_index(payload) -> dict[str, dict]:
-    payload = _require_list(payload, "account_fees")
-
-    result: dict[str, dict] = {}
-
-    for idx, item in enumerate(payload):
-        item = _require_dict(item, f"account_fees[{idx}]")
-
-        if "ticker" not in item:
-            raise KeyError(f"Missing key: account_fees[{idx}].ticker")
-
-        ticker = str(item["ticker"]).strip().upper()
-        if not ticker:
-            raise ValueError(f"Empty ticker in account_fees[{idx}]")
-
-        result[ticker] = item
 
     return result
 
@@ -276,9 +276,6 @@ def _classify_asset_status_item(item: dict, asset_code: str) -> str | None:
     if "_" in asset_code:
         return "fiat_payment_method"
 
-    # Бизнес-правило:
-    # если не можем классифицировать и это не composite-code,
-    # такую сущность пока пропускаем.
     return None
 
 
@@ -401,9 +398,6 @@ def _extract_asset_status_components(asset_code: str, item: dict):
             f"asset_status_list.{asset_code}.networks",
         )
 
-        # Бизнес-правило:
-        # если у crypto-актива нет deposits или withdraws keys,
-        # значит актив сейчас нерабочий и мы его не импортируем.
         if "deposits" not in networks or "withdraws" not in networks:
             return None
 
@@ -441,9 +435,6 @@ def _extract_asset_status_components(asset_code: str, item: dict):
             f"asset_status_list.{asset_code}.providers",
         )
 
-        # Бизнес-правило:
-        # если у фиата нет providers.deposits или providers.withdraws,
-        # значит мы пока не знаем, как его вводить/выводить, и пропускаем.
         if "deposits" not in providers or "withdraws" not in providers:
             return None
 
@@ -474,7 +465,6 @@ def _extract_asset_status_components(asset_code: str, item: dict):
             "all_contexts": all_contexts,
         }
 
-    # fiat_payment_method
     if "networks" not in item:
         raise KeyError(f"Missing key: asset_status_list.{asset_code}.networks")
 
@@ -536,7 +526,11 @@ def _build_candidate_base(parsed: dict, context_code_pl: str) -> dict:
     }
 
 
-def _build_candidates(asset_status_payload: dict, account_fee_index: dict, market_info_index: dict):
+def _build_candidates(
+        asset_status_payload: dict,
+        account_fee_index: dict,
+        market_info_index: dict,
+):
     asset_status_payload = _require_dict(asset_status_payload, "asset_status_list")
 
     candidates: dict[tuple[str, str], dict] = {}
@@ -551,6 +545,7 @@ def _build_candidates(asset_status_payload: dict, account_fee_index: dict, marke
         if parsed is None:
             skipped_inactive_asset_codes.append(asset_code_raw)
             continue
+
         market_item = market_info_index.get(parsed["asset_code_pl"].upper())
 
         if market_item is None:
@@ -561,6 +556,7 @@ def _build_candidates(asset_status_payload: dict, account_fee_index: dict, marke
             min_trade_amount_usdt = _to_non_negative_decimal_or_none(market_item["minTotal"])
             if min_trade_amount_usdt is None:
                 min_trade_amount_usdt = Decimal("5")
+
         account_fee_key = parsed.get("raw_composite_code", asset_code_raw).upper()
         account_fee_item = account_fee_index.get(account_fee_key)
 
@@ -640,9 +636,9 @@ def _build_candidates(asset_status_payload: dict, account_fee_index: dict, marke
                 ),
                 "withdraw_fee_min_amount": _to_decimal(withdraw_fee_block.get("minFlex"), default="0"),
                 "withdraw_fee_max_amount": _to_fee_max_amount_or_none(withdraw_fee_block.get("maxFlex")),
-                "raw_fee_item": account_fee_item,
                 "trades_enabled": trades_enabled,
                 "min_trade_amount_usdt": min_trade_amount_usdt,
+                "raw_fee_item": account_fee_item,
                 "raw_market_item": market_item or {},
             }
 
@@ -707,7 +703,7 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
             "context_code": candidate["context_code"],
         }
 
-        defaults = {
+        create_defaults = {
             "is_active": True,
             "asset_code_pl": candidate["asset_code_pl"],
             "asset_name_pl": candidate["asset_name_pl"],
@@ -741,10 +737,31 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
             "icon_url": candidate["icon_url"],
         }
 
+        update_values = {
+            "AD": ad,
+            "AW": aw,
+            "deposit_confirmations": _to_non_negative_int_zero(candidate["deposit_confirmations"]),
+            "withdraw_confirmations": _to_non_negative_int_zero(candidate["withdraw_confirmations"]),
+            "deposit_fee_fixed": candidate["deposit_fee_fixed"],
+            "deposit_fee_percent": candidate["deposit_fee_percent"],
+            "deposit_fee_min_amount": candidate["deposit_fee_min_amount"],
+            "deposit_fee_max_amount": candidate["deposit_fee_max_amount"],
+            "withdraw_fee_fixed": candidate["withdraw_fee_fixed"],
+            "withdraw_fee_percent": candidate["withdraw_fee_percent"],
+            "withdraw_fee_min_amount": candidate["withdraw_fee_min_amount"],
+            "withdraw_fee_max_amount": candidate["withdraw_fee_max_amount"],
+            "deposit_min_amount": candidate["deposit_min_amount"],
+            "deposit_max_amount": candidate["deposit_max_amount"],
+            "withdraw_min_amount": candidate["withdraw_min_amount"],
+            "withdraw_max_amount": candidate["withdraw_max_amount"],
+            "trades_enabled": candidate["trades_enabled"],
+            "min_trade_amount_usdt": candidate["min_trade_amount_usdt"],
+        }
+
         obj, created = ProviderAssetContext.objects.get_or_create(
             **lookup,
             defaults={
-                **defaults,
+                **create_defaults,
                 "match_status": ProviderAssetContextMatchStatus.NORMALIZED,
             },
         )
@@ -755,42 +772,7 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
 
         changed = False
 
-        update_fields = [
-            "is_active",
-            "asset_code_pl",
-            "asset_name_pl",
-            "context_code_pl",
-            "context_name_pl",
-            "asset_name",
-            "context_name",
-            "contract_raw",
-            "raw_metadata",
-            "AD",
-            "AW",
-            "deposit_confirmations",
-            "withdraw_confirmations",
-            "deposit_fee_fixed",
-            "deposit_fee_percent",
-            "deposit_fee_min_amount",
-            "deposit_fee_max_amount",
-            "withdraw_fee_fixed",
-            "withdraw_fee_percent",
-            "withdraw_fee_min_amount",
-            "withdraw_fee_max_amount",
-            "deposit_min_amount",
-            "deposit_max_amount",
-            "withdraw_min_amount",
-            "withdraw_max_amount",
-            "is_stablecoin",
-            "amount_precision",
-            "nominal",
-            "trades_enabled",
-            "min_trade_amount_usdt",
-            "icon_url",
-        ]
-
-        for field_name in update_fields:
-            new_value = defaults[field_name]
+        for field_name, new_value in update_values.items():
             old_value = getattr(obj, field_name)
 
             if old_value != new_value:
