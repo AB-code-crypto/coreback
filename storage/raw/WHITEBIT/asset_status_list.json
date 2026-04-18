@@ -46,7 +46,7 @@
     "unified_cryptoasset_id": 8104,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.66",
+    "min_withdraw": "1.56",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -72,7 +72,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.66"
+          "min": "1.56"
         }
       }
     },
@@ -172,7 +172,7 @@
     "unified_cryptoasset_id": 7278,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.0006",
+    "min_withdraw": "0.0014",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -198,7 +198,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.0006"
+          "min": "0.0014"
         }
       }
     },
@@ -214,7 +214,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "2.115",
+    "min_withdraw": "1.761",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -240,7 +240,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "2.115"
+          "min": "1.761"
         }
       }
     },
@@ -256,7 +256,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "10",
+    "min_withdraw": "22",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -282,7 +282,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "10"
+          "min": "22"
         }
       }
     },
@@ -340,7 +340,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.42",
+    "min_withdraw": "3.28",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -366,7 +366,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1.42"
+          "min": "3.28"
         }
       }
     },
@@ -424,7 +424,7 @@
     "unified_cryptoasset_id": 1768,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.8",
+    "min_withdraw": "1.78",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -450,7 +450,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.8"
+          "min": "1.78"
         }
       }
     },
@@ -466,7 +466,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.34",
+    "min_withdraw": "3.2",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -492,7 +492,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1.34"
+          "min": "3.2"
         }
       }
     },
@@ -550,7 +550,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "216.74",
+    "min_withdraw": "236.55",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -576,7 +576,7 @@
       },
       "withdraw": {
         "BASE": {
-          "min": "216.74"
+          "min": "236.55"
         }
       }
     },
@@ -592,7 +592,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.22",
+    "min_withdraw": "0.52",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -618,7 +618,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.22"
+          "min": "0.52"
         }
       }
     },
@@ -683,7 +683,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "14.8242",
+    "min_withdraw": "13.0506",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -709,7 +709,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "14.8242"
+          "min": "13.0506"
         }
       }
     },
@@ -761,7 +761,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.603",
+    "min_withdraw": "0.646",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -787,7 +787,7 @@
       },
       "withdraw": {
         "BASE": {
-          "min": "0.603"
+          "min": "0.646"
         }
       }
     },
@@ -845,7 +845,7 @@
     "unified_cryptoasset_id": 8766,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.54",
+    "min_withdraw": "0.728",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -871,7 +871,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.54"
+          "min": "0.728"
         }
       }
     },
@@ -929,7 +929,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "9.22",
+    "min_withdraw": "22.18",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -955,7 +955,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "9.22"
+          "min": "22.18"
         }
       }
     },
@@ -1010,7 +1010,7 @@
     "unified_cryptoasset_id": 6945,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "154",
+    "min_withdraw": "358",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -1036,7 +1036,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "154"
+          "min": "358"
         }
       }
     },
@@ -1192,7 +1192,7 @@
     "unified_cryptoasset_id": 7737,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.208",
+    "min_withdraw": "0.366",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -1218,7 +1218,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.208"
+          "min": "0.366"
         }
       }
     },
@@ -1402,7 +1402,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.6",
+    "min_withdraw": "1.4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -1428,7 +1428,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.6"
+          "min": "1.4"
         }
       }
     },
@@ -1444,7 +1444,7 @@
     "unified_cryptoasset_id": 4039,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "6",
+    "min_withdraw": "14",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -1470,7 +1470,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "6"
+          "min": "14"
         }
       }
     },
@@ -1612,7 +1612,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "10.2",
+    "min_withdraw": "24.4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -1638,7 +1638,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "10.2"
+          "min": "24.4"
         }
       }
     },
@@ -1696,7 +1696,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.012",
+    "min_withdraw": "0.03",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -1722,7 +1722,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.012"
+          "min": "0.03"
         }
       }
     },
@@ -1738,7 +1738,7 @@
     "unified_cryptoasset_id": 7455,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "4.62",
+    "min_withdraw": "9.04",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -1764,7 +1764,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "4.62"
+          "min": "9.04"
         }
       }
     },
@@ -1993,7 +1993,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.04",
+    "min_withdraw": "2.22",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -2019,7 +2019,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1.04"
+          "min": "2.22"
         }
       }
     },
@@ -2035,7 +2035,7 @@
     "unified_cryptoasset_id": 6783,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.054",
+    "min_withdraw": "0.13",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -2061,7 +2061,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.054"
+          "min": "0.13"
         }
       }
     },
@@ -2167,7 +2167,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.0232",
+    "min_withdraw": "0.0548",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -2193,7 +2193,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.0232"
+          "min": "0.0548"
         }
       }
     },
@@ -2209,7 +2209,7 @@
     "unified_cryptoasset_id": 4679,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.84",
+    "min_withdraw": "1.9",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -2235,7 +2235,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.84"
+          "min": "1.9"
         }
       }
     },
@@ -2371,7 +2371,7 @@
     "unified_cryptoasset_id": 10028,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.64",
+    "min_withdraw": "1.48",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -2397,7 +2397,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.64"
+          "min": "1.48"
         }
       }
     },
@@ -2497,7 +2497,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "34.36",
+    "min_withdraw": "80.36",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -2523,7 +2523,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "34.36"
+          "min": "80.36"
         }
       }
     },
@@ -2657,7 +2657,7 @@
     "unified_cryptoasset_id": 9543,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "4.62",
+    "min_withdraw": "9.88",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -2683,7 +2683,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "4.62"
+          "min": "9.88"
         }
       }
     },
@@ -2741,7 +2741,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.74",
+    "min_withdraw": "5.96",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -2767,7 +2767,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1.74"
+          "min": "5.96"
         }
       }
     },
@@ -2867,7 +2867,7 @@
     "unified_cryptoasset_id": 1727,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.2",
+    "min_withdraw": "0.4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -2893,7 +2893,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.2"
+          "min": "0.4"
         }
       }
     },
@@ -3155,7 +3155,7 @@
     "unified_cryptoasset_id": 10903,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "11.934",
+    "min_withdraw": "10.746",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3181,7 +3181,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "11.934"
+          "min": "10.746"
         }
       }
     },
@@ -3197,7 +3197,7 @@
     "unified_cryptoasset_id": 7186,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.1611",
+    "min_withdraw": "0.1707",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3223,7 +3223,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "0.1611"
+          "min": "0.1707"
         }
       }
     },
@@ -3401,7 +3401,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "2",
+    "min_withdraw": "4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3427,7 +3427,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "2"
+          "min": "4"
         }
       }
     },
@@ -3569,7 +3569,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "11.85",
+    "min_withdraw": "11.61",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3595,7 +3595,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "11.85"
+          "min": "11.61"
         }
       }
     },
@@ -3611,7 +3611,7 @@
     "unified_cryptoasset_id": 3978,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "3.28",
+    "min_withdraw": "7.22",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3637,7 +3637,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "3.28"
+          "min": "7.22"
         }
       }
     },
@@ -3653,7 +3653,7 @@
     "unified_cryptoasset_id": 4066,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.6",
+    "min_withdraw": "4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3679,7 +3679,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1.6"
+          "min": "4"
         }
       }
     },
@@ -3737,7 +3737,7 @@
     "unified_cryptoasset_id": 5692,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.003",
+    "min_withdraw": "0.0064",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3763,7 +3763,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.003"
+          "min": "0.0064"
         }
       }
     },
@@ -3779,7 +3779,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "4.54",
+    "min_withdraw": "10.04",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3805,7 +3805,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "4.54"
+          "min": "10.04"
         }
       }
     },
@@ -3821,7 +3821,7 @@
     "unified_cryptoasset_id": 6538,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.28",
+    "min_withdraw": "0.64",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3847,7 +3847,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.28"
+          "min": "0.64"
         }
       }
     },
@@ -3863,7 +3863,7 @@
     "unified_cryptoasset_id": 5444,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.64",
+    "min_withdraw": "4.16",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3889,7 +3889,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1.64"
+          "min": "4.16"
         }
       }
     },
@@ -3905,7 +3905,7 @@
     "unified_cryptoasset_id": 1816,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "2.08",
+    "min_withdraw": "4.88",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -3931,7 +3931,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "2.08"
+          "min": "4.88"
         }
       }
     },
@@ -3989,7 +3989,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.51",
+    "min_withdraw": "0.507",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -4015,7 +4015,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "0.51"
+          "min": "0.507"
         }
       }
     },
@@ -4144,42 +4144,6 @@
       "withdraw": false
     }
   },
-  "DATA": {
-    "name": "Streamr",
-    "unified_cryptoasset_id": 2143,
-    "can_withdraw": false,
-    "can_deposit": false,
-    "min_withdraw": "0",
-    "max_withdraw": "0",
-    "maker_fee": "0.1",
-    "taker_fee": "0.1",
-    "min_deposit": "0",
-    "max_deposit": "0",
-    "networks": {
-      "default": "ERC20"
-    },
-    "confirmations": {
-      "ERC20": 32
-    },
-    "limits": {
-      "deposit": {
-        "ERC20": {
-          "min": "0"
-        }
-      },
-      "withdraw": {
-        "ERC20": {
-          "min": "0"
-        }
-      }
-    },
-    "currency_precision": 18,
-    "is_memo": false,
-    "memo": {
-      "deposit": false,
-      "withdraw": false
-    }
-  },
   "DBTC": {
     "name": "Demo BTC",
     "unified_cryptoasset_id": 1288,
@@ -4218,7 +4182,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "66880",
+    "min_withdraw": "145670",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -4244,7 +4208,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "66880"
+          "min": "145670"
         }
       }
     },
@@ -4293,7 +4257,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "17.67",
+    "min_withdraw": "17.28",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -4319,7 +4283,7 @@
       },
       "withdraw": {
         "BASE": {
-          "min": "17.67"
+          "min": "17.28"
         }
       }
     },
@@ -4335,7 +4299,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.01",
+    "min_withdraw": "0.018",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -4361,7 +4325,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.01"
+          "min": "0.018"
         }
       }
     },
@@ -4377,7 +4341,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "438.75",
+    "min_withdraw": "414.9",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -4403,7 +4367,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "438.75"
+          "min": "414.9"
         }
       }
     },
@@ -4419,7 +4383,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.34",
+    "min_withdraw": "0.72",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -4445,7 +4409,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.34"
+          "min": "0.72"
         }
       }
     },
@@ -4461,7 +4425,7 @@
     "unified_cryptoasset_id": 7224,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "3.6",
+    "min_withdraw": "8.06",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -4487,7 +4451,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "3.6"
+          "min": "8.06"
         }
       }
     },
@@ -4713,7 +4677,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.407",
+    "min_withdraw": "1.446",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -4739,7 +4703,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "1.407"
+          "min": "1.446"
         }
       }
     },
@@ -4871,7 +4835,7 @@
     "unified_cryptoasset_id": 8212,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "4",
+    "min_withdraw": "9.6",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -4897,7 +4861,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "4"
+          "min": "9.6"
         }
       }
     },
@@ -4991,7 +4955,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.46",
+    "min_withdraw": "1.12",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -5017,7 +4981,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.46"
+          "min": "1.12"
         }
       }
     },
@@ -5033,7 +4997,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.6",
+    "min_withdraw": "1.22",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -5059,7 +5023,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.6"
+          "min": "1.22"
         }
       }
     },
@@ -5117,7 +5081,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.01",
+    "min_withdraw": "0.026",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -5143,7 +5107,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.01"
+          "min": "0.026"
         }
       }
     },
@@ -5432,7 +5396,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.14",
+    "min_withdraw": "0.32",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -5458,7 +5422,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.14"
+          "min": "0.32"
         }
       }
     },
@@ -5474,7 +5438,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.0001848",
+    "min_withdraw": "0.00672",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -5500,7 +5464,7 @@
       },
       "withdraw": {
         "ETHW": {
-          "min": "0.0001848"
+          "min": "0.00672"
         }
       }
     },
@@ -5854,7 +5818,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.2",
+    "min_withdraw": "0.7",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -5880,7 +5844,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.2"
+          "min": "0.7"
         }
       }
     },
@@ -5980,7 +5944,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "4202",
+    "min_withdraw": "9636",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -6006,7 +5970,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "4202"
+          "min": "9636"
         }
       }
     },
@@ -6064,7 +6028,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.1",
+    "min_withdraw": "2.28",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -6090,7 +6054,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1.1"
+          "min": "2.28"
         }
       }
     },
@@ -6292,7 +6256,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "17.26",
+    "min_withdraw": "41.2",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -6318,7 +6282,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "17.26"
+          "min": "41.2"
         }
       }
     },
@@ -6334,7 +6298,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "25",
+    "min_withdraw": "60.4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -6360,7 +6324,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "25"
+          "min": "60.4"
         }
       }
     },
@@ -6581,7 +6545,7 @@
     "unified_cryptoasset_id": 1455,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.48",
+    "min_withdraw": "1.12",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -6607,7 +6571,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.48"
+          "min": "1.12"
         }
       }
     },
@@ -6839,7 +6803,7 @@
     "unified_cryptoasset_id": 6719,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "2.5",
+    "min_withdraw": "5.9",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -6865,7 +6829,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "2.5"
+          "min": "5.9"
         }
       }
     },
@@ -7049,7 +7013,7 @@
     "unified_cryptoasset_id": 8438,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "20812",
+    "min_withdraw": "54222",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -7075,7 +7039,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "20812"
+          "min": "54222"
         }
       }
     },
@@ -7289,7 +7253,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "372",
+    "min_withdraw": "882",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -7315,7 +7279,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "372"
+          "min": "882"
         }
       }
     },
@@ -7415,7 +7379,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "5.678",
+    "min_withdraw": "5.7",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -7441,7 +7405,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "5.678"
+          "min": "5.7"
         }
       }
     },
@@ -7532,7 +7496,7 @@
     "unified_cryptoasset_id": 9532,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.384",
+    "min_withdraw": "0.904",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -7558,7 +7522,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.384"
+          "min": "0.904"
         }
       }
     },
@@ -7645,7 +7609,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.019"
+          "min": "0.046"
         },
         "INJECTIVE": {
           "min": "0.35"
@@ -7868,7 +7832,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "544.188",
+    "min_withdraw": "564.342",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -7894,7 +7858,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "544.188"
+          "min": "564.342"
         }
       }
     },
@@ -7910,7 +7874,7 @@
     "unified_cryptoasset_id": 8425,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "10",
+    "min_withdraw": "26",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -7936,7 +7900,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "10"
+          "min": "26"
         }
       }
     },
@@ -8198,7 +8162,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.02565",
+    "min_withdraw": "0.02466",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -8224,7 +8188,7 @@
       },
       "withdraw": {
         "BASE": {
-          "min": "0.02565"
+          "min": "0.02466"
         }
       }
     },
@@ -8483,7 +8447,7 @@
     "unified_cryptoasset_id": 9444,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.58",
+    "min_withdraw": "1.3",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -8509,7 +8473,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.58"
+          "min": "1.3"
         }
       }
     },
@@ -8774,7 +8738,7 @@
     "unified_cryptoasset_id": 8000,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.54",
+    "min_withdraw": "1.26",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -8800,7 +8764,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.54"
+          "min": "1.26"
         }
       }
     },
@@ -8816,7 +8780,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "4.8",
+    "min_withdraw": "4.35",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -8845,7 +8809,7 @@
       },
       "withdraw": {
         "POLYGON": {
-          "min": "4.8"
+          "min": "4.35"
         },
         "WHITECHAIN": {
           "min": "2630"
@@ -8912,7 +8876,7 @@
     "unified_cryptoasset_id": 1975,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.006",
+    "min_withdraw": "0.016",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -8938,7 +8902,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.006"
+          "min": "0.016"
         }
       }
     },
@@ -8996,7 +8960,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "102",
+    "min_withdraw": "238",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -9022,7 +8986,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "102"
+          "min": "238"
         }
       }
     },
@@ -9038,7 +9002,7 @@
     "unified_cryptoasset_id": 3640,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.028",
+    "min_withdraw": "0.07",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -9064,7 +9028,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.028"
+          "min": "0.07"
         }
       }
     },
@@ -9080,7 +9044,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.224",
+    "min_withdraw": "0.504",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -9106,7 +9070,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.224"
+          "min": "0.504"
         }
       }
     },
@@ -9122,7 +9086,7 @@
     "unified_cryptoasset_id": 1934,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "3.84",
+    "min_withdraw": "8.42",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -9148,7 +9112,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "3.84"
+          "min": "8.42"
         }
       }
     },
@@ -9332,7 +9296,7 @@
     "unified_cryptoasset_id": 1966,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.74",
+    "min_withdraw": "1.74",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -9358,7 +9322,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.74"
+          "min": "1.74"
         }
       }
     },
@@ -9458,7 +9422,7 @@
     "unified_cryptoasset_id": 8536,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.14",
+    "min_withdraw": "0.3",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -9484,7 +9448,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.14"
+          "min": "0.3"
         }
       }
     },
@@ -9500,7 +9464,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "15.6",
+    "min_withdraw": "15.9",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -9526,7 +9490,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "15.6"
+          "min": "15.9"
         }
       }
     },
@@ -9541,17 +9505,14 @@
     "name": "Medicle",
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
-    "can_deposit": true,
-    "min_withdraw": "28714",
+    "can_deposit": false,
+    "min_withdraw": "0",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
-    "min_deposit": "30",
+    "min_deposit": "0",
     "max_deposit": "0",
     "networks": {
-      "deposits": [
-        "ERC20"
-      ],
       "withdraws": [
         "ERC20"
       ],
@@ -9563,12 +9524,12 @@
     "limits": {
       "deposit": {
         "ERC20": {
-          "min": "30"
+          "min": "0"
         }
       },
       "withdraw": {
         "ERC20": {
-          "min": "28714"
+          "min": "0"
         }
       }
     },
@@ -9584,7 +9545,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "110",
+    "min_withdraw": "268",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -9610,7 +9571,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "110"
+          "min": "268"
         }
       }
     },
@@ -9668,7 +9629,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.013",
+    "min_withdraw": "0.03",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -9694,7 +9655,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.013"
+          "min": "0.03"
         }
       }
     },
@@ -10073,7 +10034,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "4",
+    "min_withdraw": "9.4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -10099,7 +10060,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "4"
+          "min": "9.4"
         }
       }
     },
@@ -10146,45 +10107,6 @@
       }
     },
     "currency_precision": 8,
-    "is_memo": false,
-    "memo": {
-      "deposit": false,
-      "withdraw": false
-    }
-  },
-  "MTO": {
-    "name": "Merchant Token",
-    "unified_cryptoasset_id": 0,
-    "can_withdraw": true,
-    "can_deposit": false,
-    "min_withdraw": "0",
-    "max_withdraw": "0",
-    "maker_fee": "0.1",
-    "taker_fee": "0.1",
-    "min_deposit": "0",
-    "max_deposit": "0",
-    "networks": {
-      "withdraws": [
-        "ERC20"
-      ],
-      "default": "ERC20"
-    },
-    "confirmations": {
-      "ERC20": 32
-    },
-    "limits": {
-      "deposit": {
-        "ERC20": {
-          "min": "0"
-        }
-      },
-      "withdraw": {
-        "ERC20": {
-          "min": "0"
-        }
-      }
-    },
-    "currency_precision": 18,
     "is_memo": false,
     "memo": {
       "deposit": false,
@@ -10238,7 +10160,7 @@
     "unified_cryptoasset_id": 6933,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "6",
+    "min_withdraw": "16",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -10264,7 +10186,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "6"
+          "min": "16"
         }
       }
     },
@@ -10322,7 +10244,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1314",
+    "min_withdraw": "3320",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -10348,7 +10270,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1314"
+          "min": "3320"
         }
       }
     },
@@ -10450,7 +10372,7 @@
     "unified_cryptoasset_id": 2694,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.072",
+    "min_withdraw": "0.17",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -10476,7 +10398,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.072"
+          "min": "0.17"
         }
       }
     },
@@ -10492,7 +10414,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "20.83",
+    "min_withdraw": "19.24",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -10518,7 +10440,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "20.83"
+          "min": "19.24"
         }
       }
     },
@@ -10606,7 +10528,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.0084",
+    "min_withdraw": "0.019",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -10632,7 +10554,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.0084"
+          "min": "0.019"
         }
       }
     },
@@ -10774,7 +10696,7 @@
     "unified_cryptoasset_id": 5117,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "3",
+    "min_withdraw": "7",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -10800,7 +10722,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "3"
+          "min": "7"
         }
       }
     },
@@ -10849,7 +10771,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.3",
+    "min_withdraw": "0.72",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -10875,7 +10797,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.3"
+          "min": "0.72"
         }
       }
     },
@@ -11059,7 +10981,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "7",
+    "min_withdraw": "16.4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11085,7 +11007,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "7"
+          "min": "16.4"
         }
       }
     },
@@ -11218,7 +11140,7 @@
     "unified_cryptoasset_id": 5026,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "6.26",
+    "min_withdraw": "14.24",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11244,7 +11166,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "6.26"
+          "min": "14.24"
         }
       }
     },
@@ -11260,7 +11182,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "6.1725",
+    "min_withdraw": "6.2271",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11286,7 +11208,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "6.1725"
+          "min": "6.2271"
         }
       }
     },
@@ -11344,7 +11266,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.058",
+    "min_withdraw": "0.118",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11370,7 +11292,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.058"
+          "min": "0.118"
         }
       }
     },
@@ -11428,7 +11350,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "8",
+    "min_withdraw": "18",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11454,7 +11376,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "8"
+          "min": "18"
         }
       }
     },
@@ -11470,7 +11392,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "20572",
+    "min_withdraw": "48486",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11496,7 +11418,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "20572"
+          "min": "48486"
         }
       }
     },
@@ -11512,7 +11434,7 @@
     "unified_cryptoasset_id": 6841,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.8",
+    "min_withdraw": "4.4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11538,7 +11460,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1.8"
+          "min": "4.4"
         }
       }
     },
@@ -11554,7 +11476,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "7.74",
+    "min_withdraw": "17.58",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11580,7 +11502,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "7.74"
+          "min": "17.58"
         }
       }
     },
@@ -11757,7 +11679,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.736"
+          "min": "1.708"
         },
         "POLYGON": {
           "min": "0.039"
@@ -11812,7 +11734,7 @@
     "unified_cryptoasset_id": 7497,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "38",
+    "min_withdraw": "86",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11838,7 +11760,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "38"
+          "min": "86"
         }
       }
     },
@@ -11854,7 +11776,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "7.32",
+    "min_withdraw": "12.16",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11880,7 +11802,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "7.32"
+          "min": "12.16"
         }
       }
     },
@@ -11896,7 +11818,7 @@
     "unified_cryptoasset_id": 2132,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.94",
+    "min_withdraw": "2.22",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -11922,7 +11844,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.94"
+          "min": "2.22"
         }
       }
     },
@@ -12106,7 +12028,7 @@
     "unified_cryptoasset_id": 9308,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.3",
+    "min_withdraw": "0.68",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -12132,7 +12054,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.3"
+          "min": "0.68"
         }
       }
     },
@@ -12226,7 +12148,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0",
+    "min_withdraw": "0.002",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -12252,7 +12174,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0"
+          "min": "0.002"
         }
       }
     },
@@ -12310,7 +12232,7 @@
     "unified_cryptoasset_id": 6843,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.3",
+    "min_withdraw": "0.6",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -12336,7 +12258,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.3"
+          "min": "0.6"
         }
       }
     },
@@ -12673,7 +12595,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "18",
+    "min_withdraw": "42.4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -12699,7 +12621,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "18"
+          "min": "42.4"
         }
       }
     },
@@ -12715,7 +12637,7 @@
     "unified_cryptoasset_id": 1637,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.16",
+    "min_withdraw": "0.36",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -12741,7 +12663,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.16"
+          "min": "0.36"
         }
       }
     },
@@ -12877,7 +12799,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.032",
+    "min_withdraw": "0.076",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -12903,7 +12825,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.032"
+          "min": "0.076"
         }
       }
     },
@@ -12919,7 +12841,7 @@
     "unified_cryptoasset_id": 3964,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "44",
+    "min_withdraw": "100",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -12945,7 +12867,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "44"
+          "min": "100"
         }
       }
     },
@@ -12961,7 +12883,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "8.22",
+    "min_withdraw": "19.78",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -12991,10 +12913,10 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "33.18"
+          "min": "34.48"
         },
         "ERC20": {
-          "min": "8.22"
+          "min": "19.78"
         }
       }
     },
@@ -13262,7 +13184,7 @@
     "unified_cryptoasset_id": 6210,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.78",
+    "min_withdraw": "1.8",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -13288,7 +13210,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.78"
+          "min": "1.8"
         }
       }
     },
@@ -13304,7 +13226,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "18986",
+    "min_withdraw": "43740",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -13330,7 +13252,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "18986"
+          "min": "43740"
         }
       }
     },
@@ -13550,7 +13472,7 @@
     "unified_cryptoasset_id": 5994,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "10580",
+    "min_withdraw": "24862",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -13576,7 +13498,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "10580"
+          "min": "24862"
         }
       }
     },
@@ -13634,7 +13556,7 @@
     "unified_cryptoasset_id": 5691,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "22",
+    "min_withdraw": "50",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -13660,7 +13582,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "22"
+          "min": "50"
         }
       }
     },
@@ -13718,7 +13640,7 @@
     "unified_cryptoasset_id": 2586,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.68",
+    "min_withdraw": "1.6",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -13744,7 +13666,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.68"
+          "min": "1.6"
         }
       }
     },
@@ -13886,7 +13808,7 @@
     "unified_cryptoasset_id": 9303,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "57",
+    "min_withdraw": "123",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -13912,7 +13834,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "57"
+          "min": "123"
         }
       }
     },
@@ -13970,7 +13892,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.024",
+    "min_withdraw": "0.056",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -13996,7 +13918,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.024"
+          "min": "0.056"
         }
       }
     },
@@ -14054,7 +13976,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1883.46",
+    "min_withdraw": "1922.46",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -14080,7 +14002,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "1883.46"
+          "min": "1922.46"
         }
       }
     },
@@ -14096,7 +14018,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.276",
+    "min_withdraw": "0.66",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -14122,7 +14044,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.276"
+          "min": "0.66"
         }
       }
     },
@@ -14138,7 +14060,7 @@
     "unified_cryptoasset_id": 1772,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.61",
+    "min_withdraw": "1.45",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -14164,7 +14086,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.61"
+          "min": "1.45"
         }
       }
     },
@@ -14216,7 +14138,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.96",
+    "min_withdraw": "4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -14247,7 +14169,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1.96"
+          "min": "4.5"
         },
         "STARKNET": {
           "min": "4"
@@ -14899,7 +14821,7 @@
     "unified_cryptoasset_id": 4944,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.004",
+    "min_withdraw": "0.009",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -14925,7 +14847,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.004"
+          "min": "0.009"
         }
       }
     },
@@ -15214,7 +15136,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "4.473",
+    "min_withdraw": "4.566",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -15240,7 +15162,7 @@
       },
       "withdraw": {
         "BEP20": {
-          "min": "4.473"
+          "min": "4.566"
         }
       }
     },
@@ -15437,7 +15359,7 @@
     "unified_cryptoasset_id": 5617,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.18",
+    "min_withdraw": "0.4",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -15463,7 +15385,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.18"
+          "min": "0.4"
         }
       }
     },
@@ -15479,7 +15401,7 @@
     "unified_cryptoasset_id": 7083,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.02",
+    "min_withdraw": "0.048",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -15505,7 +15427,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.02"
+          "min": "0.048"
         }
       }
     },
@@ -15795,8 +15717,8 @@
   "USDS": {
     "name": "USDS",
     "unified_cryptoasset_id": 0,
-    "can_withdraw": false,
-    "can_deposit": false,
+    "can_withdraw": true,
+    "can_deposit": true,
     "min_withdraw": "10",
     "max_withdraw": "0",
     "maker_fee": "0.1",
@@ -15804,6 +15726,12 @@
     "min_deposit": "5",
     "max_deposit": "0",
     "networks": {
+      "deposits": [
+        "ERC20"
+      ],
+      "withdraws": [
+        "ERC20"
+      ],
       "default": "ERC20"
     },
     "confirmations": {
@@ -16769,7 +16697,7 @@
     "unified_cryptoasset_id": 7501,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "3.32",
+    "min_withdraw": "7.84",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -16795,7 +16723,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "3.32"
+          "min": "7.84"
         }
       }
     },
@@ -16811,7 +16739,7 @@
     "unified_cryptoasset_id": 3003,
     "can_withdraw": false,
     "can_deposit": false,
-    "min_withdraw": "4.858",
+    "min_withdraw": "11.546",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -16831,7 +16759,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "4.858"
+          "min": "11.546"
         }
       }
     },
@@ -17309,7 +17237,7 @@
     "unified_cryptoasset_id": 5864,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.000022",
+    "min_withdraw": "0.000054",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -17335,7 +17263,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.000022"
+          "min": "0.000054"
         }
       }
     },
@@ -17387,7 +17315,7 @@
     "unified_cryptoasset_id": 10688,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "1.58",
+    "min_withdraw": "3.56",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -17413,7 +17341,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "1.58"
+          "min": "3.56"
         }
       }
     },
@@ -17849,7 +17777,7 @@
     "unified_cryptoasset_id": 0,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.032",
+    "min_withdraw": "0.078",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -17875,7 +17803,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.032"
+          "min": "0.078"
         }
       }
     },
@@ -17891,7 +17819,7 @@
     "unified_cryptoasset_id": 1896,
     "can_withdraw": true,
     "can_deposit": true,
-    "min_withdraw": "0.58",
+    "min_withdraw": "1.36",
     "max_withdraw": "0",
     "maker_fee": "0.1",
     "taker_fee": "0.1",
@@ -17917,7 +17845,7 @@
       },
       "withdraw": {
         "ERC20": {
-          "min": "0.58"
+          "min": "1.36"
         }
       }
     },

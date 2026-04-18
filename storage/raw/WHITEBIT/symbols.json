@@ -251,7 +251,6 @@
     "SHIB_TRY",
     "SOL_TRY",
     "EGLD_USDT",
-    "MDI_USDT",
     "HDN_USDT",
     "PENDLE_USDT",
     "ACH_USDT",
@@ -764,6 +763,7 @@
     "OPN_USDT",
     "CFG_USDT",
     "ROBO_USDT",
-    "BASED_USDT"
+    "BASED_USDT",
+    "USDS_USDT"
   ]
 }

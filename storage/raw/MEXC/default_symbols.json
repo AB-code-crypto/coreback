@@ -1707,7 +1707,6 @@
     "NCTUSDT",
     "KAIAUSDC",
     "FHEUSDT",
-    "OPULUSDT",
     "CEEKUSDT",
     "龙虾USDT",
     "SOMIUSDT",
@@ -2218,5 +2217,5 @@
   ],
   "code": 0,
   "msg": "success",
-  "timestamp": 1776519610238
+  "timestamp": 1776521230232
 }

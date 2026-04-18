@@ -1619,7 +1619,7 @@
     "stock": "DYDX",
     "money": "USDT",
     "stockPrec": "4",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -1628,7 +1628,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000",
+    "maxTotal": "1000000",
     "isTradFiFutures": false
   },
   {
@@ -3421,7 +3421,7 @@
     "stock": "CELO",
     "money": "USDT",
     "stockPrec": "4",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -3430,7 +3430,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000",
+    "maxTotal": "1000000",
     "isTradFiFutures": false
   },
   {
@@ -4638,23 +4638,6 @@
     "type": "spot",
     "isCollateral": false,
     "maxTotal": "10000000",
-    "isTradFiFutures": false
-  },
-  {
-    "name": "MDI_USDT",
-    "stock": "MDI",
-    "money": "USDT",
-    "stockPrec": "2",
-    "moneyPrec": "8",
-    "feePrec": "6",
-    "makerFee": "0.1",
-    "takerFee": "0.1",
-    "minAmount": "100000",
-    "minTotal": "1",
-    "tradesEnabled": true,
-    "type": "spot",
-    "isCollateral": false,
-    "maxTotal": "100000",
     "isTradFiFutures": false
   },
   {
@@ -6651,7 +6634,7 @@
     "stock": "SEI",
     "money": "USDT",
     "stockPrec": "1",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -6660,7 +6643,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000000",
+    "maxTotal": "1000000000",
     "isTradFiFutures": false
   },
   {
@@ -7161,7 +7144,7 @@
     "stock": "SAGA",
     "money": "USDT",
     "stockPrec": "1",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -7170,7 +7153,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000000",
+    "maxTotal": "1000000000",
     "isTradFiFutures": false
   },
   {
@@ -7195,7 +7178,7 @@
     "stock": "SAGA",
     "money": "TRY",
     "stockPrec": "1",
-    "moneyPrec": "2",
+    "moneyPrec": "3",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -7204,7 +7187,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "1000000000000",
+    "maxTotal": "100000000000",
     "isTradFiFutures": false
   },
   {
@@ -8096,7 +8079,7 @@
     "stock": "IO",
     "money": "TRY",
     "stockPrec": "2",
-    "moneyPrec": "2",
+    "moneyPrec": "3",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -8105,7 +8088,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "100000000000",
+    "maxTotal": "10000000000",
     "isTradFiFutures": false
   },
   {
@@ -11819,7 +11802,7 @@
     "stock": "DYDX",
     "money": "EUR",
     "stockPrec": "4",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -11828,7 +11811,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000",
+    "maxTotal": "1000000",
     "isTradFiFutures": false
   },
   {
@@ -11870,7 +11853,7 @@
     "stock": "SAGA",
     "money": "EUR",
     "stockPrec": "1",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -11879,7 +11862,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000000",
+    "maxTotal": "1000000000",
     "isTradFiFutures": false
   },
   {
@@ -11887,7 +11870,7 @@
     "stock": "SEI",
     "money": "EUR",
     "stockPrec": "1",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -11896,7 +11879,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000000",
+    "maxTotal": "1000000000",
     "isTradFiFutures": false
   },
   {
@@ -12482,7 +12465,7 @@
     "stock": "NIL",
     "money": "USDT",
     "stockPrec": "1",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -12491,7 +12474,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000000",
+    "maxTotal": "1000000000",
     "isTradFiFutures": false
   },
   {
@@ -12499,7 +12482,7 @@
     "stock": "NIL",
     "money": "USDC",
     "stockPrec": "1",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -12508,7 +12491,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000000",
+    "maxTotal": "1000000000",
     "isTradFiFutures": false
   },
   {
@@ -13264,7 +13247,7 @@
     "stock": "SEI",
     "money": "USDC",
     "stockPrec": "1",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -13273,7 +13256,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000000",
+    "maxTotal": "1000000000",
     "isTradFiFutures": false
   },
   {
@@ -13689,7 +13672,7 @@
     "stock": "DYDX",
     "money": "USDC",
     "stockPrec": "2",
-    "moneyPrec": "4",
+    "moneyPrec": "5",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -13698,7 +13681,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "1000000000",
+    "maxTotal": "100000000",
     "isTradFiFutures": false
   },
   {
@@ -15542,7 +15525,7 @@
     "stock": "LINEA",
     "money": "USDT",
     "stockPrec": "0",
-    "moneyPrec": "5",
+    "moneyPrec": "6",
     "feePrec": "6",
     "makerFee": "0.1",
     "takerFee": "0.1",
@@ -15551,7 +15534,7 @@
     "tradesEnabled": true,
     "type": "spot",
     "isCollateral": false,
-    "maxTotal": "10000000000",
+    "maxTotal": "1000000000",
     "isTradFiFutures": false
   },
   {
@@ -17965,6 +17948,23 @@
     "tradesEnabled": true,
     "type": "futures",
     "isCollateral": true,
+    "maxTotal": "100000000000",
+    "isTradFiFutures": false
+  },
+  {
+    "name": "USDS_USDT",
+    "stock": "USDS",
+    "money": "USDT",
+    "stockPrec": "0",
+    "moneyPrec": "4",
+    "feePrec": "6",
+    "makerFee": "0.1",
+    "takerFee": "0.1",
+    "minAmount": "1",
+    "minTotal": "1",
+    "tradesEnabled": true,
+    "type": "spot",
+    "isCollateral": false,
     "maxTotal": "100000000000",
     "isTradFiFutures": false
   }

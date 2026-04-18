@@ -1,6 +1,6 @@
 {
   "timezone": "CST",
-  "serverTime": 1776520070425,
+  "serverTime": 1776521350406,
   "rateLimits": [],
   "exchangeFilters": [],
   "symbols": [
@@ -55355,50 +55355,6 @@
       ],
       "firstOpenTime": 1745544300000,
       "st": false
-    },
-    {
-      "symbol": "OPULUSDT",
-      "status": "1",
-      "baseAsset": "OPUL",
-      "baseAssetPrecision": 2,
-      "quoteAsset": "USDT",
-      "quotePrecision": 7,
-      "quoteAssetPrecision": 7,
-      "baseCommissionPrecision": 2,
-      "quoteCommissionPrecision": 7,
-      "orderTypes": [
-        "LIMIT",
-        "MARKET",
-        "LIMIT_MAKER"
-      ],
-      "isSpotTradingAllowed": true,
-      "isMarginTradingAllowed": false,
-      "quoteAmountPrecision": "1",
-      "baseSizePrecision": "0.01",
-      "permissions": [
-        "SPOT"
-      ],
-      "filters": [
-        {
-          "filterType": "PERCENT_PRICE_BY_SIDE",
-          "bidMultiplierUp": "0.2",
-          "askMultiplierDown": "0.2"
-        }
-      ],
-      "maxQuoteAmount": "2000000",
-      "makerCommission": "0",
-      "takerCommission": "0.0005",
-      "quoteAmountPrecisionMarket": "1",
-      "maxQuoteAmountMarket": "100000",
-      "fullName": "Opulous",
-      "tradeSideType": 1,
-      "contractAddress": "287867876",
-      "conceptPlateIds": [
-        34,
-        51
-      ],
-      "firstOpenTime": 1634212800000,
-      "st": true
     },
     {
       "symbol": "EFCUSDT",
