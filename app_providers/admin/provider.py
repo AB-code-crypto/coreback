@@ -5,6 +5,7 @@ from app_providers.services.whitebit.fetch_all_raw import fetch_whitebit_all_raw
 from app_providers.services.whitebit.sync_provider_asset_contexts import (
     sync_whitebit_provider_asset_contexts_from_raw,
 )
+from app_providers.services.mexc.fetch_all_raw import fetch_mexc_all_raw
 
 
 def _get_single_whitebit_provider(modeladmin, request, queryset):
@@ -22,6 +23,27 @@ def _get_single_whitebit_provider(modeladmin, request, queryset):
         modeladmin.message_user(
             request,
             "Этот action пока поддерживает только WHITEBIT.",
+            level=messages.WARNING,
+        )
+        return None
+
+    return provider
+
+
+def _get_single_provider_by_code(modeladmin, request, queryset, provider_code):
+    if queryset.count() != 1:
+        modeladmin.message_user(
+            request,
+            "Нужно выбрать ровно одного провайдера.",
+            level=messages.WARNING,
+        )
+        return None
+
+    provider = queryset.first()
+    if provider.code != provider_code:
+        modeladmin.message_user(
+            request,
+            f"Этот action работает только для провайдера {provider_code}.",
             level=messages.WARNING,
         )
         return None
@@ -118,12 +140,49 @@ def fetch_provider_stats(modeladmin, request, queryset):
         )
 
 
+@admin.action(description="Обновить все raw JSON MEXC")
+def fetch_provider_all_raw_mexc(modeladmin, request, queryset):
+    provider = _get_single_provider_by_code(
+        modeladmin,
+        request,
+        queryset,
+        ProviderCode.MEXC,
+    )
+    if not provider:
+        return
+
+    result = fetch_mexc_all_raw(provider)
+
+    if result.failed_count == 0:
+        modeladmin.message_user(
+            request,
+            (
+                f"Успешно обновлено {result.success_count}/{result.total_count} raw JSON "
+                f"в storage/raw/{provider.code}/"
+            ),
+            level=messages.SUCCESS,
+        )
+        return
+
+    failed_names = ", ".join(item.name for item in result.items if not item.success)
+
+    modeladmin.message_user(
+        request,
+        (
+            f"Обновлено {result.success_count}/{result.total_count} raw JSON. "
+            f"Ошибки в endpoint'ах: {failed_names}"
+        ),
+        level=messages.WARNING,
+    )
+
+
 @admin.register(Provider)
 class ProviderAdmin(admin.ModelAdmin):
     actions = [
         fetch_provider_all_raw,
         fetch_provider_stats,
         sync_provider_asset_contexts_from_raw_action,
+        fetch_provider_all_raw_mexc,
     ]
     save_on_top = True
     empty_value_display = "—"

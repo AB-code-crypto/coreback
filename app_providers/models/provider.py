@@ -78,7 +78,7 @@ class ProviderCode(models.TextChoices):
 
 PROVIDER_DEFAULTS = {
     ProviderCode.WHITEBIT: {"provider_type": ProviderType.CEX, "affiliate_url": "https://whitebit.com/ru"},
-    ProviderCode.MEXC: {"provider_type": ProviderType.CEX, "affiliate_url": ""},
+    ProviderCode.MEXC: {"provider_type": ProviderType.CEX, "affiliate_url": "https://www.mexc.com"},
     # ProviderCode.BYBIT: {"provider_type": ProviderType.CEX, "affiliate_url": ""},
     # ProviderCode.BINANCE: {"provider_type": ProviderType.CEX, "affiliate_url": ""},
 }
