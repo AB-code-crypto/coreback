@@ -1,7 +1,11 @@
+from django.contrib import admin, messages
 from django import forms
-from django.contrib import admin
 
+from app_providers.models.provider import ProviderCode
 from app_providers.models.provider_api import ProviderApi
+from app_providers.services.whitebit.sync_provider_api_fees import (
+    sync_whitebit_provider_api_fees,
+)
 
 
 class ProviderApiAdminForm(forms.ModelForm):
@@ -73,8 +77,66 @@ class ProviderApiAdminForm(forms.ModelForm):
         return obj
 
 
+@admin.action(description="Обновить торговые комиссии WhiteBIT")
+def update_whitebit_trading_fees(modeladmin, request, queryset):
+    updated_count = 0
+    unchanged_count = 0
+    skipped_count = 0
+    error_messages: list[str] = []
+
+    for provider_api in queryset.select_related("provider"):
+        if provider_api.provider.code != ProviderCode.WHITEBIT:
+            skipped_count += 1
+            continue
+
+        try:
+            result = sync_whitebit_provider_api_fees(provider_api)
+        except Exception as exc:
+            error_messages.append(
+                f"{provider_api.provider.code} / {provider_api.name}: {exc}"
+            )
+            continue
+
+        if result.updated:
+            updated_count += 1
+        else:
+            unchanged_count += 1
+
+    if updated_count:
+        modeladmin.message_user(
+            request,
+            (
+                f"Торговые комиссии обновлены: {updated_count}. "
+                f"Без изменений: {unchanged_count}. "
+                f"Пропущено: {skipped_count}."
+            ),
+            level=messages.SUCCESS,
+        )
+    else:
+        modeladmin.message_user(
+            request,
+            (
+                f"Ничего не обновлено. "
+                f"Без изменений: {unchanged_count}. "
+                f"Пропущено: {skipped_count}."
+            ),
+            level=messages.WARNING,
+        )
+
+    for msg in error_messages[:10]:
+        modeladmin.message_user(request, msg, level=messages.ERROR)
+
+    if len(error_messages) > 10:
+        modeladmin.message_user(
+            request,
+            f"Ещё ошибок: {len(error_messages) - 10}",
+            level=messages.ERROR,
+        )
+
+
 @admin.register(ProviderApi)
 class ProviderApiAdmin(admin.ModelAdmin):
+    actions = [update_whitebit_trading_fees]
     save_on_top = True
     form = ProviderApiAdminForm
     empty_value_display = "—"
