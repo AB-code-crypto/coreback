@@ -4,10 +4,7 @@ from decimal import Decimal, InvalidOperation
 
 from app_core.models import PlatformSettings
 from app_providers.models.provider import Provider
-from app_providers.models.provider_asset_context import (
-    ProviderAssetContext,
-    ProviderAssetContextMatchStatus,
-)
+from app_providers.models.provider_asset_context import ProviderAssetContext, ProviderAssetContextMatchStatus
 from app_providers.services.raw_data_storage import get_raw_full_path
 
 
@@ -22,9 +19,7 @@ class SyncCounters:
 def _load_raw_json(provider_code: str, request_type: str):
     path = get_raw_full_path(provider_code, request_type)
     if not path.exists():
-        raise FileNotFoundError(
-            f"Raw JSON не найден: storage/raw/{provider_code}/{request_type}.json"
-        )
+        raise FileNotFoundError(f"Raw JSON не найден: storage/raw/{provider_code}/{request_type}.json")
 
     with path.open("r", encoding="utf-8") as f:
         return json.load(f)
@@ -71,12 +66,6 @@ def _to_decimal(value, path: str) -> Decimal:
         raise ValueError(f"{path} must be decimal-compatible, got {value!r}") from exc
 
 
-def _to_decimal_or_none(value, path: str):
-    if value in (None, ""):
-        return None
-    return _to_decimal(value, path)
-
-
 def _to_precision(value, path: str, default: int = 8) -> int:
     if value in (None, ""):
         return default
@@ -121,6 +110,27 @@ def _decimal_fits_model_field(model_cls, field_name: str, value: Decimal) -> boo
     return True
 
 
+def _can_use_decimal_for_field(value, field_name: str, path: str) -> bool:
+    try:
+        dec = _to_decimal(value, path)
+    except Exception:
+        return False
+
+    return _decimal_fits_model_field(ProviderAssetContext, field_name, dec)
+
+
+def _is_positive_decimal_for_field(value, field_name: str, path: str) -> bool:
+    try:
+        dec = _to_decimal(value, path)
+    except Exception:
+        return False
+
+    if dec <= Decimal("0"):
+        return False
+
+    return _decimal_fits_model_field(ProviderAssetContext, field_name, dec)
+
+
 def _to_amount_for_field_or_none_on_overflow(value, field_name: str, path: str):
     if value in (None, ""):
         return None
@@ -137,9 +147,7 @@ def _to_amount_for_field_required(value, field_name: str, path: str) -> Decimal:
     dec = _to_decimal(value, path)
 
     if not _decimal_fits_model_field(ProviderAssetContext, field_name, dec):
-        raise ValueError(
-            f"{path}={value!r} does not fit ProviderAssetContext.{field_name}"
-        )
+        raise ValueError(f"{path}={value!r} does not fit ProviderAssetContext.{field_name}")
 
     return dec
 
@@ -151,19 +159,12 @@ def _extract_exchange_info_index(payload) -> dict[str, list[dict]]:
         raise KeyError("Missing key: exchange_info.symbols")
 
     symbols = _require_list(payload["symbols"], "exchange_info.symbols")
-
     result: dict[str, list[dict]] = {}
 
     for idx, item in enumerate(symbols):
         item = _require_dict(item, f"exchange_info.symbols[{idx}]")
 
-        for key in (
-            "symbol",
-            "baseAsset",
-            "quoteAsset",
-            "isSpotTradingAllowed",
-            "baseAssetPrecision",
-        ):
+        for key in ("symbol", "baseAsset", "quoteAsset", "isSpotTradingAllowed", "baseAssetPrecision"):
             if key not in item:
                 raise KeyError(f"Missing key: exchange_info.symbols[{idx}].{key}")
 
@@ -178,7 +179,6 @@ def _extract_exchange_info_index(payload) -> dict[str, list[dict]]:
 
 def _extract_capital_config_items(payload) -> list[dict]:
     payload = _require_list(payload, "capital_config_getall")
-
     result: list[dict] = []
 
     for idx, item in enumerate(payload):
@@ -188,11 +188,7 @@ def _extract_capital_config_items(payload) -> list[dict]:
             if key not in item:
                 raise KeyError(f"Missing key: capital_config_getall[{idx}].{key}")
 
-        network_list = _require_list(
-            item["networkList"],
-            f"capital_config_getall[{idx}].networkList",
-        )
-
+        network_list = _require_list(item["networkList"], f"capital_config_getall[{idx}].networkList")
         if not network_list:
             continue
 
@@ -209,7 +205,7 @@ def _build_trade_info(asset_code: str, exchange_info_items: list[dict]) -> dict:
     for idx, item in enumerate(exchange_info_items):
         path = f"exchange_info[{asset_code}][{idx}]"
 
-        for key in ("baseAsset", "quoteAsset", "isSpotTradingAllowed", "baseAssetPrecision"):
+        for key in ("symbol", "baseAsset", "quoteAsset", "isSpotTradingAllowed", "baseAssetPrecision"):
             if key not in item:
                 raise KeyError(f"Missing key: {path}.{key}")
 
@@ -279,27 +275,13 @@ def sync_mexc_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounte
             network_path = f"{asset_path}.networkList[{net_idx}]"
             network_item = _require_dict(network_item, network_path)
 
-            for key in (
-                "coin",
-                "name",
-                "network",
-                "netWork",
-                "depositEnable",
-                "withdrawEnable",
-                "minConfirm",
-                "withdrawFee",
-                "withdrawMax",
-                "withdrawMin",
-                "contract",
-            ):
+            for key in ("coin", "name", "network", "netWork", "depositEnable", "withdrawEnable", "minConfirm", "withdrawFee", "withdrawMax", "withdrawMin", "contract"):
                 if key not in network_item:
                     raise KeyError(f"Missing key: {network_path}.{key}")
 
             network_coin = str(network_item["coin"]).strip()
             if network_coin != asset_code_pl:
-                raise ValueError(
-                    f"{network_path}.coin mismatch: {network_coin!r} != {asset_code_pl!r}"
-                )
+                raise ValueError(f"{network_path}.coin mismatch: {network_coin!r} != {asset_code_pl!r}")
 
             context_code_pl = str(network_item["netWork"]).strip()
             context_name_pl = str(network_item["network"]).strip()
@@ -313,21 +295,29 @@ def sync_mexc_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounte
             withdraw_enable = _to_bool(network_item["withdrawEnable"], f"{network_path}.withdrawEnable")
             min_confirm = _to_non_negative_int_zero(network_item["minConfirm"])
 
-            withdraw_fee_fixed = _to_amount_for_field_required(
-                network_item["withdrawFee"],
-                "withdraw_fee_fixed",
-                f"{network_path}.withdrawFee",
-            )
-            withdraw_min_amount = _to_amount_for_field_required(
-                network_item["withdrawMin"],
-                "withdraw_min_amount",
-                f"{network_path}.withdrawMin",
-            )
-            withdraw_max_amount = _to_amount_for_field_or_none_on_overflow(
-                network_item["withdrawMax"],
-                "withdraw_max_amount",
-                f"{network_path}.withdrawMax",
-            )
+            deposit_is_working = deposit_enable
+            withdraw_is_working = withdraw_enable
+
+            if withdraw_is_working:
+                if not _is_positive_decimal_for_field(network_item["withdrawFee"], "withdraw_fee_fixed", f"{network_path}.withdrawFee"):
+                    withdraw_is_working = False
+
+            if withdraw_is_working:
+                if not _is_positive_decimal_for_field(network_item["withdrawMin"], "withdraw_min_amount", f"{network_path}.withdrawMin"):
+                    withdraw_is_working = False
+
+            if not deposit_is_working and not withdraw_is_working:
+                counters.skipped_inactive_assets += 1
+                continue
+
+            if withdraw_is_working:
+                withdraw_fee_fixed = _to_amount_for_field_required(network_item["withdrawFee"], "withdraw_fee_fixed", f"{network_path}.withdrawFee")
+                withdraw_min_amount = _to_amount_for_field_required(network_item["withdrawMin"], "withdraw_min_amount", f"{network_path}.withdrawMin")
+                withdraw_max_amount = _to_amount_for_field_or_none_on_overflow(network_item["withdrawMax"], "withdraw_max_amount", f"{network_path}.withdrawMax")
+            else:
+                withdraw_fee_fixed = Decimal("0")
+                withdraw_min_amount = None
+                withdraw_max_amount = None
 
             contract_raw = str(network_item["contract"]).strip()
             if contract_raw == "":
@@ -357,9 +347,9 @@ def sync_mexc_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounte
                 "context_name": context_name_pl,
                 "contract_raw": contract_raw,
                 "raw_metadata": raw_metadata,
-                "AD": deposit_enable,
-                "AW": withdraw_enable,
-                "deposit_confirmations": min_confirm,
+                "AD": deposit_is_working,
+                "AW": withdraw_is_working,
+                "deposit_confirmations": min_confirm if deposit_is_working else 0,
                 "withdraw_confirmations": 0,
                 "deposit_fee_fixed": Decimal("0"),
                 "deposit_fee_percent": Decimal("0"),
@@ -382,10 +372,7 @@ def sync_mexc_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounte
 
             obj, created = ProviderAssetContext.objects.get_or_create(
                 **lookup,
-                defaults={
-                    **defaults,
-                    "match_status": ProviderAssetContextMatchStatus.NORMALIZED,
-                },
+                defaults={**defaults, "match_status": ProviderAssetContextMatchStatus.NORMALIZED},
             )
 
             if created:
