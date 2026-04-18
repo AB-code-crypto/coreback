@@ -24,7 +24,7 @@ class ProviderCode(models.TextChoices):
     # Биржи (CEX/DEX)
     WHITEBIT = "WHITEBIT", "WhiteBit"
     MEXC = "MEXC", "MEXC"
-    # BYBIT = "BYBIT", "ByBit"
+    BYBIT = "BYBIT", "ByBit"
     # BINANCE = "BINANCE", "Binance"
     # KUCOIN = "KUCOIN", "KuCoin"
     # HTX = "HTX", "HTX"
