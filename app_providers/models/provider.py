@@ -24,8 +24,8 @@ class ProviderCode(models.TextChoices):
     # Биржи (CEX/DEX)
     WHITEBIT = "WHITEBIT", "WhiteBit"
     MEXC = "MEXC", "MEXC"
-    BYBIT = "BYBIT", "ByBit"
-    BINANCE = "BINANCE", "Binance"
+    # BYBIT = "BYBIT", "ByBit"
+    # BINANCE = "BINANCE", "Binance"
     # KUCOIN = "KUCOIN", "KuCoin"
     # HTX = "HTX", "HTX"
     # RAPIRA = "RAPIRA", "Rapira"
@@ -76,7 +76,6 @@ class ProviderCode(models.TextChoices):
     # VTB = "VTB", "ВТБ банк"
 
 
-
 PROVIDER_DEFAULTS = {
     ProviderCode.WHITEBIT: {
         "provider_type": ProviderType.CEX,
@@ -86,14 +85,14 @@ PROVIDER_DEFAULTS = {
         "provider_type": ProviderType.CEX,
         "affiliate_url": "",
     },
-    ProviderCode.BYBIT: {
-        "provider_type": ProviderType.CEX,
-        "affiliate_url": "",
-    },
-    ProviderCode.BINANCE: {
-        "provider_type": ProviderType.CEX,
-        "affiliate_url": "",
-    },
+    # ProviderCode.BYBIT: {
+    #     "provider_type": ProviderType.CEX,
+    #     "affiliate_url": "",
+    # },
+    # ProviderCode.BINANCE: {
+    #     "provider_type": ProviderType.CEX,
+    #     "affiliate_url": "",
+    # },
 }
 
 
