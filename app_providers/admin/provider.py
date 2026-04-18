@@ -7,6 +7,7 @@ from app_providers.services.whitebit.sync_provider_asset_contexts import (
 )
 from app_providers.services.mexc.fetch_all_raw import fetch_mexc_all_raw
 from app_providers.services.mexc.fetch_stats import fetch_mexc_stats
+from services.mexc.sync_provider_asset_contexts import sync_mexc_provider_asset_contexts_from_raw
 
 
 def _get_single_provider(modeladmin, request, queryset):
@@ -33,6 +34,7 @@ STATS_FETCHERS = {
 
 ASSET_SYNCERS = {
     ProviderCode.WHITEBIT: sync_whitebit_provider_asset_contexts_from_raw,
+    ProviderCode.MEXC: sync_mexc_provider_asset_contexts_from_raw,
 }
 
 
