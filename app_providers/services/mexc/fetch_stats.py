@@ -32,13 +32,14 @@ def _extract_default_symbols_ok(payload) -> bool:
     if "data" not in payload:
         return False
 
-    if payload["code"] != 200:
+    code = payload["code"]
+    if code not in (0, 200, "0", "200"):
         return False
 
     return isinstance(payload["data"], list)
 
 
-def _extract_default_symbols_code(payload) -> int | None:
+def _extract_default_symbols_raw_code(payload) -> int | None:
     if not isinstance(payload, dict):
         return None
 
@@ -109,8 +110,9 @@ def fetch_mexc_stats(provider: Provider) -> ProviderStats:
         platform_status_response_time_ms = int((perf_counter() - platform_started) * 1000)
         platform_status_http_status = default_symbols_response.http_status
 
+        raw_platform_code = _extract_default_symbols_raw_code(default_symbols_response.payload)
         platform_status_success = _extract_default_symbols_ok(default_symbols_response.payload)
-        platform_status_code = _extract_default_symbols_code(default_symbols_response.payload)
+        platform_status_code = 1 if platform_status_success else 0
 
         stats_started = perf_counter()
         exchange_info_response = client.fetch_exchange_info()
