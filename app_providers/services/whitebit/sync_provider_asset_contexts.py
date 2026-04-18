@@ -1,5 +1,5 @@
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from decimal import Decimal, InvalidOperation
 
 from app_core.models import PlatformSettings
@@ -31,6 +31,7 @@ class SyncCounters:
     updated: int = 0
     skipped: int = 0
     skipped_inactive_assets: int = 0
+    skipped_inactive_asset_codes: list[str] = field(default_factory=list)
 
 
 def _load_raw_json(provider_code: str, request_type: str):
@@ -535,15 +536,11 @@ def _build_candidate_base(parsed: dict, context_code_pl: str) -> dict:
     }
 
 
-def _build_candidates(
-        asset_status_payload: dict,
-        account_fee_index: dict,
-        market_info_index: dict,
-):
+def _build_candidates(asset_status_payload: dict, account_fee_index: dict, market_info_index: dict):
     asset_status_payload = _require_dict(asset_status_payload, "asset_status_list")
 
     candidates: dict[tuple[str, str], dict] = {}
-    skipped_inactive_assets = 0
+    skipped_inactive_asset_codes: list[str] = []
 
     for raw_asset_code, raw_item in asset_status_payload.items():
         asset_code_raw = str(raw_asset_code).strip()
@@ -552,7 +549,7 @@ def _build_candidates(
 
         parsed = _extract_asset_status_components(asset_code_raw, raw_item)
         if parsed is None:
-            skipped_inactive_assets += 1
+            skipped_inactive_asset_codes.append(asset_code_raw)
             continue
         market_item = market_info_index.get(parsed["asset_code_pl"].upper())
 
@@ -652,7 +649,7 @@ def _build_candidates(
             key = (candidate["asset_code"], candidate["context_code"])
             candidates[key] = candidate
 
-    return candidates, skipped_inactive_assets
+    return candidates, skipped_inactive_asset_codes
 
 
 def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounters:
@@ -667,14 +664,26 @@ def sync_whitebit_provider_asset_contexts_from_raw(provider: Provider) -> SyncCo
     account_fee_index = _extract_account_fee_index(account_fees_payload)
     market_info_index = _extract_market_info_index(market_info_payload)
 
-    candidates, skipped_inactive_assets = _build_candidates(
+    candidates, skipped_inactive_asset_codes = _build_candidates(
         asset_status_payload,
         account_fee_index,
         market_info_index,
     )
     stablecoin_codes = _get_stablecoin_codes()
 
-    counters = SyncCounters(skipped_inactive_assets=skipped_inactive_assets)
+    skipped_inactive_asset_codes = sorted(set(skipped_inactive_asset_codes))
+
+    counters = SyncCounters(
+        skipped_inactive_assets=len(skipped_inactive_asset_codes),
+        skipped_inactive_asset_codes=skipped_inactive_asset_codes,
+    )
+
+    if skipped_inactive_asset_codes:
+        print(
+            f"[WHITEBIT sync] Skipped inactive/unusable items "
+            f"({len(skipped_inactive_asset_codes)}):"
+        )
+        print(", ".join(skipped_inactive_asset_codes))
 
     for candidate in candidates.values():
         ad = bool(candidate["AD"])
