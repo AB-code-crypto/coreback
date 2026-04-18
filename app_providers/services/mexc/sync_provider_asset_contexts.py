@@ -110,15 +110,6 @@ def _decimal_fits_model_field(model_cls, field_name: str, value: Decimal) -> boo
     return True
 
 
-def _can_use_decimal_for_field(value, field_name: str, path: str) -> bool:
-    try:
-        dec = _to_decimal(value, path)
-    except Exception:
-        return False
-
-    return _decimal_fits_model_field(ProviderAssetContext, field_name, dec)
-
-
 def _is_positive_decimal_for_field(value, field_name: str, path: str) -> bool:
     try:
         dec = _to_decimal(value, path)
@@ -177,6 +168,34 @@ def _extract_exchange_info_index(payload) -> dict[str, list[dict]]:
     return result
 
 
+def _extract_offline_symbols_set(payload) -> set[str]:
+    payload = _require_dict(payload, "offline_symbols")
+
+    if "data" not in payload:
+        raise KeyError("Missing key: offline_symbols.data")
+
+    data = _require_list(payload["data"], "offline_symbols.data")
+    result: set[str] = set()
+
+    for idx, item in enumerate(data):
+        item = _require_dict(item, f"offline_symbols.data[{idx}]")
+
+        for key in ("symbol", "state"):
+            if key not in item:
+                raise KeyError(f"Missing key: offline_symbols.data[{idx}].{key}")
+
+        symbol = str(item["symbol"]).strip().upper()
+        state = _to_non_negative_int_zero(item["state"])
+
+        if not symbol:
+            raise ValueError(f"offline_symbols.data[{idx}].symbol is empty")
+
+        if state == 3:
+            result.add(symbol)
+
+    return result
+
+
 def _extract_capital_config_items(payload) -> list[dict]:
     payload = _require_list(payload, "capital_config_getall")
     result: list[dict] = []
@@ -197,7 +216,7 @@ def _extract_capital_config_items(payload) -> list[dict]:
     return result
 
 
-def _build_trade_info(asset_code: str, exchange_info_items: list[dict]) -> dict:
+def _build_trade_info(asset_code: str, exchange_info_items: list[dict], offline_symbols: set[str]) -> dict:
     amount_precision = 8
     trades_enabled = False
     matched_symbols: list[dict] = []
@@ -209,25 +228,31 @@ def _build_trade_info(asset_code: str, exchange_info_items: list[dict]) -> dict:
             if key not in item:
                 raise KeyError(f"Missing key: {path}.{key}")
 
+        symbol = str(item["symbol"]).strip().upper()
         base_asset = str(item["baseAsset"]).strip().upper()
+        quote_asset = str(item["quoteAsset"]).strip().upper()
+        spot_allowed_raw = _to_bool(item["isSpotTradingAllowed"], f"{path}.isSpotTradingAllowed")
+        base_precision = _to_precision(item["baseAssetPrecision"], f"{path}.baseAssetPrecision", default=8)
+
         if base_asset != asset_code:
             raise ValueError(f"{path}.baseAsset mismatch: {base_asset!r} != {asset_code!r}")
-
-        quote_asset = str(item["quoteAsset"]).strip().upper()
-        spot_allowed = _to_bool(item["isSpotTradingAllowed"], f"{path}.isSpotTradingAllowed")
-        base_precision = _to_precision(item["baseAssetPrecision"], f"{path}.baseAssetPrecision", default=8)
 
         if base_precision > amount_precision:
             amount_precision = base_precision
 
-        if spot_allowed:
+        symbol_is_offline = symbol in offline_symbols
+        symbol_trades_enabled = spot_allowed_raw and not symbol_is_offline
+
+        if symbol_trades_enabled:
             trades_enabled = True
 
         matched_symbols.append(
             {
-                "symbol": str(item["symbol"]).strip(),
+                "symbol": symbol,
                 "quoteAsset": quote_asset,
-                "isSpotTradingAllowed": spot_allowed,
+                "isSpotTradingAllowed": spot_allowed_raw,
+                "isOffline": symbol_is_offline,
+                "effectiveTradesEnabled": symbol_trades_enabled,
                 "baseAssetPrecision": base_precision,
             }
         )
@@ -242,9 +267,11 @@ def _build_trade_info(asset_code: str, exchange_info_items: list[dict]) -> dict:
 def sync_mexc_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounters:
     capital_config_payload = _load_raw_json(provider.code, "capital_config_getall")
     exchange_info_payload = _load_raw_json(provider.code, "exchange_info")
+    offline_symbols_payload = _load_raw_json(provider.code, "offline_symbols")
 
     capital_items = _extract_capital_config_items(capital_config_payload)
     exchange_info_index = _extract_exchange_info_index(exchange_info_payload)
+    offline_symbols = _extract_offline_symbols_set(offline_symbols_payload)
     stablecoin_codes = _get_stablecoin_codes()
 
     counters = SyncCounters()
@@ -261,7 +288,7 @@ def sync_mexc_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounte
         asset_code = asset_code_pl.upper()
 
         if asset_code in exchange_info_index:
-            trade_info = _build_trade_info(asset_code, exchange_info_index[asset_code])
+            trade_info = _build_trade_info(asset_code, exchange_info_index[asset_code], offline_symbols)
         else:
             trade_info = {
                 "amount_precision": 8,
@@ -323,16 +350,13 @@ def sync_mexc_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounte
             if contract_raw == "":
                 contract_raw = None
 
-            lookup = {
-                "provider": provider,
-                "asset_code": asset_code,
-                "context_code": context_code_pl.upper(),
-            }
+            lookup = {"provider": provider, "asset_code": asset_code, "context_code": context_code_pl.upper()}
 
             raw_metadata = {
                 "capital_config_item": asset_item,
                 "capital_network_item": network_item,
                 "exchange_info_symbols": trade_info["matched_symbols"],
+                "offline_symbols_applied": True,
             }
 
             defaults = {
@@ -350,7 +374,7 @@ def sync_mexc_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounte
                 "AD": deposit_is_working,
                 "AW": withdraw_is_working,
                 "deposit_confirmations": min_confirm if deposit_is_working else 0,
-                "withdraw_confirmations": 0,
+                "withdraw_confirmations": min_confirm if withdraw_is_working else 0,
                 "deposit_fee_fixed": Decimal("0"),
                 "deposit_fee_percent": Decimal("0"),
                 "deposit_fee_min_amount": Decimal("0"),
@@ -359,7 +383,7 @@ def sync_mexc_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounte
                 "withdraw_fee_percent": Decimal("0"),
                 "withdraw_fee_min_amount": Decimal("0"),
                 "withdraw_fee_max_amount": None,
-                "deposit_min_amount": None,
+                "deposit_min_amount": Decimal("0"),
                 "deposit_max_amount": None,
                 "withdraw_min_amount": withdraw_min_amount,
                 "withdraw_max_amount": withdraw_max_amount,

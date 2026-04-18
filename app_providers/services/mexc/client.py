@@ -136,6 +136,76 @@ class MexcClient:
             api_secret=api_secret,
         )
 
+    def fetch_deposit_history(
+            self,
+            *,
+            api_key: str,
+            api_secret: str,
+            coin: str | None = None,
+            status: str | None = None,
+            start_time: int | None = None,
+            end_time: int | None = None,
+            limit: int | None = None,
+    ) -> MexcResponse:
+        params: dict[str, Any] = {}
+
+        if coin:
+            params["coin"] = coin
+
+        if status:
+            params["status"] = status
+
+        if start_time is not None:
+            params["startTime"] = start_time
+
+        if end_time is not None:
+            params["endTime"] = end_time
+
+        if limit is not None:
+            params["limit"] = limit
+
+        return self._get_private(
+            "/api/v3/capital/deposit/hisrec",
+            api_key=api_key,
+            api_secret=api_secret,
+            params=params or None,
+        )
+
+    def fetch_withdraw_history(
+            self,
+            *,
+            api_key: str,
+            api_secret: str,
+            coin: str | None = None,
+            status: str | None = None,
+            start_time: int | None = None,
+            end_time: int | None = None,
+            limit: int | None = None,
+    ) -> MexcResponse:
+        params: dict[str, Any] = {}
+
+        if coin:
+            params["coin"] = coin
+
+        if status:
+            params["status"] = status
+
+        if start_time is not None:
+            params["startTime"] = start_time
+
+        if end_time is not None:
+            params["endTime"] = end_time
+
+        if limit is not None:
+            params["limit"] = limit
+
+        return self._get_private(
+            "/api/v3/capital/withdraw/history",
+            api_key=api_key,
+            api_secret=api_secret,
+            params=params or None,
+        )
+
     # ------------------------------------------------------------------
     # Spot account / private
     # ------------------------------------------------------------------
