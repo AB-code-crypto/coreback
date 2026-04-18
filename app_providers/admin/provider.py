@@ -208,6 +208,7 @@ class ProviderAdmin(admin.ModelAdmin):
         (
             "Служебная информация",
             {
+                "classes": ("collapse",),
                 "fields": (
                     "created_at",
                     "updated_at",
