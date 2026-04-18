@@ -78,17 +78,10 @@ def fetch_mexc_all_raw(provider: Provider) -> MexcRawDumpResult:
         ("default_symbols", lambda: client.fetch_default_symbols()),
         ("offline_symbols", lambda: client.fetch_offline_symbols()),
         ("exchange_info", lambda: client.fetch_exchange_info()),
-        ("capital_config_getall", lambda: client.fetch_capital_config_getall(
-            api_key=api_key,
-            api_secret=api_secret,
-        )),
-        # По docs комиссия запрашивается по symbol.
-        # Для первого прохода берём BTCUSDT как максимально стабильный референс.
-        ("trade_fee_btcusdt", lambda: client.fetch_trade_fee(
-            api_key=api_key,
-            api_secret=api_secret,
-            symbol="BTCUSDT",
-        )),
+        ("capital_config_getall", lambda: client.fetch_capital_config_getall(api_key=api_key, api_secret=api_secret)),
+        ("trade_fee_btcusdt", lambda: client.fetch_trade_fee(api_key=api_key, api_secret=api_secret, symbol="BTCUSDT")),
+        ("deposit_history", lambda: client.fetch_deposit_history(api_key=api_key, api_secret=api_secret)),
+        ("withdraw_history", lambda: client.fetch_withdraw_history(api_key=api_key, api_secret=api_secret)),
     ]
 
     items: list[MexcRawEndpointResult] = []
