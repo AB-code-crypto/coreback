@@ -1,11 +1,11 @@
 import base64
 import secrets
+import textwrap
 import time
 from dataclasses import dataclass
 
 import jwt
 import requests
-from cryptography.hazmat.primitives import serialization
 
 
 @dataclass
@@ -21,83 +21,72 @@ class RapiraClient:
         self.timeout = timeout
         self._bearer_token: str | None = None
         self._bearer_token_expires_at: float = 0.0
-        self._loaded_private_key = None
-        self._loaded_private_key_source = None
+        self._private_key_pem_cache: str | None = None
+        self._private_key_source_cache: str | None = None
 
-    def _normalize_private_key(self, value: str) -> str:
+    def _decode_private_key_to_pem(self, value: str) -> str:
         raw = (value or "").strip()
         if not raw:
             raise ValueError("Rapira private key is empty.")
 
-        raw = raw.replace("\\n", "\n")
+        # Если секрет уже сохранён как PEM-текст
         if "BEGIN" in raw:
-            return raw
+            pem = raw
+        else:
+            # Обычный для вас случай: в БД лежит base64-строка
+            compact = "".join(raw.split())
+            try:
+                decoded_bytes = base64.b64decode(compact, validate=False)
+            except Exception as exc:
+                raise ValueError("Rapira private key is not valid base64.") from exc
 
-        compact = "".join(raw.split())
+            try:
+                pem = decoded_bytes.decode("ascii")
+            except UnicodeDecodeError as exc:
+                raise ValueError("Rapira private key decoded from base64 is not ASCII PEM.") from exc
 
-        try:
-            decoded = base64.b64decode(compact, validate=False).decode("utf-8")
-            decoded = decoded.replace("\\n", "\n")
-            if "BEGIN" in decoded:
-                return decoded
-        except Exception:
-            pass
+        pem = pem.replace("\r\n", "\n").replace("\r", "\n")
+        lines = [line.strip() for line in pem.splitlines() if line.strip()]
 
-        return raw
+        if len(lines) < 3:
+            raise ValueError("Rapira private key PEM is malformed.")
 
-    def _load_private_key(self, api_secret: str):
-        normalized = self._normalize_private_key(api_secret)
+        begin = lines[0]
+        end = lines[-1]
+        body = "".join(lines[1:-1])
 
+        if not begin.startswith("-----BEGIN ") or not begin.endswith("-----"):
+            raise ValueError(f"Rapira private key begin marker is invalid: {begin!r}")
+
+        if not end.startswith("-----END ") or not end.endswith("-----"):
+            raise ValueError(f"Rapira private key end marker is invalid: {end!r}")
+
+        if not body:
+            raise ValueError("Rapira private key PEM body is empty.")
+
+        # Приводим PEM к каноничному виду: header / тело по 64 / footer
+        wrapped_body = "\n".join(textwrap.wrap(body, 64))
+        normalized_pem = f"{begin}\n{wrapped_body}\n{end}\n"
+        return normalized_pem
+
+    def _get_private_key_pem(self, api_secret: str) -> str:
         if (
-            self._loaded_private_key is not None
-            and self._loaded_private_key_source == normalized
+                self._private_key_pem_cache is not None
+                and self._private_key_source_cache == api_secret
         ):
-            return self._loaded_private_key
+            return self._private_key_pem_cache
 
-        key_obj = serialization.load_pem_private_key(
-            normalized.encode("utf-8"),
-            password=None,
-        )
+        pem = self._decode_private_key_to_pem(api_secret)
+        self._private_key_pem_cache = pem
+        self._private_key_source_cache = api_secret
+        return pem
 
-        self._loaded_private_key = key_obj
-        self._loaded_private_key_source = normalized
-        return key_obj
-
-    def _build_client_jwt(self, private_key_obj, ttl_seconds: int = 3600) -> str:
+    def _build_client_jwt(self, private_key_pem: str, ttl_seconds: int = 3600) -> str:
         payload = {
             "exp": int(time.time()) + ttl_seconds,
             "jti": secrets.token_hex(12),
         }
-        return jwt.encode(payload, private_key_obj, algorithm="RS256")
-
-    def _get_bearer_token(self, api_key: str, api_secret: str) -> str:
-        now = time.time()
-        if self._bearer_token and now < self._bearer_token_expires_at:
-            return self._bearer_token
-
-        private_key_obj = self._load_private_key(api_secret)
-        client_jwt = self._build_client_jwt(private_key_obj=private_key_obj)
-
-        response = self._request(
-            "POST",
-            "/open/generate_jwt",
-            json_data={
-                "kid": api_key,
-                "jwt_token": client_jwt,
-            },
-        )
-
-        payload = response.payload
-        if not isinstance(payload, dict):
-            raise ValueError("Rapira generate_jwt returned non-dict payload.")
-
-        token = payload.get("token")
-        if not token:
-            raise ValueError(f"Rapira generate_jwt returned no token: {payload!r}")
-
-        self._bearer_token = str(token)
-        self._bearer_token_expires_at = now + (25 * 60)
-        return self._bearer_token
+        return jwt.encode(payload, private_key_pem, algorithm="RS256")
 
     def _request(
             self,
@@ -141,6 +130,36 @@ class RapiraClient:
             payload=payload,
             http_status=response.status_code,
         )
+
+    def _get_bearer_token(self, api_key: str, api_secret: str) -> str:
+        now = time.time()
+        if self._bearer_token and now < self._bearer_token_expires_at:
+            return self._bearer_token
+
+        private_key_pem = self._get_private_key_pem(api_secret)
+        client_jwt = self._build_client_jwt(private_key_pem=private_key_pem)
+
+        response = self._request(
+            "POST",
+            "/open/generate_jwt",
+            json_data={
+                "kid": api_key,
+                "jwt_token": client_jwt,
+            },
+        )
+
+        payload = response.payload
+        if not isinstance(payload, dict):
+            raise ValueError("Rapira generate_jwt returned non-dict payload.")
+
+        token = payload.get("token")
+        if not token:
+            raise ValueError(f"Rapira generate_jwt returned no token: {payload!r}")
+
+        self._bearer_token = str(token)
+        # Консервативный кеш bearer-токена
+        self._bearer_token_expires_at = now + (25 * 60)
+        return self._bearer_token
 
     def _authorized_headers(self, api_key: str, api_secret: str) -> dict:
         token = self._get_bearer_token(api_key=api_key, api_secret=api_secret)
