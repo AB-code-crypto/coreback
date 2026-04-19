@@ -1,4 +1,4 @@
 {
-  "error": "401 Client Error:  for url: https://api.rapira.net/open/crypto-processing/token-settings/available; response={\"data\":null,\"code\":401,\"message\":\"Error! JWT does not set\",\"totalPage\":null,\"totalElement\":null,\"isWorking\":1}",
+  "error": "RapiraClient.fetch_available_token_settings() missing 2 required keyword-only arguments: 'api_key' and 'api_secret'",
   "request_type": "available_token_settings"
 }

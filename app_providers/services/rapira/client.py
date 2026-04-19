@@ -27,11 +27,15 @@ class RapiraClient:
             raise ValueError("Rapira private key is empty.")
 
         raw = raw.replace("\\n", "\n")
+
         if "BEGIN" in raw:
             return raw
 
+        # если ключ хранится base64-строкой, сначала убираем все пробельные символы
+        compact = "".join(raw.split())
+
         try:
-            decoded = base64.b64decode(value, validate=True).decode("utf-8")
+            decoded = base64.b64decode(compact, validate=False).decode("utf-8")
             decoded = decoded.replace("\\n", "\n")
             if "BEGIN" in decoded:
                 return decoded
@@ -149,8 +153,12 @@ class RapiraClient:
     def fetch_rates_json(self) -> RapiraResponse:
         return self._request("GET", "/open/market/rates")
 
-    def fetch_available_token_settings(self) -> RapiraResponse:
-        return self._request("GET", "/open/crypto-processing/token-settings/available")
+    def fetch_available_token_settings(self, *, api_key: str, api_secret: str) -> RapiraResponse:
+        return self._get_private(
+            "/open/crypto-processing/token-settings/available",
+            api_key=api_key,
+            api_secret=api_secret,
+        )
 
     def fetch_pairs(self, *, api_key: str, api_secret: str) -> RapiraResponse:
         return self._get_private(
