@@ -5,6 +5,7 @@ from dataclasses import dataclass
 
 import jwt
 import requests
+from cryptography.hazmat.primitives import serialization
 
 
 @dataclass
@@ -20,6 +21,8 @@ class RapiraClient:
         self.timeout = timeout
         self._bearer_token: str | None = None
         self._bearer_token_expires_at: float = 0.0
+        self._loaded_private_key = None
+        self._loaded_private_key_source = None
 
     def _normalize_private_key(self, value: str) -> str:
         raw = (value or "").strip()
@@ -27,11 +30,9 @@ class RapiraClient:
             raise ValueError("Rapira private key is empty.")
 
         raw = raw.replace("\\n", "\n")
-
         if "BEGIN" in raw:
             return raw
 
-        # если ключ хранится base64-строкой, сначала убираем все пробельные символы
         compact = "".join(raw.split())
 
         try:
@@ -43,6 +44,60 @@ class RapiraClient:
             pass
 
         return raw
+
+    def _load_private_key(self, api_secret: str):
+        normalized = self._normalize_private_key(api_secret)
+
+        if (
+            self._loaded_private_key is not None
+            and self._loaded_private_key_source == normalized
+        ):
+            return self._loaded_private_key
+
+        key_obj = serialization.load_pem_private_key(
+            normalized.encode("utf-8"),
+            password=None,
+        )
+
+        self._loaded_private_key = key_obj
+        self._loaded_private_key_source = normalized
+        return key_obj
+
+    def _build_client_jwt(self, private_key_obj, ttl_seconds: int = 3600) -> str:
+        payload = {
+            "exp": int(time.time()) + ttl_seconds,
+            "jti": secrets.token_hex(12),
+        }
+        return jwt.encode(payload, private_key_obj, algorithm="RS256")
+
+    def _get_bearer_token(self, api_key: str, api_secret: str) -> str:
+        now = time.time()
+        if self._bearer_token and now < self._bearer_token_expires_at:
+            return self._bearer_token
+
+        private_key_obj = self._load_private_key(api_secret)
+        client_jwt = self._build_client_jwt(private_key_obj=private_key_obj)
+
+        response = self._request(
+            "POST",
+            "/open/generate_jwt",
+            json_data={
+                "kid": api_key,
+                "jwt_token": client_jwt,
+            },
+        )
+
+        payload = response.payload
+        if not isinstance(payload, dict):
+            raise ValueError("Rapira generate_jwt returned non-dict payload.")
+
+        token = payload.get("token")
+        if not token:
+            raise ValueError(f"Rapira generate_jwt returned no token: {payload!r}")
+
+        self._bearer_token = str(token)
+        self._bearer_token_expires_at = now + (25 * 60)
+        return self._bearer_token
 
     def _request(
             self,
@@ -86,44 +141,6 @@ class RapiraClient:
             payload=payload,
             http_status=response.status_code,
         )
-
-    def _build_client_jwt(self, private_key: str, ttl_seconds: int = 3600) -> str:
-        payload = {
-            "exp": int(time.time()) + ttl_seconds,
-            "jti": secrets.token_hex(12),
-        }
-        return jwt.encode(payload, private_key, algorithm="RS256")
-
-    def _get_bearer_token(self, api_key: str, api_secret: str) -> str:
-        now = time.time()
-        if self._bearer_token and now < self._bearer_token_expires_at:
-            return self._bearer_token
-
-        private_key = self._normalize_private_key(api_secret)
-        client_jwt = self._build_client_jwt(private_key=private_key)
-
-        response = self._request(
-            "POST",
-            "/open/generate_jwt",
-            json_data={
-                "kid": api_key,
-                "jwt_token": client_jwt,
-            },
-        )
-
-        payload = response.payload
-        if not isinstance(payload, dict):
-            raise ValueError("Rapira generate_jwt returned non-dict payload.")
-
-        token = payload.get("token")
-        if not token:
-            raise ValueError(f"Rapira generate_jwt returned no token: {payload!r}")
-
-        self._bearer_token = str(token)
-        # Консервативный кеш, чтобы не дёргать generate_jwt на каждый запрос,
-        # но и не полагаться на неизвестный TTL ключа.
-        self._bearer_token_expires_at = now + (25 * 60)
-        return self._bearer_token
 
     def _authorized_headers(self, api_key: str, api_secret: str) -> dict:
         token = self._get_bearer_token(api_key=api_key, api_secret=api_secret)
