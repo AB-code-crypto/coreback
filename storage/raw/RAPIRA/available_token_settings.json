@@ -1,4 +1,290 @@
-{
-  "error": "RapiraClient.fetch_available_token_settings() missing 2 required keyword-only arguments: 'api_key' and 'api_secret'",
-  "request_type": "available_token_settings"
-}
+[
+  {
+    "tokenId": "OP_OP",
+    "coin": "OP",
+    "coinDisplayFullName": "Optimism",
+    "smartContractAddress": "0x4200000000000000000000000000000000000042",
+    "processingScale": 2,
+    "decimals": 18,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "OP",
+      "displayName": "Optimism",
+      "blockConfirmations": 6,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "TON_TON",
+    "coin": "TON",
+    "coinDisplayFullName": "Toncoin",
+    "smartContractAddress": null,
+    "processingScale": 2,
+    "decimals": 9,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "TON",
+      "displayName": "TONCOIN",
+      "blockConfirmations": 4,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "XRP_XRP",
+    "coin": "XRP",
+    "coinDisplayFullName": "Ripple",
+    "smartContractAddress": null,
+    "processingScale": 3,
+    "decimals": 6,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "XRP",
+      "displayName": "Ripple",
+      "blockConfirmations": 30,
+      "memoRecharge": true,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "BSC_BNB",
+    "coin": "BNB",
+    "coinDisplayFullName": "Binance Coin",
+    "smartContractAddress": null,
+    "processingScale": 4,
+    "decimals": 18,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "BSC",
+      "displayName": "BEP20",
+      "blockConfirmations": 10,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "SOL_SOL",
+    "coin": "SOL",
+    "coinDisplayFullName": "Solana",
+    "smartContractAddress": null,
+    "processingScale": 4,
+    "decimals": 9,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "SOL",
+      "displayName": "Solana",
+      "blockConfirmations": 30,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 30
+    }
+  },
+  {
+    "tokenId": "ETH_ETH",
+    "coin": "ETH",
+    "coinDisplayFullName": "Ethereum",
+    "smartContractAddress": null,
+    "processingScale": 5,
+    "decimals": 18,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "ETH",
+      "displayName": "ERC20",
+      "blockConfirmations": 6,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "ETH_USDC",
+    "coin": "USDC",
+    "coinDisplayFullName": "USDC",
+    "smartContractAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "processingScale": 2,
+    "decimals": 6,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "ETH",
+      "displayName": "ERC20",
+      "blockConfirmations": 6,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "ETH_USDT",
+    "coin": "USDT",
+    "coinDisplayFullName": "Tether",
+    "smartContractAddress": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "processingScale": 2,
+    "decimals": 6,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "ETH",
+      "displayName": "ERC20",
+      "blockConfirmations": 6,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "LTC_LTC",
+    "coin": "LTC",
+    "coinDisplayFullName": "Litecoin",
+    "smartContractAddress": null,
+    "processingScale": 3,
+    "decimals": 8,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "LTC",
+      "displayName": "Litecoin",
+      "blockConfirmations": 4,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "TRX_USDT",
+    "coin": "USDT",
+    "coinDisplayFullName": "Tether",
+    "smartContractAddress": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+    "processingScale": 2,
+    "decimals": 6,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "TRX",
+      "displayName": "TRC20",
+      "blockConfirmations": 20,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 30
+    }
+  },
+  {
+    "tokenId": "TRX_TRX",
+    "coin": "TRX",
+    "coinDisplayFullName": "Tron",
+    "smartContractAddress": null,
+    "processingScale": 2,
+    "decimals": 6,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "TRX",
+      "displayName": "TRC20",
+      "blockConfirmations": 20,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 30
+    }
+  },
+  {
+    "tokenId": "BTC_BTC",
+    "coin": "BTC",
+    "coinDisplayFullName": "Bitcoin",
+    "smartContractAddress": null,
+    "processingScale": 6,
+    "decimals": 8,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "BTC",
+      "displayName": "Bitcoin",
+      "blockConfirmations": 2,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "DOGE_DOGE",
+    "coin": "DOGE",
+    "coinDisplayFullName": "DogeCoin",
+    "smartContractAddress": null,
+    "processingScale": 2,
+    "decimals": 8,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "DOGE",
+      "displayName": "DOGE",
+      "blockConfirmations": 4,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "ETC_ETC",
+    "coin": "ETC",
+    "coinDisplayFullName": "Ethereum Classic",
+    "smartContractAddress": null,
+    "processingScale": 4,
+    "decimals": 18,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "ETC",
+      "displayName": "ETC",
+      "blockConfirmations": 6,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "BSC_USDC",
+    "coin": "USDC",
+    "coinDisplayFullName": "USDC",
+    "smartContractAddress": "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
+    "processingScale": 2,
+    "decimals": 18,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "BSC",
+      "displayName": "BEP20",
+      "blockConfirmations": 10,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  },
+  {
+    "tokenId": "BSC_USDT",
+    "coin": "USDT",
+    "coinDisplayFullName": "Tether",
+    "smartContractAddress": "0x55d398326f99059fF775485246999027B3197955",
+    "processingScale": 2,
+    "decimals": 18,
+    "networkFee": 0.0,
+    "networkFeeType": "FIXED",
+    "enable": true,
+    "chain": {
+      "name": "BSC",
+      "displayName": "BEP20",
+      "blockConfirmations": 10,
+      "memoRecharge": false,
+      "paymentMethodTtlMinutes": 120
+    }
+  }
+]

@@ -1,4 +1,149 @@
-{
-  "error": "Could not parse the provided public key.",
-  "request_type": "spot_fees"
-}
+[
+  {
+    "id": 1,
+    "level": "0",
+    "symbol": "USDT/RUB",
+    "makerFee": 0.0,
+    "takerFee": 0.001
+  },
+  {
+    "id": 7,
+    "level": "0",
+    "symbol": "BTC/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 13,
+    "level": "0",
+    "symbol": "ETH/RUB",
+    "makerFee": 0.0025,
+    "takerFee": 0.003
+  },
+  {
+    "id": 19,
+    "level": "0",
+    "symbol": "BTC/RUB",
+    "makerFee": 0.0025,
+    "takerFee": 0.003
+  },
+  {
+    "id": 25,
+    "level": "0",
+    "symbol": "ETH/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 31,
+    "level": "0",
+    "symbol": "ETH/BTC",
+    "makerFee": 0.0025,
+    "takerFee": 0.003
+  },
+  {
+    "id": 42,
+    "level": "0",
+    "symbol": "USDC/RUB",
+    "makerFee": 0.0025,
+    "takerFee": 0.003
+  },
+  {
+    "id": 43,
+    "level": "0",
+    "symbol": "TRX/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 49,
+    "level": "0",
+    "symbol": "BNB/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 55,
+    "level": "0",
+    "symbol": "USDC/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 61,
+    "level": "0",
+    "symbol": "LTC/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 67,
+    "level": "0",
+    "symbol": "DAI/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 73,
+    "level": "0",
+    "symbol": "TON/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 79,
+    "level": "0",
+    "symbol": "ETC/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 85,
+    "level": "0",
+    "symbol": "DOGE/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 91,
+    "level": "0",
+    "symbol": "OP/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 97,
+    "level": "0",
+    "symbol": "NOT/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 103,
+    "level": "0",
+    "symbol": "XMR/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 109,
+    "level": "0",
+    "symbol": "DOGS/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 115,
+    "level": "0",
+    "symbol": "SOL/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  },
+  {
+    "id": 202,
+    "level": "0",
+    "symbol": "XRP/USDT",
+    "makerFee": 0.002,
+    "takerFee": 0.0025
+  }
+]

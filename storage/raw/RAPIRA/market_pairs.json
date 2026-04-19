@@ -1,4 +1,167 @@
-{
-  "error": "Could not parse the provided public key.",
-  "request_type": "market_pairs"
-}
+[
+  {
+    "symbol": "USDT/RUB",
+    "coinSymbol": "USDT",
+    "baseSymbol": "RUB",
+    "coinScale": 2,
+    "baseCoinScale": 2,
+    "fee": 0.0,
+    "minVolume": 0.5,
+    "minTurnover": 10.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "BTC/USDT",
+    "coinSymbol": "BTC",
+    "baseSymbol": "USDT",
+    "coinScale": 6,
+    "baseCoinScale": 2,
+    "fee": 0.002,
+    "minVolume": 1e-06,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "ETH/USDT",
+    "coinSymbol": "ETH",
+    "baseSymbol": "USDT",
+    "coinScale": 4,
+    "baseCoinScale": 2,
+    "fee": 0.002,
+    "minVolume": 1e-05,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "NOT/USDT",
+    "coinSymbol": "NOT",
+    "baseSymbol": "USDT",
+    "coinScale": 2,
+    "baseCoinScale": 6,
+    "fee": 0.002,
+    "minVolume": 1.0,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "ETH/BTC",
+    "coinSymbol": "ETH",
+    "baseSymbol": "BTC",
+    "coinScale": 4,
+    "baseCoinScale": 6,
+    "fee": 0.002,
+    "minVolume": 1e-05,
+    "minTurnover": 1e-06,
+    "exchangeable": true
+  },
+  {
+    "symbol": "USDC/USDT",
+    "coinSymbol": "USDC",
+    "baseSymbol": "USDT",
+    "coinScale": 4,
+    "baseCoinScale": 4,
+    "fee": 0.002,
+    "minVolume": 0.5,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "LTC/USDT",
+    "coinSymbol": "LTC",
+    "baseSymbol": "USDT",
+    "coinScale": 4,
+    "baseCoinScale": 2,
+    "fee": 0.002,
+    "minVolume": 0.01,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "TRX/USDT",
+    "coinSymbol": "TRX",
+    "baseSymbol": "USDT",
+    "coinScale": 2,
+    "baseCoinScale": 6,
+    "fee": 0.002,
+    "minVolume": 1.0,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "BNB/USDT",
+    "coinSymbol": "BNB",
+    "baseSymbol": "USDT",
+    "coinScale": 4,
+    "baseCoinScale": 2,
+    "fee": 0.002,
+    "minVolume": 0.0001,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "TON/USDT",
+    "coinSymbol": "TON",
+    "baseSymbol": "USDT",
+    "coinScale": 4,
+    "baseCoinScale": 4,
+    "fee": 0.0015,
+    "minVolume": 0.05,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "DOGE/USDT",
+    "coinSymbol": "DOGE",
+    "baseSymbol": "USDT",
+    "coinScale": 6,
+    "baseCoinScale": 5,
+    "fee": 0.0015,
+    "minVolume": 0.5,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "ETC/USDT",
+    "coinSymbol": "ETC",
+    "baseSymbol": "USDT",
+    "coinScale": 4,
+    "baseCoinScale": 4,
+    "fee": 0.0015,
+    "minVolume": 0.0001,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "OP/USDT",
+    "coinSymbol": "OP",
+    "baseSymbol": "USDT",
+    "coinScale": 4,
+    "baseCoinScale": 5,
+    "fee": 0.0015,
+    "minVolume": 0.5,
+    "minTurnover": 1.0,
+    "exchangeable": true
+  },
+  {
+    "symbol": "SOL/USDT",
+    "coinSymbol": "SOL",
+    "baseSymbol": "USDT",
+    "coinScale": 4,
+    "baseCoinScale": 2,
+    "fee": 0.002,
+    "minVolume": 0.0001,
+    "minTurnover": 0.05,
+    "exchangeable": true
+  },
+  {
+    "symbol": "XRP/USDT",
+    "coinSymbol": "XRP",
+    "baseSymbol": "USDT",
+    "coinScale": 4,
+    "baseCoinScale": 4,
+    "fee": 0.002,
+    "minVolume": 0.01,
+    "minTurnover": 0.1,
+    "exchangeable": true
+  }
+]

@@ -1,4 +1,122 @@
-{
-  "error": "Could not parse the provided public key.",
-  "request_type": "balances"
-}
+[
+  {
+    "unit": "USDT",
+    "name": "USDT",
+    "balance": "1.71730457",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "USDC",
+    "name": "USDC",
+    "balance": "0.00009999",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "TRX",
+    "name": "TRX",
+    "balance": "0.54223396",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "AMLC",
+    "name": "AMLC",
+    "balance": "1",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "RUB",
+    "name": "RUB",
+    "balance": "285.72509699",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "OP",
+    "name": "OP",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "DOGE",
+    "name": "DOGE",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "DAI",
+    "name": "DAI",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "DASH",
+    "name": "DASH",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "BTC",
+    "name": "BTC",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "SOL",
+    "name": "SOL",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "NOT",
+    "name": "NOT",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "TON",
+    "name": "TON",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "ETC",
+    "name": "ETC",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "BNB",
+    "name": "BNB",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "DOGS",
+    "name": "DOGS",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "XRP",
+    "name": "XRP",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "ETH",
+    "name": "ETH",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "LTC",
+    "name": "LTC",
+    "balance": "0",
+    "frozenBalance": "0"
+  },
+  {
+    "unit": "XMR",
+    "name": "XMR",
+    "balance": "0",
+    "frozenBalance": "0"
+  }
+]
