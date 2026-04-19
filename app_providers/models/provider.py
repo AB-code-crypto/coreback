@@ -28,7 +28,7 @@ class ProviderCode(models.TextChoices):
     # BINANCE = "BINANCE", "Binance"
     # KUCOIN = "KUCOIN", "KuCoin"
     # HTX = "HTX", "HTX"
-    # RAPIRA = "RAPIRA", "Rapira"
+    RAPIRA = "RAPIRA", "Rapira"
     # COINBASE_EXCHANGE = "COINBASE_EXCHANGE", "Coinbase Exchange"
     # UPBIT = "UPBIT", "Upbit"
     # BITSTAMP = "BITSTAMP", "Bitstamp"
@@ -78,7 +78,8 @@ class ProviderCode(models.TextChoices):
 
 PROVIDER_DEFAULTS = {
     ProviderCode.WHITEBIT: {"provider_type": ProviderType.CEX, "affiliate_url": "https://whitebit.com/ru"},
-    ProviderCode.MEXC: {"provider_type": ProviderType.CEX, "affiliate_url": "https://www.mexc.com"},
+    ProviderCode.MEXC: {"provider_type": ProviderType.CEX, "affiliate_url": "https://www.mexc.com/auth/signup?inviteCode=1niqM"},
+    ProviderCode.RAPIRA: {"provider_type": ProviderType.CEX, "affiliate_url": "https://rapira.net/?ref=53BE"},
     # ProviderCode.BYBIT: {"provider_type": ProviderType.CEX, "affiliate_url": ""},
     # ProviderCode.BINANCE: {"provider_type": ProviderType.CEX, "affiliate_url": ""},
 }
