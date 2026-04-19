@@ -1,0 +1,4 @@
+{
+  "error": "400 Client Error: Bad Request for url: https://api.mexc.com/api/v3/capital/deposit/hisrec?timestamp=1776529550830&recvWindow=5000&signature=c47ade09a06584d4ef56ee5eddc7190cf090de0375d147fd0b4dd26755eeac95",
+  "request_type": "deposit_history"
+}

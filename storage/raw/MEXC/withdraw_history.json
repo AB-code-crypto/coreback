@@ -1,0 +1,4 @@
+{
+  "error": "400 Client Error: Bad Request for url: https://api.mexc.com/api/v3/capital/withdraw/history?timestamp=1776529551252&recvWindow=5000&signature=ebdad84212cc8c99c8fb1be747f9836700e3da10a7d2d13f8de2733c1794cbe3",
+  "request_type": "withdraw_history"
+}

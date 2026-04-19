@@ -80,6 +80,10 @@ def fetch_mexc_all_raw(provider: Provider) -> MexcRawDumpResult:
         ("exchange_info", lambda: client.fetch_exchange_info()),
         ("capital_config_getall", lambda: client.fetch_capital_config_getall(api_key=api_key, api_secret=api_secret)),
         ("trade_fee_btcusdt", lambda: client.fetch_trade_fee(api_key=api_key, api_secret=api_secret, symbol="BTCUSDT")),
+        ("account_information", lambda: client.fetch_account_information(api_key=api_key, api_secret=api_secret)),
+        ("account_trades_btcusdt", lambda: client.fetch_account_trade_list(api_key=api_key, api_secret=api_secret, symbol="BTCUSDT")),
+        ("mx_deduct_status", lambda: client.fetch_mx_deduct_status(api_key=api_key, api_secret=api_secret)),
+        # history пока не трогаем
         # ("deposit_history", lambda: client.fetch_deposit_history(api_key=api_key, api_secret=api_secret)),
         # ("withdraw_history", lambda: client.fetch_withdraw_history(api_key=api_key, api_secret=api_secret)),
     ]
