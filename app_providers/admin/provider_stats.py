@@ -121,6 +121,7 @@ class ProviderStatsAdmin(admin.ModelAdmin):
         (
             "Детальная статистика",
             {
+                "description": "Обменная пара: BASE/QUOTE",
                 "fields": (
                     "quote_asset_counts_display",
                     "stablecoin_pair_counts_display",
