@@ -62,6 +62,34 @@ class MexcClient:
             "signature": signature,
         }
 
+    def _post_private(
+            self,
+            path: str,
+            *,
+            api_key: str,
+            api_secret: str,
+            params: dict[str, Any] | None = None,
+    ) -> MexcResponse:
+        signed_params = {
+            "timestamp": int(time.time() * 1000),
+            "recvWindow": self.recv_window,
+            **(params or {}),
+        }
+        signed_params = self._sign_params(signed_params, api_secret=api_secret)
+
+        response = requests.post(
+            self._build_url(path),
+            params=signed_params,
+            headers={"X-MEXC-APIKEY": api_key},
+            timeout=self.timeout,
+        )
+        response.raise_for_status()
+
+        return MexcResponse(
+            http_status=response.status_code,
+            payload=response.json(),
+        )
+
     def _get_private(
             self,
             path: str,
@@ -222,4 +250,71 @@ class MexcClient:
             api_key=api_key,
             api_secret=api_secret,
             params={"symbol": symbol},
+        )
+    
+    def fetch_account_information(
+            self,
+            *,
+            api_key: str,
+            api_secret: str,
+    ) -> MexcResponse:
+        return self._get_private(
+            "/api/v3/account",
+            api_key=api_key,
+            api_secret=api_secret,
+        )
+
+    def fetch_account_trade_list(
+            self,
+            *,
+            api_key: str,
+            api_secret: str,
+            symbol: str,
+            order_id: str | None = None,
+            start_time: int | None = None,
+            end_time: int | None = None,
+            limit: int | None = None,
+    ) -> MexcResponse:
+        params: dict[str, Any] = {"symbol": symbol}
+
+        if order_id:
+            params["orderId"] = order_id
+        if start_time is not None:
+            params["startTime"] = start_time
+        if end_time is not None:
+            params["endTime"] = end_time
+        if limit is not None:
+            params["limit"] = limit
+
+        return self._get_private(
+            "/api/v3/myTrades",
+            api_key=api_key,
+            api_secret=api_secret,
+            params=params,
+        )
+
+    def set_mx_deduct_enabled(
+            self,
+            *,
+            api_key: str,
+            api_secret: str,
+            enabled: bool,
+    ) -> MexcResponse:
+        return self._post_private(
+            "/api/v3/mxDeduct/enable",
+            api_key=api_key,
+            api_secret=api_secret,
+            params={"mxDeductEnable": str(enabled).lower()},
+        )
+
+    def fetch_mx_deduct_status(
+            self,
+            *,
+            api_key: str,
+            api_secret: str,
+    ) -> MexcResponse:
+        return self._get_private(
+            "/api/v3/mxDeduct/enable",
+            api_key=api_key,
+            api_secret=api_secret,
         )
