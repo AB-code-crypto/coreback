@@ -7,7 +7,9 @@ from app_providers.services.whitebit.sync_provider_asset_contexts import (
 )
 from app_providers.services.mexc.fetch_all_raw import fetch_mexc_all_raw
 from app_providers.services.mexc.fetch_stats import fetch_mexc_stats
-from services.mexc.sync_provider_asset_contexts import sync_mexc_provider_asset_contexts_from_raw
+from app_providers.services.mexc.sync_provider_asset_contexts import (
+    sync_mexc_provider_asset_contexts_from_raw,
+)
 from app_providers.services.rapira.fetch_all_raw import fetch_rapira_all_raw
 from app_providers.services.rapira.fetch_stats import fetch_rapira_stats
 from app_providers.services.rapira.sync_provider_asset_contexts import (
