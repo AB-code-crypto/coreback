@@ -72,7 +72,7 @@ def fetch_rapira_all_raw(provider: Provider) -> RapiraRawDumpResult:
     endpoint_calls = [
         ("server_time", lambda: client.fetch_server_time()),
         ("market_rates", lambda: client.fetch_rates_json()),
-        ("available_token_settings", lambda: client.fetch_available_token_settings()),
+        ("available_token_settings", lambda: client.fetch_available_token_settings(api_key=api_key, api_secret=api_secret, )),
         ("market_pairs", lambda: client.fetch_pairs(api_key=api_key, api_secret=api_secret)),
         ("token", lambda: client.fetch_tokens(api_key=api_key, api_secret=api_secret)),
         ("spot_fees", lambda: client.fetch_spot_fees(api_key=api_key, api_secret=api_secret)),
