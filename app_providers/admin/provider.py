@@ -8,6 +8,29 @@ from app_providers.services.whitebit.sync_provider_asset_contexts import (
 from app_providers.services.mexc.fetch_all_raw import fetch_mexc_all_raw
 from app_providers.services.mexc.fetch_stats import fetch_mexc_stats
 from services.mexc.sync_provider_asset_contexts import sync_mexc_provider_asset_contexts_from_raw
+from app_providers.services.rapira.fetch_all_raw import fetch_rapira_all_raw
+from app_providers.services.rapira.fetch_stats import fetch_rapira_stats
+from app_providers.services.rapira.sync_provider_asset_contexts import (
+    sync_rapira_provider_asset_contexts_from_raw,
+)
+
+RAW_FETCHERS = {
+    ProviderCode.WHITEBIT: fetch_whitebit_all_raw,
+    ProviderCode.MEXC: fetch_mexc_all_raw,
+    ProviderCode.RAPIRA: fetch_rapira_all_raw,
+}
+
+STATS_FETCHERS = {
+    ProviderCode.WHITEBIT: fetch_whitebit_stats,
+    ProviderCode.MEXC: fetch_mexc_stats,
+    ProviderCode.RAPIRA: fetch_rapira_stats,
+}
+
+ASSET_SYNCERS = {
+    ProviderCode.WHITEBIT: sync_whitebit_provider_asset_contexts_from_raw,
+    ProviderCode.MEXC: sync_mexc_provider_asset_contexts_from_raw,
+    ProviderCode.RAPIRA: sync_rapira_provider_asset_contexts_from_raw,
+}
 
 
 def _get_single_provider(modeladmin, request, queryset):
@@ -20,22 +43,6 @@ def _get_single_provider(modeladmin, request, queryset):
         return None
 
     return queryset.first()
-
-
-RAW_FETCHERS = {
-    ProviderCode.WHITEBIT: fetch_whitebit_all_raw,
-    ProviderCode.MEXC: fetch_mexc_all_raw,
-}
-
-STATS_FETCHERS = {
-    ProviderCode.WHITEBIT: fetch_whitebit_stats,
-    ProviderCode.MEXC: fetch_mexc_stats,
-}
-
-ASSET_SYNCERS = {
-    ProviderCode.WHITEBIT: sync_whitebit_provider_asset_contexts_from_raw,
-    ProviderCode.MEXC: sync_mexc_provider_asset_contexts_from_raw,
-}
 
 
 def _get_single_whitebit_provider(modeladmin, request, queryset):
