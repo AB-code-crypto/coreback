@@ -15,71 +15,54 @@ class ProviderApiAdminForm(forms.ModelForm):
         widget=forms.PasswordInput(render_value=False),
         help_text='Поле для: Api public, Api key, Публичный ключ. Для Rapira.net сюда надо ввести UID',
     )
+    clear_api_key = forms.BooleanField(
+        required=False,
+        label="Очистить API Key",
+    )
+
     new_api_secret = forms.CharField(
         required=False,
         label="Новый API Secret",
         widget=forms.PasswordInput(render_value=False),
         help_text='Поле для: Api secret, Api private',
     )
+    clear_api_secret = forms.BooleanField(
+        required=False,
+        label="Очистить API Secret",
+    )
+
     new_api_passphrase = forms.CharField(
         required=False,
         label="Новый API Passphrase",
         widget=forms.PasswordInput(render_value=False),
         help_text='Используется редко. Нужно для OKX, Kucoin',
     )
+    clear_api_passphrase = forms.BooleanField(
+        required=False,
+        label="Очистить API Passphrase",
+    )
+
     new_broker_key = forms.CharField(
         required=False,
         label="Новый Broker Key",
         widget=forms.PasswordInput(render_value=False),
         help_text='Api key для брокера',
     )
+    clear_broker_key = forms.BooleanField(
+        required=False,
+        label="Очистить Broker Key",
+    )
+
     new_trade_password = forms.CharField(
         required=False,
         label="Новый Trade Password",
         widget=forms.PasswordInput(render_value=False),
         help_text='Используется редко для отдельного торгового пароля. Есть на Kucoin',
     )
-
-    class Meta:
-        model = ProviderApi
-        fields = (
-            "provider",
-            "name",
-            "is_active",
-            "priority",
-            "spot_maker_fee",
-            "spot_taker_fee",
-            "futures_maker_fee",
-            "futures_taker_fee",
-            "is_ip_whitelist_enabled",
-            "allowed_ip_ranges",
-            "description",
-        )
-
-    def save(self, commit=True):
-        obj = super().save(commit=False)
-
-        new_api_key = self.cleaned_data.get("new_api_key")
-        new_api_secret = self.cleaned_data.get("new_api_secret")
-        new_api_passphrase = self.cleaned_data.get("new_api_passphrase")
-        new_broker_key = self.cleaned_data.get("new_broker_key")
-        new_trade_password = self.cleaned_data.get("new_trade_password")
-
-        if new_api_key:
-            obj.set_api_key(new_api_key)
-        if new_api_secret:
-            obj.set_api_secret(new_api_secret)
-        if new_api_passphrase:
-            obj.set_api_passphrase(new_api_passphrase)
-        if new_broker_key:
-            obj.set_broker_key(new_broker_key)
-        if new_trade_password:
-            obj.set_trade_password(new_trade_password)
-
-        if commit:
-            obj.save()
-
-        return obj
+    clear_trade_password = forms.BooleanField(
+        required=False,
+        label="Очистить Trade Password",
+    )
 
 
 @admin.action(description="Обновить торговые комиссии WhiteBIT")
@@ -224,14 +207,15 @@ class ProviderApiAdmin(admin.ModelAdmin):
             "Замена секретов",
             {
                 "fields": (
-                    "new_api_key",
-                    "new_api_secret",
-                    "new_api_passphrase",
-                    "new_broker_key",
-                    "new_trade_password",
+                    ("new_api_key", "clear_api_key"),
+                    ("new_api_secret", "clear_api_secret"),
+                    ("new_api_passphrase", "clear_api_passphrase"),
+                    ("new_broker_key", "clear_broker_key"),
+                    ("new_trade_password", "clear_trade_password"),
                 ),
                 "description": (
                     "Оставь поле пустым, если текущее значение менять не нужно. "
+                    "Отметь чекбокс, если значение нужно удалить. "
                     "Полные значения секретов никогда не показываются."
                 ),
             },
