@@ -460,7 +460,6 @@ def sync_rapira_provider_asset_contexts_from_raw(provider: Provider) -> SyncCoun
             "is_stablecoin": asset_code in stablecoin_codes,
             "amount_precision": trade_info["amount_precision"],
             "nominal": 1,
-            "reserve_current": reserve_current,
             "icon_url": "",
             "description": "",
         }
@@ -482,16 +481,6 @@ def sync_rapira_provider_asset_contexts_from_raw(provider: Provider) -> SyncCoun
         changed = False
         update_fields = [
             "is_active",
-            "asset_code_pl",
-            "asset_name_pl",
-            "context_code_pl",
-            "context_name_pl",
-            "contract_raw",
-            "raw_metadata",
-            "asset_code",
-            "asset_name",
-            "context_code",
-            "context_name",
             "AD",
             "AW",
             "deposit_confirmations",
@@ -510,12 +499,6 @@ def sync_rapira_provider_asset_contexts_from_raw(provider: Provider) -> SyncCoun
             "withdraw_max_amount",
             "min_trade_amount_usdt",
             "trades_enabled",
-            "is_stablecoin",
-            "amount_precision",
-            "nominal",
-            "reserve_current",
-            "icon_url",
-            "description",
         ]
 
         for field_name in update_fields:
