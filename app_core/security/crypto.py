@@ -58,8 +58,10 @@ def mask_secret(value: str | None, prefix: int = 3, suffix: int = 3) -> str:
 
     value = str(value)
 
-    if len(value) <= prefix + suffix:
-        return "*" * len(value)
+    shown_prefix = value[:prefix]
 
-    hidden_len = len(value) - prefix - suffix
-    return f"{value[:prefix]}{'*' * hidden_len}{value[-suffix:]}"
+    if len(value) <= 10:
+        return f"{shown_prefix}{'*' * 10}"
+
+    shown_suffix = value[-suffix:]
+    return f"{shown_prefix}{'*' * 10}{shown_suffix}"

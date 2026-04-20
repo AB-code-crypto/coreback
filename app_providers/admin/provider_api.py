@@ -13,26 +13,31 @@ class ProviderApiAdminForm(forms.ModelForm):
         required=False,
         label="Новый API Key",
         widget=forms.PasswordInput(render_value=False),
+        help_text='Поле для: Api public, Api key, Публичный ключ. Для Rapira.net сюда надо ввести UID',
     )
     new_api_secret = forms.CharField(
         required=False,
         label="Новый API Secret",
         widget=forms.PasswordInput(render_value=False),
+        help_text='Поле для: Api secret, Api private',
     )
     new_api_passphrase = forms.CharField(
         required=False,
         label="Новый API Passphrase",
         widget=forms.PasswordInput(render_value=False),
+        help_text='Используется редко. Нужно для OKX, Kucoin',
     )
     new_broker_key = forms.CharField(
         required=False,
         label="Новый Broker Key",
         widget=forms.PasswordInput(render_value=False),
+        help_text='Api key для брокера',
     )
     new_trade_password = forms.CharField(
         required=False,
         label="Новый Trade Password",
         widget=forms.PasswordInput(render_value=False),
+        help_text='Используется редко для отдельного торгового пароля. Есть на Kucoin',
     )
 
     class Meta:
