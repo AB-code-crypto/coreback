@@ -208,19 +208,6 @@ def _extract_processing_index(payload) -> dict[tuple[str, str], dict]:
     return result
 
 
-def _extract_balance_index(payload) -> dict[str, dict]:
-    items = _require_list(payload, "balances")
-    result: dict[str, dict] = {}
-
-    for idx, item in enumerate(items):
-        item = _require_dict(item, f"balances[{idx}]")
-        unit = _norm_code(item.get("unit"))
-        if unit:
-            result[unit] = item
-
-    return result
-
-
 def _normalize_context_code(
         *,
         asset_code: str,
@@ -330,7 +317,6 @@ def _build_trade_info(asset_code: str, pair_items: list[dict], fallback_precisio
 def sync_rapira_provider_asset_contexts_from_raw(provider: Provider) -> SyncCounters:
     token_payload = _load_raw_json(provider.code, "token")
     pairs_payload = _load_raw_json(provider.code, "market_pairs")
-    balances_payload = _load_raw_json(provider.code, "balances")
 
     try:
         processing_payload = _load_raw_json(provider.code, "available_token_settings")
@@ -339,7 +325,6 @@ def sync_rapira_provider_asset_contexts_from_raw(provider: Provider) -> SyncCoun
 
     token_items = _extract_token_items(token_payload)
     pairs_index = _extract_pairs_index(pairs_payload)
-    balance_index = _extract_balance_index(balances_payload)
     processing_index = _extract_processing_index(processing_payload)
     stablecoin_codes = _get_stablecoin_codes()
 
@@ -384,8 +369,7 @@ def sync_rapira_provider_asset_contexts_from_raw(provider: Provider) -> SyncCoun
             processing_item=processing_item,
         )
 
-        balance_item = balance_index.get(asset_code, {})
-        asset_name_pl = _norm_text(balance_item.get("name")) or asset_code_pl
+        asset_name_pl = asset_code_pl
         asset_name = asset_name_pl
 
         fallback_precision = _to_precision(token_item.get("scale"), default=8)
@@ -431,20 +415,10 @@ def sync_rapira_provider_asset_contexts_from_raw(provider: Provider) -> SyncCoun
             f"{asset_path}.minWithdraw",
         )
 
-        reserve_current = _to_amount_for_field_or_none(
-            balance_item.get("balance"),
-            "reserve_current",
-            f"balances[{asset_code}].balance",
-        )
-        if reserve_current is None:
-            reserve_current = Decimal("0")
-
         raw_metadata = {
             "token_item": token_item,
             "processing_item": processing_item,
             "pairs": trade_info["matched_symbols"],
-            "balance_item": balance_item,
-            "frozen_balance": balance_item.get("frozenBalance"),
         }
 
         lookup = {
