@@ -13,7 +13,7 @@ class ProviderApiAdminForm(forms.ModelForm):
         required=False,
         label="Новый API Key",
         widget=forms.PasswordInput(render_value=False),
-        help_text='Поле для: Api public, Api key, Публичный ключ. Для Rapira.net сюда надо ввести UID',
+        help_text='Api public. Для Rapira.net - UID',
     )
     clear_api_key = forms.BooleanField(
         required=False,
@@ -35,7 +35,7 @@ class ProviderApiAdminForm(forms.ModelForm):
         required=False,
         label="Новый API Passphrase",
         widget=forms.PasswordInput(render_value=False),
-        help_text='Используется редко. Нужно для OKX, Kucoin',
+        help_text='Нужно для OKX, Kucoin',
     )
     clear_api_passphrase = forms.BooleanField(
         required=False,
@@ -57,12 +57,73 @@ class ProviderApiAdminForm(forms.ModelForm):
         required=False,
         label="Новый Trade Password",
         widget=forms.PasswordInput(render_value=False),
-        help_text='Используется редко для отдельного торгового пароля. Есть на Kucoin',
+        help_text='Используется редко.',
     )
     clear_trade_password = forms.BooleanField(
         required=False,
         label="Очистить Trade Password",
     )
+
+    class Meta:
+        model = ProviderApi
+        fields = (
+            "provider",
+            "name",
+            "is_active",
+            "priority",
+            "spot_maker_fee",
+            "spot_taker_fee",
+            "futures_maker_fee",
+            "futures_taker_fee",
+            "is_ip_whitelist_enabled",
+            "allowed_ip_ranges",
+            "description",
+        )
+
+    def save(self, commit=True):
+        obj = super().save(commit=False)
+
+        new_api_key = self.cleaned_data.get("new_api_key")
+        new_api_secret = self.cleaned_data.get("new_api_secret")
+        new_api_passphrase = self.cleaned_data.get("new_api_passphrase")
+        new_broker_key = self.cleaned_data.get("new_broker_key")
+        new_trade_password = self.cleaned_data.get("new_trade_password")
+
+        clear_api_key = self.cleaned_data.get("clear_api_key")
+        clear_api_secret = self.cleaned_data.get("clear_api_secret")
+        clear_api_passphrase = self.cleaned_data.get("clear_api_passphrase")
+        clear_broker_key = self.cleaned_data.get("clear_broker_key")
+        clear_trade_password = self.cleaned_data.get("clear_trade_password")
+
+        if clear_api_key:
+            obj.set_api_key("")
+        elif new_api_key:
+            obj.set_api_key(new_api_key)
+
+        if clear_api_secret:
+            obj.set_api_secret("")
+        elif new_api_secret:
+            obj.set_api_secret(new_api_secret)
+
+        if clear_api_passphrase:
+            obj.set_api_passphrase("")
+        elif new_api_passphrase:
+            obj.set_api_passphrase(new_api_passphrase)
+
+        if clear_broker_key:
+            obj.set_broker_key("")
+        elif new_broker_key:
+            obj.set_broker_key(new_broker_key)
+
+        if clear_trade_password:
+            obj.set_trade_password("")
+        elif new_trade_password:
+            obj.set_trade_password(new_trade_password)
+
+        if commit:
+            obj.save()
+
+        return obj
 
 
 @admin.action(description="Обновить торговые комиссии WhiteBIT")
