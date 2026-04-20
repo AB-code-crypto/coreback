@@ -97,8 +97,8 @@ class ProviderAssetContext(UUIDTimestampedModel):
         self.asset_name_pl = (self.asset_name_pl or "").strip()
         self.context_code_pl = (self.context_code_pl or "").strip()
         self.context_name_pl = (self.context_name_pl or "").strip()
-        self.asset_code = ((self.asset_code_pl or self.asset_code or "").strip()).upper()
-        self.context_code = ((self.context_code_pl or self.context_code or "").strip()).upper()
+        self.asset_code = ((self.asset_code or self.asset_code_pl or "").strip()).upper()
+        self.context_code = ((self.context_code or self.context_code_pl or "").strip()).upper()
         self.asset_name = (self.asset_name or self.asset_name_pl or "").strip()
         self.context_name = (self.context_name or self.context_name_pl or "").strip()
         if self.contract_raw:
