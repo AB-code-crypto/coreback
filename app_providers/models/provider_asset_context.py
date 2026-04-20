@@ -71,6 +71,9 @@ class ProviderAssetContext(UUIDTimestampedModel):
     icon_url = models.URLField(blank=True, default="", verbose_name="Иконка (URL)", help_text="Иконка, которую отдал провайдер или которую вы указали вручную.")
     description = models.TextField(blank=True, verbose_name="Описание")
 
+    spot_maker_fee = models.DecimalField(max_digits=PERCENT_MAX_DIGITS,decimal_places=PERCENT_DECIMAL_PLACES,null=True,blank=True,validators=[PERCENT_MAX_100],verbose_name="Spot maker fee, %",help_text="Индивидуальная maker-комиссия для конкретного asset+context, если провайдер отдаёт её на уровне инструмента.",)
+    spot_taker_fee = models.DecimalField(max_digits=PERCENT_MAX_DIGITS,decimal_places=PERCENT_DECIMAL_PLACES,null=True,blank=True,validators=[PERCENT_MAX_100],verbose_name="Spot taker fee, %",help_text="Индивидуальная taker-комиссия для конкретного asset+context, если провайдер отдаёт её на уровне инструмента.",)
+
     class Meta:
         verbose_name = "AssetContext провайдера"
         verbose_name_plural = "04 AssetContext провайдеров"
